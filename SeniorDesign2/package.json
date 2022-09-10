@@ -1,0 +1,16 @@
+{
+  "name": "parking-system",
+  "version": "1.0.0",
+  "description": "Senior Design Project, Parking System.",
+  "main": "index.js",
+  "repository": "https://github.com/RacsonTech/SeniorDesign2.git",
+  "author": "RacsonTech <58871762+RacsonTech@users.noreply.github.com>",
+  "license": "MIT",
+  "private": false,
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.1",
+    "express": "^4.18.1",
+    "mongoose": "^6.5.3"
+  }
+}
