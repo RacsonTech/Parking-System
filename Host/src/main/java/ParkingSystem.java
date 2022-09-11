@@ -5,15 +5,15 @@ import java.util.ArrayList;
 public class ParkingSystem {
 
 
-  public static void main(String[] args) throws SQLException {
-    // Create a connection to the local MySQL DB
-    MySqlConnection mySqlConnection = new MySqlConnection();
+    public static void main(String[] args) throws SQLException {
+        // Create a connection to the local MySQL DB
+        MySqlConnection mySqlConnection = new MySqlConnection();
 
-    ParkingGarage parkingGarage = new ParkingGarage();
+        ParkingGarage parkingGarage = new ParkingGarage();
 
-    initializeParkingSystem(parkingGarage, mySqlConnection.getConnection());
+        iniParkingSystem(parkingGarage, mySqlConnection.getConnection());
 
-    getNewCameraLogRecords(parkingGarage, mySqlConnection.getConnection());
+        getNewCameraLogRecords(parkingGarage, mySqlConnection.getConnection());
 
 //    List<CameraRecord> cameraRecordList = new ArrayList<CameraRecord>();
 //
@@ -100,8 +100,8 @@ public class ParkingSystem {
 //
 //
 
-    // Close the connection
-    (mySqlConnection.getConnection()).close();
+        // Close the connection
+        (mySqlConnection.getConnection()).close();
 
 //      try {
 //        Thread.sleep(5000);
@@ -109,113 +109,144 @@ public class ParkingSystem {
 //        throw new RuntimeException(e);
 //      }
 //    } // While Loop
-  }
-
-  static void initializeParkingSystem(ParkingGarage parkingGarage, Connection connection) throws SQLException {
-
-    System.out.println("Parking Garage Program Initializing");
-
-//    Statement statement = connection.createStatement();
-    Statement statement = connection.createStatement(       // Allows to move up and down the rows and update them
-        ResultSet.TYPE_SCROLL_SENSITIVE,
-        ResultSet.CONCUR_UPDATABLE);
-
-    // Prepare the query
-    String query = ("select name, total_spaces, available_spaces, levels from parkingsystem.garage");
-
-    // Execute the query statement
-    System.out.println("Obtaining garage information");
-    ResultSet resultSet = statement.executeQuery(query);
-
-    // Store the result
-    resultSet.next();
-    parkingGarage.setGarageName(resultSet.getString("name"));
-    parkingGarage.setTotalSpaces(resultSet.getInt("total_spaces"));
-    parkingGarage.setAvailableSpaces(resultSet.getInt("available_spaces"));
-    parkingGarage.setNumLevels(resultSet.getInt("levels"));
-
-    // Print the result
-    parkingGarage.printGarageInfo();
-
-    resultSet.close();
-
-    // Prepare a new query
-    query = ("select id, section, ipaddress from parkingsystem.cameras");
-
-    // Execute the query
-    resultSet = statement.executeQuery(query);
-
-    ArrayList<Camera> cameraArrayList = new ArrayList<Camera>();
-    int cameraId;
-    int sectionId;
-    String ipAddress;
-
-    // Store the result
-    while (resultSet.next()) {
-      cameraId = resultSet.getInt("id");
-      sectionId = resultSet.getInt("section");
-      ipAddress = resultSet.getString("ipaddress");
-
-      Camera camera = new Camera(cameraId, sectionId, ipAddress);
-      cameraArrayList.add(camera);
     }
 
-    parkingGarage.setCameraList(cameraArrayList);
+    static void iniParkingSystem(ParkingGarage parkingGarage, Connection connection) throws SQLException {
 
-    // Print the result
-    System.out.println("\n------ Camera List ------");
-    parkingGarage.printCameraList();
+        System.out.println("Initializing the Parking Garage Program ");
 
-    resultSet.close();
-    statement.close();
-  }
+        Statement statement = connection.createStatement();
+//        Statement statement = connection.createStatement(       // Allows to move up and down the rows and update them
+//                ResultSet.TYPE_SCROLL_SENSITIVE,
+//                ResultSet.CONCUR_UPDATABLE);
 
-  static void getNewCameraLogRecords(ParkingGarage parkingGarage, Connection connection) throws SQLException {
-    System.out.println("\n------ New Camera Log Records ------");
+        // Prepare the query
+        String query = ("select name, total_spaces, available_spaces, levels from garage");
 
-    Statement statement = connection.createStatement();
+        // Execute the query statement
+        System.out.println("Obtaining garage information from the database");
+        ResultSet resultSet = statement.executeQuery(query);
 
-    // Prepare the query
-    String query = ("select * from parkingsystem.new_camera_log_record");
+        // Store the result
+        System.out.println("\n--- Garage Information----");
+        resultSet.next();
+        parkingGarage.setGarageName(resultSet.getString("name"));
+        parkingGarage.setTotalSpaces(resultSet.getInt("total_spaces"));
+        parkingGarage.setAvailableSpaces(resultSet.getInt("available_spaces"));
+        parkingGarage.setNumLevels(resultSet.getInt("levels"));
 
-    // Execute the query statement
-    System.out.println("Obtaining new records");
-    ResultSet resultSet = statement.executeQuery(query);
+        // Print the result
+        parkingGarage.printGarageInfo();
 
-    // Store the result
-    ArrayList<CameraRecord> cameraRecordArrayList = new ArrayList<>();
-    int cameraId;
-    int changedInSpaces;
+        resultSet.close();
 
-    while (resultSet.next()) {
-      cameraId = resultSet.getInt("camera_id");
-      changedInSpaces = resultSet.getInt("changed_spaces");
-      CameraRecord cameraRecord = new CameraRecord(cameraId, changedInSpaces);
-      cameraRecordArrayList.add(cameraRecord);
+        // Prepare a new query
+        query = ("select id, section, ipaddress from cameras");
+
+        // Execute the query
+        resultSet = statement.executeQuery(query);
+
+        ArrayList<Camera> cameraArrayList = new ArrayList<Camera>();
+        int cameraId;
+        int sectionId;
+        String ipAddress;
+
+        // Store the result
+        while (resultSet.next()) {
+            cameraId = resultSet.getInt("id");
+            sectionId = resultSet.getInt("section");
+            ipAddress = resultSet.getString("ipaddress");
+
+            Camera camera = new Camera(cameraId, sectionId, ipAddress);
+            cameraArrayList.add(camera);
+        }
+
+        parkingGarage.setCameraList(cameraArrayList);
+
+        // Print the result
+        System.out.println("\n------ Camera List ------");
+        parkingGarage.printCameraList();
+
+        resultSet.close();
+        statement.close();
     }
 
-    // Print the result
-    System.out.format("%2s %12s\n", "Camera ID", "ChangedSpaces");
-    for (CameraRecord record : cameraRecordArrayList) {
-      System.out.format("%4s %13s\n", record.getCameraId(), record.getChangedSpaces());
+    static void getNewCameraLogRecords(ParkingGarage parkingGarage, Connection connection) throws SQLException {
+        System.out.println("\n------ New Camera Log Records ------");
+
+        Statement statement = connection.createStatement();
+
+
+        // Prepare the query
+        String query = ("select * from new_camera_log_record");
+
+        // Execute the query statement
+        ResultSet resultSet = statement.executeQuery(query);
+
+        // Store the result
+        ArrayList<CameraRecord> cameraRecordArrayList = new ArrayList<>();
+        int cameraId;
+        int changedInSpaces;
+        int recordId;
+
+        while (resultSet.next()) {
+            recordId = resultSet.getInt("id");
+            cameraId = resultSet.getInt("camera_id");
+            changedInSpaces = resultSet.getInt("changed_spaces");
+            CameraRecord cameraRecord = new CameraRecord(recordId, cameraId, changedInSpaces);
+            cameraRecordArrayList.add(cameraRecord);
+        }
+
+        // Print the result
+        System.out.format("%2s %12s\n", "Camera ID", "ChangedSpaces");
+        for (CameraRecord record : cameraRecordArrayList) {
+            System.out.format("%4s %13s\n", record.getCameraId(), record.getChangedSpaces());
+        }
+
+        // Update the "isNew" column in the DB to zero
+//        System.out.println("Updating \"isNew\" to zero.");
+//        resultSet.beforeFirst();
+//        while (resultSet.next()) {
+//            resultSet.updateInt("isNew", 0);
+//            resultSet.updateRow();
+//        }
+
+        // Prepare the query using id as a parameter
+        query = ("UPDATE camera_log SET isNew = 0 WHERE id = ?");
+
+        // Prepare the statement
+        PreparedStatement preparedStatement = connection.prepareStatement(query);
+
+        int rowChanged;
+        for (CameraRecord cameraRecord : cameraRecordArrayList) {
+
+            // Set Parameters (1 means the 1st ? in the query)
+            preparedStatement.setInt(1, cameraRecord.getRecordId());
+
+            // Execute SQL query
+            rowChanged = preparedStatement.executeUpdate();
+            if (rowChanged == 0) {
+                System.err.println("ERROR: Record ID: " + cameraRecord.getRecordId() + " could not be updated.");
+                System.err.println("The camera_log table will be inaccurate.");
+            }
+        }
+
+        resultSet.close();
+        statement.close();
+
+
+        // TODO: return the cameraRecordArrayList to main to then process the list
+        // TODO: process the list:
+        //  1) Get the section id of the camera
+        //  2) Get the IP address
+        //  3) Compute the new number of spaces available in the section
+        //  4) Get the LED Display in the same section
+        //  5) Send data to the LED display(s)
+        //  6) Log the data sent to the displays into the display log
+        //  7) Update the new number of spaces available in the section, level, garage tables
+        //  8) Update the MongoDB database
+        //  9) Repeat.
     }
-
-    resultSet.close();
-    statement.close();
-
-    // TODO: update the camera log isNew to zero.
-    // TODO: return the cameraRecordArrayList to main to then process the list
-    // TODO: process the list:
-    //  1) Get the section id of the camera
-    //  2) Get the IP address
-    //  3) Compute the new number of spaces available in the section
-    //  4) Get the LED Display in the same section
-    //  5) Send data to the LED display(s)
-    //  6) Log the data sent to the displays into the display log
-    //  7) Update the new number of spaces available in the section, level, garage tables
-    //  8) Update the MongoDB database
-    //  9) Repeat.
-  }
 
 
 }
