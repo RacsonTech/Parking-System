@@ -8,14 +8,15 @@ public class ParkingSystem {
 
         // Create a connection to the local MySQL DB
         MySqlConnection mySqlConnection = new MySqlConnection();
+        Connection connectionToDB = mySqlConnection.getConnection();
 
         ParkingGarage parkingGarage = new ParkingGarage();
 
         // Loads data from the database
-        iniParkingSystem(parkingGarage, mySqlConnection.getConnection());
+        iniParkingSystem(parkingGarage, connectionToDB);
 
         // Reads new records from the database created by the python script
-        getNewCameraLogRecords(parkingGarage, mySqlConnection.getConnection());
+        getNewCameraLogRecords(parkingGarage, connectionToDB);
 
         // ******************* Process new records ******************** //
         int cameraId;
@@ -36,17 +37,25 @@ public class ParkingSystem {
             levelId = section.getLevelId();
             changedSpaces = record.getChangedSpaces();
 
-            ArrayList<Display> displayList = parkingGarage.getDisplayList(sectionId);
-
-            // Update database
-            updateSectionTable(sectionId, changedSpaces, mySqlConnection.getConnection());
+            // Update DB Section Table
+            updateSectionTable(sectionId, changedSpaces, connectionToDB);
 
             // Update local variable
             parkingGarage.updateSectionAvailableSpaces(sectionId, changedSpaces);
 
-            // Get new number of available spaces from the section
-            sectionAvailableSpaces = queryAvailableSpaces(sectionId, mySqlConnection.getConnection());
-            System.out.println("New Available Spaces in Section " + sectionId + " is " + sectionAvailableSpaces);
+            // Get new number of available spaces from the database
+            sectionAvailableSpaces = queryAvailableSpaces(sectionId, connectionToDB);
+//            System.out.println("New Available Spaces in Section " + sectionId + " is " + sectionAvailableSpaces);
+
+            // Get the displays ID in the section being processed.
+            ArrayList<Display> displayList = parkingGarage.getDisplayList(sectionId);
+
+            // Send the number of available spaces to all the LED signs in this section
+            updateDisplaySigns(displayList, sectionAvailableSpaces);
+
+            // Update the DB Display Log Table
+            System.out.println("Updating DB Display_log Table");
+            updateDisplayLogTable(displayList, sectionAvailableSpaces, connectionToDB);
 
             // TODO:
             // 1) Get the section id of the camera (Done)
@@ -81,6 +90,43 @@ public class ParkingSystem {
 //    } // While Loop
     }
 
+    static void updateDisplayLogTable(ArrayList<Display> displayList, int freeSpaces, Connection connectionToDB) throws SQLException {
+        PreparedStatement preparedStatement = null;
+        int rowChanged;
+        String query;
+
+        // System.out.println("\nProcessing changes: Updating DB Display Log Table");
+
+        // Prepare the query using id as a parameter
+        query = ("INSERT INTO display_log (display_id, available_spaces) VALUES (?, ?)");
+
+        // For each display in the list, do the following
+        for (Display display : displayList) {
+
+            // Prepare the statement
+            preparedStatement = connectionToDB.prepareStatement(query);
+
+            // Set Parameters (1 means the 1st "?" in the query, 2 means the 2nd "?" and so on)
+            preparedStatement.setInt(1, display.getId());
+            preparedStatement.setInt(2, freeSpaces);
+
+            // Execute SQL query
+            rowChanged = preparedStatement.executeUpdate();
+
+            if (rowChanged == 0) {
+                System.err.println("ERROR updating the section Table. See updateSectionTable function.");
+            }
+        }
+        assert preparedStatement != null;
+        preparedStatement.close();
+    }
+
+    static void updateDisplaySigns(ArrayList<Display> displayList, int freeSpaces) {
+        for (Display display : displayList) {
+            System.out.println("Sending: " + freeSpaces + " to display with IP address: " + display.getIpAddress());
+        }
+    }
+
     static int queryAvailableSpaces(int sectionId, Connection connection) throws SQLException {
 
         int availableSpaces;
@@ -108,6 +154,8 @@ public class ParkingSystem {
     }
 
     static void updateSectionTable(int sectionId, int changedSpaces, Connection connection) throws SQLException {
+
+        // System.out.println("\nProcessing changes: Updating DB Section Table");
 
         // Prepare the query using id as a parameter
         String query = ("UPDATE sections SET available_spaces = available_spaces + ? WHERE id = ?");
