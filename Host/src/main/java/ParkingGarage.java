@@ -9,6 +9,7 @@ public class ParkingGarage {
     private ArrayList<Display> displayArrayList;
     private ArrayList<Section> sectionArrayList;
     private ArrayList<Level> levelArrayList;
+    private ArrayList<SpaceChangeRecord> spaceChangeRecordArrayList;
 
     // Constructor
     public ParkingGarage() {
@@ -75,6 +76,9 @@ public class ParkingGarage {
         this.levelArrayList = levelArrayList;
     }
 
+    public void setSpaceChangeRecordArrayList(ArrayList<SpaceChangeRecord> record) {
+        spaceChangeRecordArrayList = record;
+    }
 
     public void addCamera(Camera camera) {
         cameraArrayList.add(camera);
@@ -94,7 +98,7 @@ public class ParkingGarage {
     }
 
     public void printCameraList() {
-
+        System.out.println("\n------ Camera List ------");
         System.out.format("%2s %12s %12s\n", "Camera ID", "Section ID", "IP Address");
 
         // For each camera in the camera list...
@@ -104,7 +108,7 @@ public class ParkingGarage {
     }
 
     public void printDisplayList() {
-
+        System.out.println("\n------ Display List ------");
         System.out.format("%2s %12s %15s %12s\n", "DisplayID", "SectionID", "DisplayNumber", "IP Address");
 
         // For each camera in the camera list...
@@ -114,7 +118,7 @@ public class ParkingGarage {
     }
 
     public void printSectionList() {
-
+        System.out.println("\n------ Section List ------");
         System.out.format("%2s %8s %13s %16s\n", "SectionID", "LevelID", "TotalSpaces", "AvailableSpaces");
 
         // For each camera in the camera list...
@@ -124,7 +128,7 @@ public class ParkingGarage {
     }
 
     public void printLevelList() {
-
+        System.out.println("\n------ Level List ------");
         System.out.format("%2s %13s %16s\n", "LevelID", "TotalSpaces", "AvailableSpaces");
 
         // For each camera in the camera list...
@@ -132,4 +136,15 @@ public class ParkingGarage {
             System.out.format("%4s %12s %14s \n", level.getId(), level.getTotalSpaces(), level.getAvailableSpaces());
         }
     }
+
+    public void printSpaceChangeRecords() {
+        System.out.println("\n------ Recently Changed Spaces ------");
+
+        System.out.format("%2s %12s\n", "Camera ID", "ChangedSpaces");
+
+        for (SpaceChangeRecord record : spaceChangeRecordArrayList) {
+            System.out.format("%4s %13s\n", record.getCameraId(), record.getChangedSpaces());
+        }
+    }
+
 }

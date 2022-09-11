@@ -69,8 +69,6 @@ public class ParkingSystem {
 
         parkingGarage.setLevelArrayList(levelArrayList);
 
-        // Print the result
-        System.out.println("\n------ Level List ------");
         parkingGarage.printLevelList();
 
         resultSet.close();
@@ -103,8 +101,6 @@ public class ParkingSystem {
 
         parkingGarage.setSectionArrayList(sectionArrayList);
 
-        // Print the result
-        System.out.println("\n------ Section List ------");
         parkingGarage.printSectionList();
 
         resultSet.close();
@@ -127,7 +123,6 @@ public class ParkingSystem {
         parkingGarage.setAvailableSpaces(resultSet.getInt("available_spaces"));
         parkingGarage.setNumLevels(resultSet.getInt("levels"));
 
-        // Print the result
         parkingGarage.printGarageInfo();
 
         resultSet.close();
@@ -158,8 +153,6 @@ public class ParkingSystem {
 
         parkingGarage.setCameraArrayList(cameraArrayList);
 
-        // Print the result
-        System.out.println("\n------ Camera List ------");
         parkingGarage.printCameraList();
 
         resultSet.close();
@@ -193,15 +186,12 @@ public class ParkingSystem {
 
         parkingGarage.setDisplayArrayList(displayArrayList);
 
-        // Print the result
-        System.out.println("\n------ Display List ------");
         parkingGarage.printDisplayList();
 
         resultSet.close();
     }
 
     static void getNewCameraLogRecords(ParkingGarage parkingGarage, Connection connection) throws SQLException {
-        System.out.println("\n------ New Camera Log Records ------");
 
         Statement statement = connection.createStatement();
 
@@ -212,7 +202,7 @@ public class ParkingSystem {
         ResultSet resultSet = statement.executeQuery(query);
 
         // Store the result
-        ArrayList<CameraRecord> cameraRecordArrayList = new ArrayList<>();
+        ArrayList<SpaceChangeRecord> spaceChangeRecordArrayList = new ArrayList<>();
         int cameraId;
         int changedInSpaces;
         int recordId;
@@ -221,37 +211,34 @@ public class ParkingSystem {
             recordId = resultSet.getInt("id");
             cameraId = resultSet.getInt("camera_id");
             changedInSpaces = resultSet.getInt("changed_spaces");
-            CameraRecord cameraRecord = new CameraRecord(recordId, cameraId, changedInSpaces);
-            cameraRecordArrayList.add(cameraRecord);
+            SpaceChangeRecord spaceChangeRecord = new SpaceChangeRecord(recordId, cameraId, changedInSpaces);
+            spaceChangeRecordArrayList.add(spaceChangeRecord);
         }
 
-        // Print the result
-        System.out.format("%2s %12s\n", "Camera ID", "ChangedSpaces");
-        for (CameraRecord record : cameraRecordArrayList) {
-            System.out.format("%4s %13s\n", record.getCameraId(), record.getChangedSpaces());
-        }
+        parkingGarage.setSpaceChangeRecordArrayList(spaceChangeRecordArrayList);
+        parkingGarage.printSpaceChangeRecords();
 
-        // ********* UPDATE column "isNew" to zero ********** //
-
-        // Prepare the query using id as a parameter
-        query = ("UPDATE camera_log SET isNew = 0 WHERE id = ?");
-
-        // Prepare the statement
-        PreparedStatement preparedStatement = connection.prepareStatement(query);
-
-        int rowChanged;
-        for (CameraRecord cameraRecord : cameraRecordArrayList) {
-
-            // Set Parameters (1 means the 1st ? in the query)
-            preparedStatement.setInt(1, cameraRecord.getRecordId());
-
-            // Execute SQL query
-            rowChanged = preparedStatement.executeUpdate();
-            if (rowChanged == 0) {
-                System.err.println("ERROR: Record ID: " + cameraRecord.getRecordId() + " could not be updated.");
-                System.err.println("The camera_log table will be inaccurate.");
-            }
-        }
+//        // ********* UPDATE column "isNew" to zero ********** //
+//
+//        // Prepare the query using id as a parameter
+//        query = ("UPDATE camera_log SET isNew = 0 WHERE id = ?");
+//
+//        // Prepare the statement
+//        PreparedStatement preparedStatement = connection.prepareStatement(query);
+//
+//        int rowChanged;
+//        for (SpaceChangeRecord spaceChangeRecord : spaceChangeRecordArrayList) {
+//
+//            // Set Parameters (1 means the 1st ? in the query)
+//            preparedStatement.setInt(1, spaceChangeRecord.getRecordId());
+//
+//            // Execute SQL query
+//            rowChanged = preparedStatement.executeUpdate();
+//            if (rowChanged == 0) {
+//                System.err.println("ERROR: Record ID: " + spaceChangeRecord.getRecordId() + " could not be updated.");
+//                System.err.println("The camera_log table will be inaccurate.");
+//            }
+//        }
 
         resultSet.close();
         statement.close();
