@@ -9,7 +9,7 @@ public class ParkingGarage {
     private ArrayList<Display> displayArrayList;
     private ArrayList<Section> sectionArrayList;
     private ArrayList<Level> levelArrayList;
-    private ArrayList<SpaceChangeRecord> spaceChangeRecordArrayList;
+    private ArrayList<Record> recordArrayList;
 
     // Constructor
     public ParkingGarage() {
@@ -43,6 +43,31 @@ public class ParkingGarage {
         return null;
     }
 
+    public Section getSection(int id) {
+        // For every section in the list...
+        for (Section section : sectionArrayList) {
+            if (id == section.getId()) {
+                return section;
+            }
+        }
+        return null;
+    }
+
+    public ArrayList<Display> getDisplayList(int id) {
+        ArrayList<Display> displaysFoundList = new ArrayList<>();
+
+        // for every display in the list...
+        for (Display display : displayArrayList) {
+            if (id == display.getId()) {
+                displaysFoundList.add(display);
+            }
+        }
+        return displaysFoundList;
+    }
+
+    public ArrayList<Record> getRecordArrayList() {
+        return recordArrayList;
+    }
 
     public void setGarageName(String garageName) {
         this.garageName = garageName;
@@ -76,12 +101,21 @@ public class ParkingGarage {
         this.levelArrayList = levelArrayList;
     }
 
-    public void setSpaceChangeRecordArrayList(ArrayList<SpaceChangeRecord> record) {
-        spaceChangeRecordArrayList = record;
+    public void setSpaceChangeRecordArrayList(ArrayList<Record> record) {
+        recordArrayList = record;
     }
 
     public void addCamera(Camera camera) {
         cameraArrayList.add(camera);
+    }
+
+    public void updateSectionAvailableSpaces(int id, int changedSpaces) {
+        for (Section section : sectionArrayList) {
+            if (id == section.getId()) {
+                section.updateAvailableSpaces(changedSpaces);
+                break;
+            }
+        }
     }
 
     public boolean removeCamera(int cameraId) {
@@ -142,7 +176,7 @@ public class ParkingGarage {
 
         System.out.format("%2s %12s\n", "Camera ID", "ChangedSpaces");
 
-        for (SpaceChangeRecord record : spaceChangeRecordArrayList) {
+        for (Record record : recordArrayList) {
             System.out.format("%4s %13s\n", record.getCameraId(), record.getChangedSpaces());
         }
     }

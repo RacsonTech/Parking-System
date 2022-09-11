@@ -1,9 +1,8 @@
 import java.sql.*;
 import java.util.ArrayList;
 
-
 public class ParkingSystem {
-
+//    public static final int ID_NOT_FOUND = 9999;
 
     public static void main(String[] args) throws SQLException {
 
@@ -12,9 +11,64 @@ public class ParkingSystem {
 
         ParkingGarage parkingGarage = new ParkingGarage();
 
+        // Loads data from the database
         iniParkingSystem(parkingGarage, mySqlConnection.getConnection());
 
+        // Reads new records from the database created by the python script
         getNewCameraLogRecords(parkingGarage, mySqlConnection.getConnection());
+
+        // ******************* Process new records ******************** //
+        int cameraId;
+        int sectionId;
+        int levelId;
+        int changedSpaces;
+        int sectionAvailableSpaces;
+
+        ArrayList<Record> recordArrayList = parkingGarage.getRecordArrayList();
+
+
+        // For every record in the list...
+        for (Record record : recordArrayList) {
+
+            cameraId = record.getCameraId();
+            Section section = parkingGarage.getSection(cameraId);
+            sectionId = section.getId();
+            levelId = section.getLevelId();
+            changedSpaces = record.getChangedSpaces();
+
+            ArrayList<Display> displayList = parkingGarage.getDisplayList(sectionId);
+
+            // Update database
+            updateSectionTable(sectionId, changedSpaces, mySqlConnection.getConnection());
+
+            // Update local variable
+            parkingGarage.updateSectionAvailableSpaces(sectionId, changedSpaces);
+
+            // Get new number of available spaces from the section
+            sectionAvailableSpaces = queryAvailableSpaces(sectionId, mySqlConnection.getConnection());
+            System.out.println("New Available Spaces in Section " + sectionId + " is " + sectionAvailableSpaces);
+
+            // TODO:
+            // 1) Get the section id of the camera (Done)
+            // 2) Get the IP address (Done in the Display List)
+            // 3) Compute the new number of spaces available in the section (Done)
+            // 4) Get the LED Display in the same section (Done)
+            // TODO
+            //  5) Send data to the LED display(s)
+            //  6) Log the data sent to the displays into the display log
+            //  7) Update the new number of spaces available in:
+            //     Section Table and Local Variable (done)
+            //     Level Table and Local Variable
+            //     Garage tables and Local Variable
+            //  8) Update the MongoDB database
+            //  9) Repeat.
+
+            //            updateDisplay()
+            // for every display in the list...
+//            for(Display display : displayList) {
+//
+//            }
+        }
 
         // Close the connection
         (mySqlConnection.getConnection()).close();
@@ -25,6 +79,53 @@ public class ParkingSystem {
 //        throw new RuntimeException(e);
 //      }
 //    } // While Loop
+    }
+
+    static int queryAvailableSpaces(int sectionId, Connection connection) throws SQLException {
+
+        int availableSpaces;
+
+        // Prepare a new query
+        String query = ("SELECT available_spaces FROM sections WHERE id = ?");
+
+        // Prepare the statement
+        PreparedStatement preparedStatement = connection.prepareStatement(query);
+
+        // Set Parameters (1 means the 1st "?" in the query, 2 means the 2nd "?" and so on)
+        preparedStatement.setInt(1, sectionId);
+
+        // Execute SQL query
+        ResultSet resultSet = preparedStatement.executeQuery();
+
+        // Retrieve the value
+        resultSet.next();
+        availableSpaces = resultSet.getInt(1); // Alternative to resultSet.getInt("available_spaces");
+
+        resultSet.close();
+        preparedStatement.close();
+
+        return availableSpaces;
+    }
+
+    static void updateSectionTable(int sectionId, int changedSpaces, Connection connection) throws SQLException {
+
+        // Prepare the query using id as a parameter
+        String query = ("UPDATE sections SET available_spaces = available_spaces + ? WHERE id = ?");
+
+        // Prepare the statement
+        PreparedStatement preparedStatement = connection.prepareStatement(query);
+
+        // Set Parameters (1 means the 1st "?" in the query, 2 means the 2nd "?" and so on)
+        preparedStatement.setInt(1, changedSpaces);
+        preparedStatement.setInt(2, sectionId);
+
+        // Execute SQL query
+        int rowChanged = preparedStatement.executeUpdate();
+
+        if (rowChanged == 0) {
+            System.err.println("ERROR updating the section Table. See updateSectionTable function.");
+        }
+        preparedStatement.close();
     }
 
     static void iniParkingSystem(ParkingGarage parkingGarage, Connection connection) throws SQLException {
@@ -202,7 +303,7 @@ public class ParkingSystem {
         ResultSet resultSet = statement.executeQuery(query);
 
         // Store the result
-        ArrayList<SpaceChangeRecord> spaceChangeRecordArrayList = new ArrayList<>();
+        ArrayList<Record> recordArrayList = new ArrayList<>();
         int cameraId;
         int changedInSpaces;
         int recordId;
@@ -211,11 +312,11 @@ public class ParkingSystem {
             recordId = resultSet.getInt("id");
             cameraId = resultSet.getInt("camera_id");
             changedInSpaces = resultSet.getInt("changed_spaces");
-            SpaceChangeRecord spaceChangeRecord = new SpaceChangeRecord(recordId, cameraId, changedInSpaces);
-            spaceChangeRecordArrayList.add(spaceChangeRecord);
+            Record record = new Record(recordId, cameraId, changedInSpaces);
+            recordArrayList.add(record);
         }
 
-        parkingGarage.setSpaceChangeRecordArrayList(spaceChangeRecordArrayList);
+        parkingGarage.setSpaceChangeRecordArrayList(recordArrayList);
         parkingGarage.printSpaceChangeRecords();
 
 //        // ********* UPDATE column "isNew" to zero ********** //
@@ -242,18 +343,6 @@ public class ParkingSystem {
 
         resultSet.close();
         statement.close();
-
-        // TODO: return the cameraRecordArrayList to main to then process the list
-        // TODO: process the list:
-        //  1) Get the section id of the camera
-        //  2) Get the IP address
-        //  3) Compute the new number of spaces available in the section
-        //  4) Get the LED Display in the same section
-        //  5) Send data to the LED display(s)
-        //  6) Log the data sent to the displays into the display log
-        //  7) Update the new number of spaces available in the section, level, garage tables
-        //  8) Update the MongoDB database
-        //  9) Repeat.
     }
 }
 
