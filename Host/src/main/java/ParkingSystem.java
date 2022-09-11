@@ -36,6 +36,8 @@ public class ParkingSystem {
 //                ResultSet.TYPE_SCROLL_SENSITIVE,
 //                ResultSet.CONCUR_UPDATABLE);
 
+        // *********** Get Parking Garage Basic Information **********//
+
         // Prepare the query
         String query = ("select name, total_spaces, available_spaces, levels from garage");
 
@@ -56,13 +58,15 @@ public class ParkingSystem {
 
         resultSet.close();
 
+
+        // ****************** Get Camera List  ***********************//
         // Prepare a new query
         query = ("select id, section, ipaddress from cameras");
 
         // Execute the query
         resultSet = statement.executeQuery(query);
 
-        ArrayList<Camera> cameraArrayList = new ArrayList<Camera>();
+        ArrayList<Camera> cameraArrayList = new ArrayList<>();
         int cameraId;
         int sectionId;
         String ipAddress;
@@ -77,21 +81,51 @@ public class ParkingSystem {
             cameraArrayList.add(camera);
         }
 
-        parkingGarage.setCameraList(cameraArrayList);
+        parkingGarage.setCameraArrayList(cameraArrayList);
 
         // Print the result
         System.out.println("\n------ Camera List ------");
         parkingGarage.printCameraList();
 
+
+        // ****************** Get Display List  ***********************//
+        // Prepare a new query
+        query = ("SELECT id, section, number, ipAddress from displays");
+
+        // Execute the query
+        resultSet = statement.executeQuery(query);
+
+        ArrayList<Display> displayArrayList = new ArrayList<>();
+        int displayId;
+        int displayNumber;
+
+        // Store the result
+        while (resultSet.next()) {
+            displayId = resultSet.getInt("id");
+            sectionId = resultSet.getInt("section");
+            displayNumber = resultSet.getInt("number");
+            ipAddress = resultSet.getString("ipaddress");
+
+            Display display = new Display(displayId, sectionId, displayNumber, ipAddress);
+
+            displayArrayList.add(display);
+        }
+
+        parkingGarage.setDisplayArrayList(displayArrayList);
+
+        // Print the result
+        System.out.println("\n------ Display List ------");
+        parkingGarage.printDisplayList();
+
         resultSet.close();
         statement.close();
     }
+
 
     static void getNewCameraLogRecords(ParkingGarage parkingGarage, Connection connection) throws SQLException {
         System.out.println("\n------ New Camera Log Records ------");
 
         Statement statement = connection.createStatement();
-
 
         // Prepare the query
         String query = ("select * from new_camera_log_record");
