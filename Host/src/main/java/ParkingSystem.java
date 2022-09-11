@@ -6,6 +6,7 @@ public class ParkingSystem {
 
 
     public static void main(String[] args) throws SQLException {
+
         // Create a connection to the local MySQL DB
         MySqlConnection mySqlConnection = new MySqlConnection();
 
@@ -14,91 +15,6 @@ public class ParkingSystem {
         iniParkingSystem(parkingGarage, mySqlConnection.getConnection());
 
         getNewCameraLogRecords(parkingGarage, mySqlConnection.getConnection());
-
-//    List<CameraRecord> cameraRecordList = new ArrayList<CameraRecord>();
-//
-//
-//    //noinspection InfiniteLoopStatement
-////    while (true) {
-//
-//    // Create a statement
-//    // Statement statement = connection.createStatement();   // Simple statement
-//    Statement statement = connection.createStatement(       // Allows to move up and down the rows and update them
-//        ResultSet.TYPE_SCROLL_SENSITIVE,
-//        ResultSet.CONCUR_UPDATABLE);
-//
-//    // TODO: Turn this statement into a Prepared Statement to be able to pass parameters to the query (i.e.,
-//    //  passing camera_id 1, 2, 3, etc.). This will probably force us to make separate query to update the column
-//    //  "isNew" to zero.
-//
-//    // Execute a statement
-//    ResultSet resultSet = statement.executeQuery("select * from parkingsystem.camera_log where camera_id = 1 AND " +
-//        "isNew = 1");
-//
-//    // Iterate through the result set and print the returned results
-//    System.out.println("Results of the Query:\n");
-//    System.out.println("Time Stamp\t\t\t\tCamera ID\t\tChanged in Spaces\t\tIsNew");
-//
-//    int id;
-//    int spaces;
-//    String time;
-//    int isNew;
-//
-//    while (resultSet.next()) {
-//      id = resultSet.getInt("camera_id");
-//      spaces = resultSet.getInt("changed_spaces");
-//      time = resultSet.getString("time_stamp");
-//      isNew = resultSet.getInt("isNew");
-//
-//      System.out.println(time + "\t\t\t" + id + "\t\t\t\t\t" + spaces + "\t\t\t\t" + isNew);
-//
-//      cameraRecordList.add(new CameraRecord(id, spaces));
-//    }
-//
-//    // Update the isNew column in the DB to zero
-//    System.out.println("Updating \"isNew\" to zero.");
-//    resultSet.beforeFirst();
-//    while (resultSet.next()) {
-//      resultSet.updateInt("isNew", 0);
-//      resultSet.updateRow();
-//    }
-//    resultSet.close();
-//
-//    System.out.println();
-//    System.out.println();
-//
-//    //*********************************************************************************
-//    //     Update Spaces available in the DB
-//    //*********************************************************************************
-//    // TODO: instead of querying the database every time to find the section where a
-//    //  camera is located at (A camera's location would not change after being set),
-//    //  the program could run several queries as part of if initialization process to
-//    //  find all the information needed about the parking system and keep this data in
-//    //  a class object. These queries should be trigger everytime there is an update
-//    //  in the parking system like a new camera is added or a new LED display is added.
-//    // PART I: Find the section where this camera is located
-//
-//    // Query that needs the id parameter
-//    String query = ("select section from parkingsystem.cameras where id = ?");
-//
-//    // Prepare the statement
-//    PreparedStatement preparedStatement = connection.prepareStatement(query);
-//
-//    // Get the id to search for from the cameras table (From the first element in the list)
-//    CameraRecord singleRecord = cameraRecordList.get(0);
-//    id = singleRecord.getCameraId();
-//
-//    // Set Parameters (1 means the first "?" in the query, 2 = the 2nd "?", and so on)
-//    preparedStatement.setInt(1, id);
-//
-//    // Execute SQL query
-//    resultSet = preparedStatement.executeQuery();
-//
-//    // Display the result
-//    resultSet.next();
-//    System.out.println("Camera ID " + id +  "\t Section: " + resultSet.getInt("section") );
-//
-//
 
         // Close the connection
         (mySqlConnection.getConnection()).close();
@@ -203,13 +119,7 @@ public class ParkingSystem {
             System.out.format("%4s %13s\n", record.getCameraId(), record.getChangedSpaces());
         }
 
-        // Update the "isNew" column in the DB to zero
-//        System.out.println("Updating \"isNew\" to zero.");
-//        resultSet.beforeFirst();
-//        while (resultSet.next()) {
-//            resultSet.updateInt("isNew", 0);
-//            resultSet.updateRow();
-//        }
+        // ********* UPDATE column "isNew" to zero ********** //
 
         // Prepare the query using id as a parameter
         query = ("UPDATE camera_log SET isNew = 0 WHERE id = ?");
@@ -234,7 +144,6 @@ public class ParkingSystem {
         resultSet.close();
         statement.close();
 
-
         // TODO: return the cameraRecordArrayList to main to then process the list
         // TODO: process the list:
         //  1) Get the section id of the camera
@@ -247,8 +156,6 @@ public class ParkingSystem {
         //  8) Update the MongoDB database
         //  9) Repeat.
     }
-
-
 }
 
 
