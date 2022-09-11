@@ -3,7 +3,7 @@ public class Section {
     private final int id;
     private final int levelId;
     private final int totalSpaces;
-    private final int availableSpaces;
+    private int availableSpaces;
 
     public Section(int id, int levelId, int totalSpaces, int availableSpaces) {
         this.id = id;
@@ -26,5 +26,9 @@ public class Section {
 
     public int getAvailableSpaces() {
         return availableSpaces;
+    }
+
+    public void updateAvailableSpaces(int changedSpaces) {
+        availableSpaces += changedSpaces;
     }
 }
