@@ -40,7 +40,40 @@ public class ParkingSystem {
         getCameraList(statement, parkingGarage);
         getDisplayList(statement, parkingGarage);
         getSectionList(statement, parkingGarage);
+        getLevelList(statement, parkingGarage);
         statement.close();
+    }
+
+    static void getLevelList(Statement statement, ParkingGarage parkingGarage) throws SQLException {
+        int id;
+        int totalSpaces;
+        int availableSpaces;
+        ArrayList<Level> levelArrayList = new ArrayList<>();
+
+        // Prepare a new query
+        String query = ("SELECT id, total_spaces, available_spaces from levels");
+
+        // Execute the query
+        ResultSet resultSet = statement.executeQuery(query);
+
+        // Store the result
+        while (resultSet.next()) {
+            id = resultSet.getInt("id");
+            totalSpaces = resultSet.getInt("total_spaces");
+            availableSpaces = resultSet.getInt("available_spaces");
+
+            Level level = new Level(id, totalSpaces, availableSpaces);
+
+            levelArrayList.add(level);
+        }
+
+        parkingGarage.setLevelArrayList(levelArrayList);
+
+        // Print the result
+        System.out.println("\n------ Level List ------");
+        parkingGarage.printLevelList();
+
+        resultSet.close();
     }
 
     static void getSectionList(Statement statement, ParkingGarage parkingGarage) throws SQLException {

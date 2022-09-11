@@ -1,17 +1,23 @@
 public class Level {
-  private final int levelId;
-  private final int numOfSpaces;
+    private final int id;
+    private final int totalSpaces;
+    private final int availableSpaces;
 
-  public Level(int levelId, int numOfSpaces) {
-    this.levelId = levelId;
-    this.numOfSpaces = numOfSpaces;
-  }
+    public Level(int id, int totalSpaces, int availableSpaces) {
+        this.id = id;
+        this.totalSpaces = totalSpaces;
+        this.availableSpaces = availableSpaces;
+    }
 
-  public int getLevelId() {
-    return levelId;
-  }
+    public int getId() {
+        return id;
+    }
 
-  public int getNumOfSpaces() {
-    return numOfSpaces;
-  }
+    public int getTotalSpaces() {
+        return totalSpaces;
+    }
+
+    public int getAvailableSpaces() {
+        return availableSpaces;
+    }
 }
