@@ -1,7 +1,5 @@
-import javax.swing.plaf.nimbus.State;
 import java.sql.*;
 import java.util.ArrayList;
-import java.util.Stack;
 
 
 public class ParkingSystem {
@@ -37,15 +35,46 @@ public class ParkingSystem {
 //        Statement statement = connection.createStatement(       // Allows to move up and down the rows and update them
 //                ResultSet.TYPE_SCROLL_SENSITIVE,
 //                ResultSet.CONCUR_UPDATABLE);
-        
+
         getGarageInfo(statement, parkingGarage);
-
         getCameraList(statement, parkingGarage);
-
         getDisplayList(statement, parkingGarage);
-
-
+        getSectionList(statement, parkingGarage);
         statement.close();
+    }
+
+    static void getSectionList(Statement statement, ParkingGarage parkingGarage) throws SQLException {
+        int id;
+        int levelId;
+        int totalSpaces;
+        int availableSpaces;
+        ArrayList<Section> sectionArrayList = new ArrayList<>();
+
+        // Prepare a new query
+        String query = ("SELECT id, level_id, total_spaces, available_spaces from sections");
+
+        // Execute the query
+        ResultSet resultSet = statement.executeQuery(query);
+
+        // Store the result
+        while (resultSet.next()) {
+            id = resultSet.getInt("id");
+            levelId = resultSet.getInt("level_id");
+            totalSpaces = resultSet.getInt("total_spaces");
+            availableSpaces = resultSet.getInt("available_spaces");
+
+            Section section = new Section(id, levelId, totalSpaces, availableSpaces);
+
+            sectionArrayList.add(section);
+        }
+
+        parkingGarage.setSectionArrayList(sectionArrayList);
+
+        // Print the result
+        System.out.println("\n------ Section List ------");
+        parkingGarage.printSectionList();
+
+        resultSet.close();
     }
 
     static void getGarageInfo(Statement statement, ParkingGarage parkingGarage) throws SQLException {
@@ -67,6 +96,8 @@ public class ParkingSystem {
 
         // Print the result
         parkingGarage.printGarageInfo();
+
+        resultSet.close();
     }
 
     static void getCameraList(Statement statement, ParkingGarage parkingGarage) throws SQLException {
@@ -97,6 +128,8 @@ public class ParkingSystem {
         // Print the result
         System.out.println("\n------ Camera List ------");
         parkingGarage.printCameraList();
+
+        resultSet.close();
     }
 
     static void getDisplayList(Statement statement, ParkingGarage parkingGarage) throws SQLException {
@@ -130,8 +163,9 @@ public class ParkingSystem {
         // Print the result
         System.out.println("\n------ Display List ------");
         parkingGarage.printDisplayList();
-    }
 
+        resultSet.close();
+    }
 
     static void getNewCameraLogRecords(ParkingGarage parkingGarage, Connection connection) throws SQLException {
         System.out.println("\n------ New Camera Log Records ------");

@@ -7,6 +7,7 @@ public class ParkingGarage {
     private int availableSpaces;
     private ArrayList<Camera> cameraArrayList;
     private ArrayList<Display> displayArrayList;
+    private ArrayList<Section> sectionArrayList;
 
     // Constructor
     public ParkingGarage() {
@@ -40,6 +41,7 @@ public class ParkingGarage {
         return null;
     }
 
+
     public void setGarageName(String garageName) {
         this.garageName = garageName;
     }
@@ -63,6 +65,11 @@ public class ParkingGarage {
     public void setDisplayArrayList(ArrayList<Display> displayArrayList) {
         this.displayArrayList = displayArrayList;
     }
+
+    public void setSectionArrayList(ArrayList<Section> sectionArrayList) {
+        this.sectionArrayList = sectionArrayList;
+    }
+
 
     public void addCamera(Camera camera) {
         cameraArrayList.add(camera);
@@ -98,6 +105,16 @@ public class ParkingGarage {
         // For each camera in the camera list...
         for (Display display : displayArrayList) {
             System.out.format("%4s %13s %13s %19s \n", display.getId(), display.getSectionId(), display.getNumber(), display.getIpAddress());
+        }
+    }
+
+    public void printSectionList() {
+
+        System.out.format("%2s %8s %13s %16s\n", "SectionID", "LevelID", "TotalSpaces", "AvailableSpaces");
+
+        // For each camera in the camera list...
+        for (Section section : sectionArrayList) {
+            System.out.format("%4s %10s %12s %14s \n", section.getId(), section.getLevelId(), section.getTotalSpaces(), section.getAvailableSpaces());
         }
     }
 }
