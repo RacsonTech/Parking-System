@@ -2,13 +2,13 @@
 public class Section {
     private final int id;
     private final int levelId;
-    private final int numOfSpaces;
+    private final int totalSpaces;
     private final int availableSpaces;
 
-    public Section(int id, int levelId, int numOfSpaces, int availableSpaces) {
+    public Section(int id, int levelId, int totalSpaces, int availableSpaces) {
         this.id = id;
         this.levelId = levelId;
-        this.numOfSpaces = numOfSpaces;
+        this.totalSpaces = totalSpaces;
         this.availableSpaces = availableSpaces;
     }
 
@@ -20,8 +20,8 @@ public class Section {
         return levelId;
     }
 
-    public int getNumOfSpaces() {
-        return numOfSpaces;
+    public int getTotalSpaces() {
+        return totalSpaces;
     }
 
     public int getAvailableSpaces() {
