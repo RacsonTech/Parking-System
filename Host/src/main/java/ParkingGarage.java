@@ -1,13 +1,12 @@
 import java.util.ArrayList;
-import java.util.List;
 
 public class ParkingGarage {
     private String garageName;
     private int totalSpaces;
     private int numLevels;
     private int availableSpaces;
-
-    private ArrayList<Camera> cameraList;
+    private ArrayList<Camera> cameraArrayList;
+    private ArrayList<Display> displayArrayList;
 
     // Constructor
     public ParkingGarage() {
@@ -32,7 +31,7 @@ public class ParkingGarage {
     public Camera getCamera(int cameraId) {
 
         // For each camera in the camera list...
-        for (Camera camera : cameraList) {
+        for (Camera camera : cameraArrayList) {
 
             if (cameraId == camera.getCameraId()) {
                 return camera;
@@ -57,17 +56,21 @@ public class ParkingGarage {
         this.availableSpaces = availableSpaces;
     }
 
-    public void setCameraList(ArrayList<Camera> cameraList) {
-        this.cameraList = cameraList;
+    public void setCameraArrayList(ArrayList<Camera> cameraArrayList) {
+        this.cameraArrayList = cameraArrayList;
+    }
+
+    public void setDisplayArrayList(ArrayList<Display> displayArrayList) {
+        this.displayArrayList = displayArrayList;
     }
 
     public void addCamera(Camera camera) {
-        cameraList.add(camera);
+        cameraArrayList.add(camera);
     }
 
     public boolean removeCamera(int cameraId) {
         Camera camera = getCamera(cameraId);
-        cameraList.remove(camera);
+        cameraArrayList.remove(camera);
         return true;
     }
 
@@ -83,8 +86,18 @@ public class ParkingGarage {
         System.out.format("%2s %12s %12s\n", "Camera ID", "Section ID", "IP Address");
 
         // For each camera in the camera list...
-        for (Camera camera : cameraList) {
+        for (Camera camera : cameraArrayList) {
             System.out.format("%4s %13s %19s\n", camera.getCameraId(), camera.getSectionId(), camera.getIpAddress());
+        }
+    }
+
+    public void printDisplayList() {
+
+        System.out.format("%2s %12s %15s %12s\n", "DisplayID", "SectionID", "DisplayNumber", "IP Address");
+
+        // For each camera in the camera list...
+        for (Display display : displayArrayList) {
+            System.out.format("%4s %13s %13s %19s \n", display.getId(), display.getSectionId(), display.getNumber(), display.getIpAddress());
         }
     }
 }
