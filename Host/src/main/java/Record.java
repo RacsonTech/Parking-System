@@ -1,10 +1,10 @@
-public class SpaceChangeRecord {
+public class Record {
     private final int recordId;
     private final int cameraId;
     private final int changedSpaces;
 
     // Constructor
-    public SpaceChangeRecord(int id1, int id2, int spaces) {
+    public Record(int id1, int id2, int spaces) {
         recordId = id1;
         cameraId = id2;
         changedSpaces = spaces;
