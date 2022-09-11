@@ -1,5 +1,7 @@
+import javax.swing.plaf.nimbus.State;
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.Stack;
 
 
 public class ParkingSystem {
@@ -35,8 +37,18 @@ public class ParkingSystem {
 //        Statement statement = connection.createStatement(       // Allows to move up and down the rows and update them
 //                ResultSet.TYPE_SCROLL_SENSITIVE,
 //                ResultSet.CONCUR_UPDATABLE);
+        
+        getGarageInfo(statement, parkingGarage);
 
-        // *********** Get Parking Garage Basic Information **********//
+        getCameraList(statement, parkingGarage);
+
+        getDisplayList(statement, parkingGarage);
+
+
+        statement.close();
+    }
+
+    static void getGarageInfo(Statement statement, ParkingGarage parkingGarage) throws SQLException {
 
         // Prepare the query
         String query = ("select name, total_spaces, available_spaces, levels from garage");
@@ -55,21 +67,19 @@ public class ParkingSystem {
 
         // Print the result
         parkingGarage.printGarageInfo();
+    }
 
-        resultSet.close();
-
-
-        // ****************** Get Camera List  ***********************//
-        // Prepare a new query
-        query = ("select id, section, ipaddress from cameras");
-
-        // Execute the query
-        resultSet = statement.executeQuery(query);
-
-        ArrayList<Camera> cameraArrayList = new ArrayList<>();
+    static void getCameraList(Statement statement, ParkingGarage parkingGarage) throws SQLException {
         int cameraId;
         int sectionId;
         String ipAddress;
+        ArrayList<Camera> cameraArrayList = new ArrayList<>();
+
+        // Prepare a new query
+        String query = ("select id, section, ipaddress from cameras");
+
+        // Execute the query
+        ResultSet resultSet = statement.executeQuery(query);
 
         // Store the result
         while (resultSet.next()) {
@@ -78,6 +88,7 @@ public class ParkingSystem {
             ipAddress = resultSet.getString("ipaddress");
 
             Camera camera = new Camera(cameraId, sectionId, ipAddress);
+
             cameraArrayList.add(camera);
         }
 
@@ -86,18 +97,21 @@ public class ParkingSystem {
         // Print the result
         System.out.println("\n------ Camera List ------");
         parkingGarage.printCameraList();
+    }
+
+    static void getDisplayList(Statement statement, ParkingGarage parkingGarage) throws SQLException {
+        int displayId;
+        int sectionId;
+        int displayNumber;
+        String ipAddress;
+        ArrayList<Display> displayArrayList = new ArrayList<>();
 
 
-        // ****************** Get Display List  ***********************//
         // Prepare a new query
-        query = ("SELECT id, section, number, ipAddress from displays");
+        String query = ("SELECT id, section, number, ipAddress from displays");
 
         // Execute the query
-        resultSet = statement.executeQuery(query);
-
-        ArrayList<Display> displayArrayList = new ArrayList<>();
-        int displayId;
-        int displayNumber;
+        ResultSet resultSet = statement.executeQuery(query);
 
         // Store the result
         while (resultSet.next()) {
@@ -116,9 +130,6 @@ public class ParkingSystem {
         // Print the result
         System.out.println("\n------ Display List ------");
         parkingGarage.printDisplayList();
-
-        resultSet.close();
-        statement.close();
     }
 
 
