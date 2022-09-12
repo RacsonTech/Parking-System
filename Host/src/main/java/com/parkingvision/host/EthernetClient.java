@@ -1,7 +1,9 @@
-// Java program: socket client
+package com.parkingvision.host;// Java program: socket client
 // The Host JAVA program is the client, each LED display is a server.
 // Each server should have the socket connection open, listening/waiting for
 // the JAVA host program (the client), to connect.
+
+import com.parkingvision.host.Constants;
 
 import java.net.*;
 import java.io.*;

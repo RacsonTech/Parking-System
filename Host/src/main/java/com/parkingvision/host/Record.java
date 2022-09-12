@@ -1,3 +1,5 @@
+package com.parkingvision.host;
+
 public class Record {
     private final int recordId;
     private final int cameraId;

@@ -1,3 +1,5 @@
+package com.parkingvision.host;
+
 public class Level {
     private final int id;
     private final int totalSpaces;

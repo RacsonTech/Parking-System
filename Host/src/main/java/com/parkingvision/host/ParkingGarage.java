@@ -1,3 +1,5 @@
+package com.parkingvision.host;
+
 import java.util.ArrayList;
 
 public class ParkingGarage {

@@ -1,3 +1,5 @@
+package com.parkingvision.host;
+
 import java.io.*;
 import java.util.Scanner;
 

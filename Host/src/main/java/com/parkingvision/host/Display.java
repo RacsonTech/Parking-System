@@ -1,3 +1,5 @@
+package com.parkingvision.host;
+
 public class Display {
     private final int id;
     private final int sectionId;
