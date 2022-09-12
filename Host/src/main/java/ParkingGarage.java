@@ -53,6 +53,26 @@ public class ParkingGarage {
         return null;
     }
 
+    public int getSectionAvailableSpaces(int id) {
+        // For every section in the list,
+        for (Section section : sectionArrayList) {
+            if (id == section.getId()) {
+                return section.getAvailableSpaces();
+            }
+        }
+        return -1;
+    }
+
+    public int getLevelAvailableSpaces(int id) {
+        // For every level in the list...
+        for (Level level : levelArrayList) {
+            if (id == level.getId()) {
+                return level.getAvailableSpaces();
+            }
+        }
+        return -1;
+    }
+
     public ArrayList<Display> getDisplayList(int id) {
         ArrayList<Display> displaysFoundList = new ArrayList<>();
 
@@ -113,6 +133,15 @@ public class ParkingGarage {
         for (Section section : sectionArrayList) {
             if (id == section.getId()) {
                 section.updateAvailableSpaces(changedSpaces);
+                break;
+            }
+        }
+    }
+
+    public void updateLevelAvailableSpaces(int id, int changedSpaces) {
+        for (Level level : levelArrayList) {
+            if (id == level.getId()) {
+                level.updateAvailableSpaces(changedSpaces);
                 break;
             }
         }

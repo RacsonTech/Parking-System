@@ -1,3 +1,4 @@
+import java.io.IOException;
 import java.sql.*;
 import java.util.ArrayList;
 
@@ -37,25 +38,41 @@ public class ParkingSystem {
             changedSpaces = record.getChangedSpaces();
 
             // Update DB Section Table
-            updateSectionTable(sectionId, changedSpaces, connectionToDB);
+            updateSectionsTable(sectionId, changedSpaces, connectionToDB);
 
-            // Update local variable
+            // Update local Section variable
             parkingGarage.updateSectionAvailableSpaces(sectionId, changedSpaces);
+            System.out.println("\nSection: " + sectionId + " | New available spaces: " + parkingGarage.getSectionAvailableSpaces(levelId));
+            // TODO: Error when processing the 6th record from the new records. It seems to be
+            //  updating Section 2, when both cameras (id 1 and 2) belong to section 1, so
+            //  it should not be updating section 2.
 
             // Get new number of available spaces from the database
             sectionAvailableSpaces = queryAvailableSpaces(sectionId, connectionToDB);
 //            System.out.println("New Available Spaces in Section " + sectionId + " is " + sectionAvailableSpaces);
 
-            // Get the displays ID in the section being processed.
+            // Get the displays ID for the section being processed.
             ArrayList<Display> displayList = parkingGarage.getDisplayList(sectionId);
 
             // Send the number of available spaces to all the LED signs in this section
-//            updateDisplaySigns(displayList, sectionAvailableSpaces, ethernetClient);
             updateDisplaySigns(displayList, sectionAvailableSpaces);
+            //TODO: when a display is offline, the display log is updated as if the display was online.
+            // A status variable can be added to the display class (and the same with the camera class)
+            // so, the code can mark it as offline. A heart beat packet can be implemented (probably on
+            // a separate thread. The code should not update the display log table if the display does
+            // not respond. The section, level, and garage available spaces DB tables should be updated
+            // regardless.
 
             // Update the DB Display Log Table
             System.out.println("Updating DB Display_log Table");
             updateDisplayLogTable(displayList, sectionAvailableSpaces, connectionToDB);
+
+            // Update DB Level Table
+            updateLevelsTable(levelId, changedSpaces, connectionToDB);
+
+            // Update local level variable
+            parkingGarage.updateLevelAvailableSpaces(levelId, changedSpaces);
+            System.out.println("Level: " + levelId + " | New available spaces: " + parkingGarage.getLevelAvailableSpaces(levelId));
 
             // TODO:
             // 1) Get the section id of the camera (Done)
@@ -95,6 +112,26 @@ public class ParkingSystem {
 //    } // While Loop
     }
 
+    static void updateLevelsTable(int id, int changedSpaces, Connection connection) throws SQLException {
+        // Prepare the query using id as a parameter
+        String query = ("UPDATE levels SET available_spaces = available_spaces + ? WHERE id = ?");
+
+        // Prepare the statement
+        PreparedStatement preparedStatement = connection.prepareStatement(query);
+
+        // Set Parameters (1 means the 1st "?" in the query, 2 means the 2nd "?" and so on)
+        preparedStatement.setInt(1, changedSpaces);
+        preparedStatement.setInt(2, id);
+
+        // Execute SQL query
+        int rowChanged = preparedStatement.executeUpdate();
+
+        if (rowChanged == 0) {
+            System.err.println("ERROR updating the section Table. See updateSectionTable function.");
+        }
+        preparedStatement.close();
+    }
+
     static void updateDisplayLogTable(ArrayList<Display> displayList, int freeSpaces, Connection connectionToDB) throws SQLException {
         PreparedStatement preparedStatement = null;
         int rowChanged;
@@ -126,22 +163,29 @@ public class ParkingSystem {
         preparedStatement.close();
     }
 
-    //    static void updateDisplaySigns(ArrayList<Display> displayList, int freeSpaces, EthernetClient client) {
     static void updateDisplaySigns(ArrayList<Display> displayList, int freeSpaces) {
         String response;
         EthernetClient ethernetClient;
 
+
         for (Display display : displayList) {
-            System.out.println("\nSending: " + freeSpaces + " to display with IP address: " + display.getIpAddress());
+            System.out.println("Sending: " + freeSpaces + " to display with IP address: " + display.getIpAddress());
 
 //            ethernetClient = new EthernetClient(display.getIpAddress());
-            ethernetClient = new EthernetClient("192.168.1.138");
-            ethernetClient.connect();
-            response = EthernetClient.sendData(freeSpaces);
+//            ethernetClient = new EthernetClient("192.168.1.138");
+            ethernetClient = new EthernetClient("localhost");
+            try {
+                ethernetClient.connect();
+                response = EthernetClient.sendData(freeSpaces);
 
-            System.out.println("Response from Server: \"" + response + "\"");
+                System.out.println("Response from Server: \"" + response + "\"");
 
-            EthernetClient.close();
+                EthernetClient.close();
+
+            } catch (IOException e) {
+                System.out.println("Connection to display timed out");
+//                throw new RuntimeException(e);
+            }
         }
     }
 
@@ -171,7 +215,7 @@ public class ParkingSystem {
         return availableSpaces;
     }
 
-    static void updateSectionTable(int sectionId, int changedSpaces, Connection connection) throws SQLException {
+    static void updateSectionsTable(int sectionId, int changedSpaces, Connection connection) throws SQLException {
 
         // System.out.println("\nProcessing changes: Updating DB Section Table");
 

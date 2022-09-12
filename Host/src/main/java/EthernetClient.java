@@ -19,21 +19,21 @@ public class EthernetClient {
         ipAddress = address;
     }
 
-    public void connect() {
+    public void connect() throws IOException {
         int port = Constants.ETHERNET_PORT;
 
-        try {
-            // Establish a connection
-            socket = new Socket(ipAddress, port);
-            System.out.println("Connected to: " + ipAddress + ":" + port);
+//        try {
+        // Establish a connection
+        socket = new Socket(ipAddress, port);
+        System.out.println("Connected to: " + ipAddress + ":" + port);
 
-            out = new PrintWriter(socket.getOutputStream(), true);
-            in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+        out = new PrintWriter(socket.getOutputStream(), true);
+        in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-
-        }
+//        } catch (IOException e) {
+//            //throw new RuntimeException(e);
+//            System.out.println("Connection to display timed out");
+//        }
     }
 
     public static String sendData(int freeSpaces) {
