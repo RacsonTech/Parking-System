@@ -27,7 +27,6 @@ public class ParkingSystem {
 
         ArrayList<Record> recordArrayList = parkingGarage.getRecordArrayList();
 
-
         // For every record in the list...
         for (Record record : recordArrayList) {
 
@@ -51,6 +50,7 @@ public class ParkingSystem {
             ArrayList<Display> displayList = parkingGarage.getDisplayList(sectionId);
 
             // Send the number of available spaces to all the LED signs in this section
+//            updateDisplaySigns(displayList, sectionAvailableSpaces, ethernetClient);
             updateDisplaySigns(displayList, sectionAvailableSpaces);
 
             // Update the DB Display Log Table
@@ -62,15 +62,20 @@ public class ParkingSystem {
             // 2) Get the IP address (Done in the Display List)
             // 3) Compute the new number of spaces available in the section (Done)
             // 4) Get the LED Display in the same section (Done)
-            // TODO
-            //  5) Send data to the LED display(s)
-            //  6) Log the data sent to the displays into the display log
+            // 5) Send data to the LED display(s) (Partially done, sending data to the displays will be done once the
+            //   LED Display PCB is done)
+            //  6) Log the data sent to the displays into the display log (Done)
+            // TODO:
             //  7) Update the new number of spaces available in:
             //     Section Table and Local Variable (done)
             //     Level Table and Local Variable
             //     Garage tables and Local Variable
             //  8) Update the MongoDB database
             //  9) Repeat.
+
+            // TODO: Fix bug when a section (level or garage) available spaces reaches zero, and the code
+            //  tries to update with -1 the number of free spaces, an error is thrown (can't get less
+            //  that 0 free spaces.
 
             //            updateDisplay()
             // for every display in the list...
@@ -81,7 +86,7 @@ public class ParkingSystem {
 
         // Close the connection
         (mySqlConnection.getConnection()).close();
-
+//        EthernetClient.close();
 //      try {
 //        Thread.sleep(5000);
 //      } catch (InterruptedException e) {
@@ -121,9 +126,22 @@ public class ParkingSystem {
         preparedStatement.close();
     }
 
+    //    static void updateDisplaySigns(ArrayList<Display> displayList, int freeSpaces, EthernetClient client) {
     static void updateDisplaySigns(ArrayList<Display> displayList, int freeSpaces) {
+        String response;
+        EthernetClient ethernetClient;
+
         for (Display display : displayList) {
-            System.out.println("Sending: " + freeSpaces + " to display with IP address: " + display.getIpAddress());
+            System.out.println("\nSending: " + freeSpaces + " to display with IP address: " + display.getIpAddress());
+
+//            ethernetClient = new EthernetClient(display.getIpAddress());
+            ethernetClient = new EthernetClient("192.168.1.138");
+            ethernetClient.connect();
+            response = EthernetClient.sendData(freeSpaces);
+
+            System.out.println("Response from Server: \"" + response + "\"");
+
+            EthernetClient.close();
         }
     }
 
