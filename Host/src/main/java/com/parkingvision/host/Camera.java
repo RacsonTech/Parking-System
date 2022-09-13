@@ -1,20 +1,20 @@
 package com.parkingvision.host;
 
 public class Camera {
-    private int cameraId;
+    private int id;
     private int sectionId;
 
     private String ipAddress;
 
     // Constructor
     public Camera(int cameraId, int sectionId, String ipAddress) {
-        this.cameraId = cameraId;
+        id = cameraId;
         this.sectionId = sectionId;
         this.ipAddress = ipAddress;
     }
 
-    public int getCameraId() {
-        return cameraId;
+    public int getId() {
+        return id;
     }
 
     public int getSectionId() {
@@ -25,8 +25,8 @@ public class Camera {
         return ipAddress;
     }
 
-    public void setCameraId(int cameraId) {
-        this.cameraId = cameraId;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public void setSectionId(int sectionId) {

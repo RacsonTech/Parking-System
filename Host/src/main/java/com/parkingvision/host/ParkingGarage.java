@@ -43,17 +43,27 @@ public class ParkingGarage {
         // For each camera in the camera list...
         for (Camera camera : cameraArrayList) {
 
-            if (cameraId == camera.getCameraId()) {
+            if (cameraId == camera.getId()) {
                 return camera;
             }
         }
         return null;
     }
 
-    public Section getSection(int id) {
+    public Section getSection(int cameraId) {
+        int sectionId = -1;
+
+        // For every camera in the list...
+        // Find the sectionId where the camera with id cameraId is located.
+        for (Camera camera : cameraArrayList) {
+            if (cameraId == camera.getId()) {
+                sectionId = camera.getSectionId();
+            }
+        }
+
         // For every section in the list...
         for (Section section : sectionArrayList) {
-            if (id == section.getId()) {
+            if (sectionId == section.getId()) {
                 return section;
             }
         }
@@ -185,7 +195,7 @@ public class ParkingGarage {
 
         // For each camera in the camera list...
         for (Camera camera : cameraArrayList) {
-            System.out.format("%4s %13s %19s\n", camera.getCameraId(), camera.getSectionId(), camera.getIpAddress());
+            System.out.format("%4s %13s %19s\n", camera.getId(), camera.getSectionId(), camera.getIpAddress());
         }
     }
 
