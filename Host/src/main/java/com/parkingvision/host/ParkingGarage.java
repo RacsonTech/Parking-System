@@ -3,6 +3,7 @@ package com.parkingvision.host;
 import java.util.ArrayList;
 
 public class ParkingGarage {
+    private int id;
     private String garageName;
     private int totalSpaces;
     private int numLevels;
@@ -15,6 +16,10 @@ public class ParkingGarage {
 
     // Constructor
     public ParkingGarage() {
+    }
+
+    public int getId() {
+        return id;
     }
 
     public String getGarageName() {
@@ -75,12 +80,16 @@ public class ParkingGarage {
         return -1;
     }
 
-    public ArrayList<Display> getDisplayList(int id) {
+    public int getGarageAvailableSpaces() {
+        return availableSpaces;
+    }
+
+    public ArrayList<Display> getDisplayList(int sectionId) {
         ArrayList<Display> displaysFoundList = new ArrayList<>();
 
-        // for every display in the list...
+        // For every display in the list...
         for (Display display : displayArrayList) {
-            if (id == display.getId()) {
+            if (sectionId == display.getSectionId()) {
                 displaysFoundList.add(display);
             }
         }
@@ -89,6 +98,10 @@ public class ParkingGarage {
 
     public ArrayList<Record> getRecordArrayList() {
         return recordArrayList;
+    }
+
+    public void setId(int garageId) {
+        id = garageId;
     }
 
     public void setGarageName(String garageName) {
@@ -147,6 +160,10 @@ public class ParkingGarage {
                 break;
             }
         }
+    }
+
+    public void updateGarageAvailableSpaces(int changedSpaces) {
+        availableSpaces += changedSpaces;
     }
 
     public boolean removeCamera(int cameraId) {

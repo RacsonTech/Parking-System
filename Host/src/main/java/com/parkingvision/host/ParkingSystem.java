@@ -27,6 +27,7 @@ public class ParkingSystem {
         int levelId;
         int changedSpaces;
         int sectionAvailableSpaces;
+        int garageId;
 
         ArrayList<Record> recordArrayList = parkingGarage.getRecordArrayList();
 
@@ -38,6 +39,7 @@ public class ParkingSystem {
             sectionId = section.getId();
             levelId = section.getLevelId();
             changedSpaces = record.getChangedSpaces();
+            garageId = parkingGarage.getId();
 
             // Update DB Section Table
             updateSectionsTable(sectionId, changedSpaces, connectionToDB);
@@ -76,6 +78,13 @@ public class ParkingSystem {
             parkingGarage.updateLevelAvailableSpaces(levelId, changedSpaces);
             System.out.println("Level: " + levelId + " | New available spaces: " + parkingGarage.getLevelAvailableSpaces(levelId));
 
+            // Update DB Garage Table
+            updateGarageTable(garageId, changedSpaces, connectionToDB);
+            
+            // Update local level variable
+            parkingGarage.updateGarageAvailableSpaces(changedSpaces);
+            System.out.println("Garage: " + garageId + " | New available spaces: " + parkingGarage.getGarageAvailableSpaces());
+
             // TODO:
             // 1) Get the section id of the camera (Done)
             // 2) Get the IP address (Done in the Display List)
@@ -86,8 +95,8 @@ public class ParkingSystem {
             //  6) Log the data sent to the displays into the display log (Done)
             // TODO:
             //  7) Update the new number of spaces available in:
-            //     Section Table and Local Variable (done)
-            //     Level Table and Local Variable
+            //     Section Table and Local Variable (Done)
+            //     Level Table and Local Variable (Done)
             //     Garage tables and Local Variable
             //  8) Update the MongoDB database
             //  9) Repeat.
@@ -112,6 +121,26 @@ public class ParkingSystem {
 //        throw new RuntimeException(e);
 //      }
 //    } // While Loop
+    }
+
+    static void updateGarageTable(int id, int changedSpaces, Connection connection) throws SQLException {
+        // Prepare the query using id as a parameter
+        String query = ("UPDATE garage SET available_spaces = available_spaces + ? WHERE id = ?");
+
+        // Prepare the statement
+        PreparedStatement preparedStatement = connection.prepareStatement(query);
+
+        // Set Parameters (1 means the 1st "?" in the query, 2 means the 2nd "?" and so on)
+        preparedStatement.setInt(1, changedSpaces);
+        preparedStatement.setInt(2, id);
+
+        // Execute SQL query
+        int rowChanged = preparedStatement.executeUpdate();
+
+        if (rowChanged == 0) {
+            System.err.println("ERROR updating the section Table. See updateSectionTable function.");
+        }
+        preparedStatement.close();
     }
 
     static void updateLevelsTable(int id, int changedSpaces, Connection connection) throws SQLException {
@@ -322,7 +351,7 @@ public class ParkingSystem {
     static void getGarageInfo(Statement statement, ParkingGarage parkingGarage) throws SQLException {
 
         // Prepare the query
-        String query = ("select name, total_spaces, available_spaces, levels from garage");
+        String query = ("select id, name, total_spaces, available_spaces, levels from garage");
 
         // Execute the query statement
         System.out.println("Obtaining garage information from the database");
@@ -331,6 +360,7 @@ public class ParkingSystem {
         // Store the result
         System.out.println("\n--- Garage Information----");
         resultSet.next();
+        parkingGarage.setId(resultSet.getInt("id"));
         parkingGarage.setGarageName(resultSet.getString("name"));
         parkingGarage.setTotalSpaces(resultSet.getInt("total_spaces"));
         parkingGarage.setAvailableSpaces(resultSet.getInt("available_spaces"));
