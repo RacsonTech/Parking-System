@@ -80,7 +80,7 @@ public class ParkingSystem {
 
             // Update DB Garage Table
             updateGarageTable(garageId, changedSpaces, connectionToDB);
-            
+
             // Update local level variable
             parkingGarage.updateGarageAvailableSpaces(changedSpaces);
             System.out.println("Garage: " + garageId + " | New available spaces: " + parkingGarage.getGarageAvailableSpaces());
@@ -97,13 +97,13 @@ public class ParkingSystem {
             //  7) Update the new number of spaces available in:
             //     Section Table and Local Variable (Done)
             //     Level Table and Local Variable (Done)
-            //     Garage tables and Local Variable
+            //     Garage tables and Local Variable (done)
             //  8) Update the MongoDB database
             //  9) Repeat.
 
             // TODO: Fix bug when a section (level or garage) available spaces reaches zero, and the code
             //  tries to update with -1 the number of free spaces, an error is thrown (can't get less
-            //  that 0 free spaces.
+            //  that 0 free spaces).
 
             //            updateDisplay()
             // for every display in the list...
