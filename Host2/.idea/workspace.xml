@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="914e3219-c5e1-492a-aaf1-de452cd36bd1" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/../EthernetServerInC/.idea/EthernetServerInC.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/runConfigurations/EthernetServer.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.mvn/wrapper/maven-wrapper.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.mvn/wrapper/maven-wrapper.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mvnw" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mvnw.cmd" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/smartparking/host/Camera.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/smartparking/host/CameraRecord.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/smartparking/host/Constants.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/smartparking/host/Display.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/smartparking/host/EthernetClient.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/smartparking/host/HelloApplication.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/smartparking/host/HelloController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/smartparking/host/Level.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/smartparking/host/MySqlConnection.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/smartparking/host/ParkingGarage.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/smartparking/host/ParkingSystem.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/smartparking/host/ReadCSV.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/smartparking/host/Section.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/smartparking/pcb/EthernetServer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/smartparking/host/hello-view.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/db.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Host/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Host/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Host/src/main/java/com/parkingvision/host/ParkingSystem.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Host/src/main/java/com/parkingvision/host/ParkingSystem.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="2FBzlgipRfSWjhMnSn6vrcWftUx" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "E:/GitHubRepo(Desktop)/Parking-System/Host2/src/main/java/com/smartparking/host"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\GitHubRepo(Desktop)\Parking-System\Host2\src\main\java\com\smartparking\host" />
+      <recent name="E:\GitHubRepo(Desktop)\Parking-System\Host2\src\main\resources" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.smartparking.pcb" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Application.ParkingSystem">
+    <configuration name="HelloApplication" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" value="com.smartparking.host.HelloApplication" />
+      <module name="Host2" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ParkingSystem" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" value="com.smartparking.host.ParkingSystem" />
+      <module name="Host2" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="Application.EthernetServer" />
+      <item itemvalue="Application.HelloApplication" />
+      <item itemvalue="Application.ParkingSystem" />
+    </list>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="914e3219-c5e1-492a-aaf1-de452cd36bd1" name="Changes" comment="" />
+      <created>1663980422001</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1663980422001</updated>
+      <workItem from="1663980423506" duration="2493000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>
