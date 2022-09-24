@@ -5,8 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="914e3219-c5e1-492a-aaf1-de452cd36bd1" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/smartparking/host/GUI_Practice_2.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/smartparking/host/GUI_Practice_2.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/smartparking/host/Gui.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/smartparking/host/GUI_Practice_1.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -17,6 +18,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Class" />
+        <option value="FxmlFile" />
       </list>
     </option>
   </component>
@@ -58,12 +60,20 @@
       <recent name="com.smartparking.pcb" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.GUI_Practice_1">
+  <component name="RunManager" selected="Application.GUI_Practice_2">
+    <configuration name="GUI_Practice_2" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" value="com.smartparking.host.GUI_Practice_2" />
+      <module name="Host2" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <list>
       <item itemvalue="Application.EthernetServer" />
       <item itemvalue="Application.HelloApplication" />
       <item itemvalue="Application.ParkingSystem" />
       <item itemvalue="Application.GUI_Practice_1" />
+      <item itemvalue="Application.GUI_Practice_2" />
     </list>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -75,7 +85,7 @@
       <option name="presentableId" value="Default" />
       <updated>1663980422001</updated>
       <workItem from="1663980423506" duration="12121000" />
-      <workItem from="1664032037793" duration="1647000" />
+      <workItem from="1664032037793" duration="2817000" />
     </task>
     <servers />
   </component>
