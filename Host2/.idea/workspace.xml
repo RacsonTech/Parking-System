@@ -5,9 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="914e3219-c5e1-492a-aaf1-de452cd36bd1" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/resources/Logo.PNG" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/smartparking/host/Gui.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/smartparking/host/Gui.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/smartparking/host/Gui.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/smartparking/host/GUI_Practice_1.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -41,7 +40,8 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "E:/GitHubRepo(Desktop)/Parking-System/Host2/src/main/resources"
+    "last_opened_file_path": "C:/Users/Oscar Alejandro/Documents/GitHub/Parking-System/Host2",
+    "settings.editor.selected.configurable": "preferences.JavaFX"
   },
   "keyToStringList": {
     "DatabaseDriversLRU": [
@@ -58,33 +58,12 @@
       <recent name="com.smartparking.pcb" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.GUI">
-    <configuration name="GUI" type="Application" factoryName="Application">
-      <option name="MAIN_CLASS_NAME" value="com.smartparking.host.Gui" />
-      <module name="Host2" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="HelloApplication" type="Application" factoryName="Application">
-      <option name="MAIN_CLASS_NAME" value="com.smartparking.host.HelloApplication" />
-      <module name="Host2" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="ParkingSystem" type="Application" factoryName="Application">
-      <option name="MAIN_CLASS_NAME" value="com.smartparking.host.ParkingSystem" />
-      <module name="Host2" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
+  <component name="RunManager" selected="Application.GUI_Practice_1">
     <list>
       <item itemvalue="Application.EthernetServer" />
       <item itemvalue="Application.HelloApplication" />
       <item itemvalue="Application.ParkingSystem" />
-      <item itemvalue="Application.GUI" />
+      <item itemvalue="Application.GUI_Practice_1" />
     </list>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -96,6 +75,7 @@
       <option name="presentableId" value="Default" />
       <updated>1663980422001</updated>
       <workItem from="1663980423506" duration="12121000" />
+      <workItem from="1664032037793" duration="1647000" />
     </task>
     <servers />
   </component>
@@ -112,5 +92,9 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>

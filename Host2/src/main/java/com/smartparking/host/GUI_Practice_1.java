@@ -15,7 +15,7 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 
-public class Gui extends Application {
+public class GUI_Practice_1 extends Application {
     final Color COLOR_MAIN = Color.SILVER;
     final Color COLOR_LIGHT = Color.LIGHTGREY;
     final Color COLOR_DARK = Color.web("5F5F5F");
@@ -34,6 +34,9 @@ public class Gui extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
+
+
+
         Group root = new Group();
         Scene scene = new Scene(root, WINDOW_WIDTH, WINDOW_HEIGHT, COLOR_MAIN);
 
