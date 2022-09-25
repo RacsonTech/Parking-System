@@ -5,9 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="914e3219-c5e1-492a-aaf1-de452cd36bd1" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/smartparking/host/GUI_Practice_2.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/com/smartparking/host/GUI_Practice_2.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/smartparking/host/GUI_Practice_2.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/smartparking/host/GUI_Practice_2.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -36,21 +35,21 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "C:/Users/Oscar Alejandro/Documents/GitHub/Parking-System/Host2",
-    "settings.editor.selected.configurable": "preferences.JavaFX"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Oscar Alejandro/Documents/GitHub/Parking-System/Host2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.JavaFX&quot;
   },
-  "keyToStringList": {
-    "DatabaseDriversLRU": [
-      "mysql"
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;mysql&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="E:\GitHubRepo(Desktop)\Parking-System\Host2\src\main\resources" />
@@ -86,6 +85,7 @@
       <updated>1663980422001</updated>
       <workItem from="1663980423506" duration="12121000" />
       <workItem from="1664032037793" duration="2817000" />
+      <workItem from="1664043259103" duration="1772000" />
     </task>
     <servers />
   </component>
