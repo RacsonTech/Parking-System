@@ -26,9 +26,10 @@ public class GUI_Practice_2 extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("GUI_Practice_2.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(GUI_Practice_2.class.getResource("GUI_Practice_2.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), WINDOW_WIDTH, WINDOW_HEIGHT);
         Image icon = new Image("logo_256x256.png");
+
         stage.getIcons().add(icon);
         stage.setTitle("Smart Parking System - Control Unit Host Program");
 
