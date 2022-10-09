@@ -107,6 +107,4 @@ fabric.properties
 # Android studio 3.1+ serialized cache file
 .idea/caches/build_file_checksums.ser
 
-Host2/.idea/workspace.xml
 Host2/src/main/resources/db.properties
-"\Parking-System\Host2\src\main\resources\db.properties" 
