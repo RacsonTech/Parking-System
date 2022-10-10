@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<!---->
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="720.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.smartparking.gui.GUI_Practice_2_Controller_Main">
+
+
+   <children>
+
+      <MenuBar layoutY="2.0" prefHeight="25.0" prefWidth="720.0">
+        <menus>
+          <Menu mnemonicParsing="false" text="Main">
+            <items>
+              <MenuItem mnemonicParsing="false" onAction="#handleCloseMenuItemAction" text="Close" />
+            </items>
+          </Menu>
+            <Menu mnemonicParsing="false" text="Configuration">
+              <items>
+                <MenuItem mnemonicParsing="false" text="Parking Garage" />
+                  <MenuItem mnemonicParsing="false" text="Levels" />
+                  <MenuItem mnemonicParsing="false" text="Sections" />
+                  <MenuItem mnemonicParsing="false" text="Cameras" />
+                  <MenuItem mnemonicParsing="false" text="Displays" />
+              </items>
+            </Menu>
+          <Menu mnemonicParsing="false" text="Status" />
+          <Menu mnemonicParsing="false" text="LiveView" />
+          <Menu mnemonicParsing="false" text="Development">
+            <items>
+                <MenuItem mnemonicParsing="false" text="Reset Database" />
+                <MenuItem mnemonicParsing="false" text="Delete Data Only" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="About" />
+        </menus>
+      </MenuBar>
+   </children>
+</AnchorPane>
