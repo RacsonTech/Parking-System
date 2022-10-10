@@ -10,26 +10,12 @@ import java.io.IOException;
 import java.sql.*;
 import java.util.ArrayList;
 
-public class ParkingSystem extends Application {
+public class ParkingSystem  {
 //    public static final int ID_NOT_FOUND = 9999;
 
-    // The start method must be implemented when using Application
-    @Override
-    public void start(Stage stage) throws IOException {
-//        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("hello-view.fxml"));
-//        Scene scene = new Scene(fxmlLoader.load(), 320, 240);
-//        stage.setTitle("Hello!");
-//        stage.setScene(scene);
 
-        Group root = new Group();
-        Scene scene = new Scene(root);
-
-        stage.setScene(scene);
-        stage.show();
-    }
 
     public static void main(String[] args) throws SQLException {
-        launch();
         // Create a connection to the local MySQL DB
         MySqlConnection mySqlConnection = new MySqlConnection();
         Connection connectionToDB = mySqlConnection.getConnection();

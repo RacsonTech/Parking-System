@@ -1,9 +1,0 @@
-<component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="HelloApplication" type="Application" factoryName="Application">
-    <option name="MAIN_CLASS_NAME" value="com.smartparking.host.HelloApplication" />
-    <module name="Host2" />
-    <method v="2">
-      <option name="Make" enabled="true" />
-    </method>
-  </configuration>
-</component>
