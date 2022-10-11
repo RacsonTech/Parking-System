@@ -40,7 +40,7 @@ public class GUI_Practice_1 extends Application {
         Group root = new Group();
         Scene scene = new Scene(root, WINDOW_WIDTH, WINDOW_HEIGHT, COLOR_MAIN);
 
-        Image icon = new Image("logo_256x256.png");
+        Image icon = new Image("images/logo_256x256.png");
         stage.getIcons().add(icon);
         stage.setTitle("Smart Parking System - Control Unit Host Program");
 
@@ -82,7 +82,7 @@ public class GUI_Practice_1 extends Application {
         circle.setRadius(50);
         circle.setFill(Color.ORANGE);
 
-        Image image = new Image("Logo.PNG");
+        Image image = new Image("images/Logo.PNG");
         ImageView imageView = new ImageView(image);
         imageView.setX(200);
         imageView.setY(100);

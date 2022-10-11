@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="720.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.smartparking.gui.GUI_Practice_3_Controller">
+   <children>
+      <BorderPane layoutX="-1.0" prefHeight="480.0" prefWidth="720.0">
+         <top>
+            <MenuBar BorderPane.alignment="CENTER">
+               <menus>
+                  <Menu mnemonicParsing="false" text="_Main">
+                     <items>
+                        <MenuItem mnemonicParsing="false" onAction="#handleCloseMenuItemAction" text="Close" />
+                     </items>
+                  </Menu>
+                  <Menu mnemonicParsing="false" text="_Configuration">
+                     <items>
+                        <MenuItem mnemonicParsing="false" text="Parking Garage" />
+                        <MenuItem mnemonicParsing="false" text="Levels" />
+                        <MenuItem mnemonicParsing="false" text="Sections" />
+                        <MenuItem mnemonicParsing="false" text="Cameras" />
+                        <MenuItem mnemonicParsing="false" text="Displays" />
+                     </items>
+                  </Menu>
+                  <Menu mnemonicParsing="false" text="_Status" />
+                  <Menu mnemonicParsing="false" text="_LiveView" />
+                  <Menu mnemonicParsing="false" text="_Development">
+                     <items>
+                        <MenuItem mnemonicParsing="false" text="Reset Database" />
+                        <MenuItem mnemonicParsing="false" text="Delete Data Only" />
+                     </items>
+                  </Menu>
+                  <Menu mnemonicParsing="false" text="_Help">
+                     <items>
+                        <MenuItem mnemonicParsing="false" onAction="#handleAboutMenuAction" text="About" />
+                     </items></Menu>
+               </menus>
+            </MenuBar>
+         </top>
+         <left>
+            <Pane prefHeight="419.0" prefWidth="100.0" BorderPane.alignment="CENTER" />
+         </left>
+         <right>
+            <Pane prefHeight="419.0" prefWidth="100.0" BorderPane.alignment="CENTER" />
+         </right>
+         <bottom>
+            <Pane prefHeight="50.0" prefWidth="720.0" BorderPane.alignment="CENTER" />
+         </bottom>
+         <center>
+            <Pane fx:id="center_pane" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Label layoutX="185.0" layoutY="26.0" text="Main Page">
+                     <font>
+                        <Font size="32.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+         </center></BorderPane>
+   </children>
+</AnchorPane>
