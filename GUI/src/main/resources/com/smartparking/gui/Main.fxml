@@ -34,15 +34,6 @@
          <center>
             <StackPane prefHeight="150.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                <children>
-                  <Pane fx:id="paneOverview" prefHeight="200.0" prefWidth="200.0" styleClass="main-background" stylesheets="@styles.css">
-                     <children>
-                        <Label layoutX="207.0" layoutY="14.0" text="Overview">
-                           <font>
-                              <Font size="24.0" />
-                           </font>
-                        </Label>
-                     </children>
-                  </Pane>
                   <Pane fx:id="paneLiveView" prefHeight="200.0" prefWidth="200.0" styleClass="main-background" stylesheets="@styles.css">
                      <children>
                         <Label layoutX="206.0" layoutY="14.0" text="Live View">
@@ -106,6 +97,42 @@
                               <Font size="24.0" />
                            </font>
                         </Label>
+                        <Label layoutX="131.0" layoutY="49.0" text="Smart Parking System">
+                           <font>
+                              <Font name="System Bold" size="24.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="161.0" layoutY="84.0" styleClass="about-labels" stylesheets="@styles.css" text="Control Program 2022.1.0">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="159.0" layoutY="116.0" styleClass="about-labels" stylesheets="@styles.css" text="Built on  10/11/2022 2:20 AM" />
+                        <Label layoutX="87.0" layoutY="374.0" styleClass="about-labels" stylesheets="@styles.css" text="Created for the CpE &amp; EE Senior Design Project" />
+                        <Label layoutX="101.0" layoutY="253.0" styleClass="about-labels, bold" stylesheets="@styles.css" text="Created by the following UCF students:" />
+                        <Label layoutX="222.0" layoutY="392.0" styleClass="about-labels" stylesheets="@styles.css" text="Fall 2022" />
+                        <Label layoutX="93.0" layoutY="134.0" styleClass="about-labels" stylesheets="@styles.css" text="Licensed to University of Central Florida (UCF)" />
+                        <Label layoutX="173.0" layoutY="152.0" styleClass="about-labels" stylesheets="@styles.css" text="For education use only." />
+                        <Label layoutX="184.0" layoutY="198.0" styleClass="about-labels" stylesheets="@styles.css" text="Java version: 17.0.4" />
+                        <Label layoutX="211.0" layoutY="180.0" styleClass="about-labels, bold" stylesheets="@styles.css" text="Powered by:" />
+                        <Label layoutX="205.0" layoutY="215.0" styleClass="about-labels" stylesheets="@styles.css" text="JavaFX 17.0.2" />
+                        <Label layoutX="113.0" layoutY="277.0" styleClass="about-labels" stylesheets="@styles.css" text="Oscar A. Acuna" />
+                        <Label layoutX="88.0" layoutY="294.0" styleClass="about-labels" stylesheets="@styles.css" text="Computer Engineering" />
+                        <Label layoutX="288.0" layoutY="277.0" styleClass="about-labels" stylesheets="@styles.css" text="Jordan Johnson" />
+                        <Label layoutX="267.0" layoutY="295.0" styleClass="about-labels" stylesheets="@styles.css" text="Electrical Engineering" />
+                        <Label layoutX="130.0" layoutY="320.0" styleClass="about-labels" stylesheets="@styles.css" text="M. Ridwan" />
+                        <Label layoutX="88.0" layoutY="338.0" styleClass="about-labels" stylesheets="@styles.css" text="Computer Engineering" />
+                        <Label layoutX="290.0" layoutY="321.0" styleClass="about-labels" stylesheets="@styles.css" text="Kyle Carpenter" />
+                        <Label layoutX="265.0" layoutY="338.0" styleClass="about-labels" stylesheets="@styles.css" text="Computer Engineering" />
+                     </children>
+                  </Pane>
+                  <Pane fx:id="paneOverview" prefHeight="200.0" prefWidth="200.0" styleClass="main-background" stylesheets="@styles.css">
+                     <children>
+                        <Label layoutX="207.0" layoutY="14.0" text="Overview">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                        </Label>
                      </children>
                   </Pane>
                </children></StackPane>
@@ -114,7 +141,7 @@
             <VBox alignment="TOP_CENTER" prefHeight="430.0" prefWidth="209.0" styleClass="menu-background" stylesheets="@styles.css" BorderPane.alignment="CENTER">
                <children>
                   <Region prefHeight="18.0" prefWidth="209.0" />
-                  <Button id="buttonOverview" fx:id="buttonOverview" alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onAction="#handleOverviewButtonClick" prefHeight="39.0" prefWidth="271.0" styleClass="menu-button" stylesheets="@styles.css" text="Garage Overview">
+                  <Button id="buttonOverview" fx:id="buttonOverview" alignment="BASELINE_LEFT" defaultButton="true" graphicTextGap="10.0" mnemonicParsing="false" onAction="#handleOverviewButtonClick" prefHeight="39.0" prefWidth="271.0" styleClass="menu-button" stylesheets="@styles.css" text="Garage Overview">
                      <graphic>
                         <ImageView fitHeight="30.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
                            <image>
