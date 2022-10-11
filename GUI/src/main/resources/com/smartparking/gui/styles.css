@@ -1,0 +1,89 @@
+* {
+
+    /* Purple Theme */
+    /*-primary-color-dark: #52438F;*/
+    /*-primary-color-medium: #6F5CC2;*/
+    /*-primary-color-light: #A89DDA;*/
+    /*-primary-color-text: #E7E5E5;*/
+
+    /* Grey-Yellow Theme*/
+    -primary-color-dark: #000000;
+    -primary-color-medium: #232323;
+    -primary-color-light: #999999;
+    -primary-color-text: #E7E5E5;
+
+    -secondary-color-text: #FFC000;
+/*    Original Icons color: #E7E5E5*/
+}
+
+.main-background {
+    -fx-background-color: -primary-color-light;
+}
+
+.toolbar {
+    /*-fx-background-color: #52438F;*/
+    -fx-background-color: -primary-color-dark;
+}
+
+.menu-background {
+    /*-fx-background-color:  #6F5CC2;*/
+    -fx-background-color:  -primary-color-medium;
+}
+
+.menu-button {
+    -fx-background-color: -primary-color-medium;
+    -fx-text-fill: -parimary-color-text;
+    -fx-font-size: 14px;
+    /*-fx-font-weight: bold;*/
+    -fx-font-family: Verdana;
+    -fx-padding: 5px 5px 5px 20px;
+    -fx-background-radius: 0px;
+}
+
+.menu-button:hover {
+    -fx-background-color: -primary-color-light ;
+    -fx-text-fill: -primary-color-dark;
+    /*-fx-font-weight: bold;*/
+    /*-fx-background-image: url("images/icons8_info_24px_Gold.png");*/
+    -fx-cursor: hand;
+    /*-fx-graphic: url("images/icons8_info_24px_Gold.png");*/
+}
+
+.menu-button:pressed {
+    -fx-background-color: -primary-color-dark;
+}
+
+.menu-button:focused {
+    -fx-background-color: -primary-color-dark;
+    -fx-text-fill: -secondary-color-text;
+}
+
+#buttonOverview:hover {-fx-graphic: url("images/icons8_traffic_jam_24px_Black.png")}
+#buttonOverview:focused, pressed {-fx-graphic: url("images/icons8_traffic_jam_24px_Gold.png")}
+
+#buttonLiveView:hover {-fx-graphic: url("images/icons8_tv_show_24px_Black.png")}
+#buttonLiveView:focused, pressed {-fx-graphic: url("images/icons8_tv_show_24px_Gold.png")}
+
+#buttonGarageSettings:hover {-fx-graphic: url("images/icons8_carpark_24px_Black.png")}
+#buttonGarageSettings:focused, pressed {-fx-graphic: url("images/icons8_carpark_24px_Gold.png")}
+
+#buttonLevels:hover {-fx-graphic: url("images/icons8_fit_vertical_24px_Black.png")}
+#buttonLevels:focused, pressed {-fx-graphic: url("images/icons8_fit_vertical_24px_Gold.png")}
+
+#buttonSections:hover {-fx-graphic: url("images/icons8_streets_24px_Black.png")}
+#buttonSections:focused, pressed {-fx-graphic: url("images/icons8_streets_24px_Gold.png")}
+
+#buttonCameras:hover {-fx-graphic: url("images/icons8_wall_mount_camera_24px_black.png")}
+#buttonCameras:focused, pressed {-fx-graphic: url("images/icons8_wall_mount_camera_24px_Gold.png")}
+
+#buttonDisplays:hover {-fx-graphic: url("images/icons8_directions_four_way_24px_Black.png")}
+#buttonDisplays:focused, pressed {-fx-graphic: url("images/icons8_directions_four_way_24px_Gold.png")}
+
+#buttonDevelopment:hover {-fx-graphic: url("images/icons8_imac_settings_24px_Black.png")}
+#buttonDevelopment:focused, pressed {-fx-graphic: url("images/icons8_imac_settings_24px_Gold.png")}
+
+#buttonAbout:hover {-fx-graphic: url("images/icons8_info_24px_Black.png");}
+#buttonAbout:focused, pressed {-fx-graphic: url("images/icons8_info_24px_Gold.png");}
+
+#buttonExit:hover {-fx-graphic: url("images/icons8_logout_24px_Black.png");}
+#buttonExit:focused, pressed {-fx-graphic: url("images/icons8_logout_24px_Gold.png");}
