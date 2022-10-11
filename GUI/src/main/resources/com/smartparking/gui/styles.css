@@ -32,12 +32,17 @@
 
 .menu-button {
     -fx-background-color: -primary-color-medium;
-    -fx-text-fill: -parimary-color-text;
+    -fx-text-fill: -primary-color-text;
     -fx-font-size: 14px;
     /*-fx-font-weight: bold;*/
     -fx-font-family: Verdana;
     -fx-padding: 5px 5px 5px 20px;
     -fx-background-radius: 0px;
+}
+
+.about-labels {
+    -fx-font-size: 14px;
+    -fx-font-family: Verdana;
 }
 
 .menu-button:hover {
@@ -87,3 +92,7 @@
 
 #buttonExit:hover {-fx-graphic: url("images/icons8_logout_24px_Black.png");}
 #buttonExit:focused, pressed {-fx-graphic: url("images/icons8_logout_24px_Gold.png");}
+
+.bold {
+    -fx-font-weight: bold;
+}
