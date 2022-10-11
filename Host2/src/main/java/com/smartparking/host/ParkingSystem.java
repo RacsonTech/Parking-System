@@ -56,7 +56,7 @@ public class ParkingSystem  {
             System.out.println("\nSection: " + sectionId + " | New available spaces: " + parkingGarage.getSectionAvailableSpaces(levelId));
             // TODO: Error when processing the 6th record from the new records. It seems to be
             //  updating Section 2, when both cameras (id 1 and 2) belong to section 1, so
-            //  it should not be updating section 2.
+            //  it should not be updating section 2. (I THINK I ALREADY FIXED THIS)
 
             // Get new number of available spaces from the database
             sectionAvailableSpaces = queryAvailableSpaces(sectionId, connectionToDB);
@@ -72,7 +72,7 @@ public class ParkingSystem  {
             // so, the code can mark it as offline. A heart beat packet can be implemented (probably on
             // a separate thread. The code should not update the display log table if the display does
             // not respond. The section, level, and garage available spaces DB tables should be updated
-            // regardless.
+            // regardless. (MAYBE THE LOG SHOULD SAY, DISPLAY OFFLINE).
 
             // Update the DB Display Log Table
             System.out.println("Updating DB Display_log Table");
@@ -105,8 +105,6 @@ public class ParkingSystem  {
             //     Section Table and Local Variable (Done)
             //     Level Table and Local Variable (Done)
             //     Garage tables and Local Variable (done)
-            //  8) Update the MongoDB database
-            //  9) Repeat.
 
             // TODO: Fix bug when a section (level or garage) available spaces reaches zero, and the code
             //  tries to update with -1 the number of free spaces, an error is thrown (can't get less
@@ -468,6 +466,11 @@ public class ParkingSystem  {
         parkingGarage.setSpaceChangeRecordArrayList(recordArrayList);
         parkingGarage.printSpaceChangeRecords();
 
+//        TODO: Update the field "isNew" in the cameraLog table to zero (Not New)
+//          Uncomment the code below (Analyze it first, I think I refactored
+//          spaceChangeRecordArrayList to recordArrayList.
+//        TODO: create an independent program that acts as if it were cameras
+//          so, it continuously store in the DB changes in spaces (Camera Log table)
 //        // ********* UPDATE column "isNew" to zero ********** //
 //
 //        // Prepare the query using id as a parameter
