@@ -203,7 +203,9 @@ public class ParkingSystem  {
 
 //            ethernetClient = new EthernetClient(display.getIpAddress());
 //            ethernetClient = new EthernetClient("192.168.1.138");
-            ethernetClient = new EthernetClient("localhost");
+//            ethernetClient = new EthernetClient("localhost");
+            ethernetClient = new EthernetClient("192.168.1.114");
+
             try {
                 ethernetClient.connect();
                 response = EthernetClient.sendData(freeSpaces);
