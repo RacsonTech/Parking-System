@@ -1,37 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="ArtifactsWorkspaceSettings">
+    <artifacts-to-build>
+      <artifact name="Host3:jar" />
+    </artifacts-to-build>
+  </component>
   <component name="AutoImportSettings">
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2e957e34-d4d6-4949-8402-54e53a282bbb" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/../Host2/.idea/artifacts/Host2_jar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Host2/src/main/resources/META-INF/MANIFEST.MF" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/sqldialects.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/smartparking/application/Camera.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/smartparking/application/CameraRecord.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/smartparking/application/Constants.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/smartparking/application/Display.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/smartparking/application/EthernetClient.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/smartparking/application/Level.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/smartparking/application/MySqlConnection.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/smartparking/application/ParkingGarage.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/smartparking/application/ParkingSystem.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/smartparking/application/Section.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/../.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Host2/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Host2/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Host2/src/main/java/com/smartparking/host/MySqlConnection.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Host2/src/main/java/com/smartparking/host/MySqlConnection.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Host2/src/main/java/com/smartparking/host/ParkingSystem.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Host2/src/main/java/com/smartparking/host/ParkingSystem.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Host2/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Host2/src/main/java/module-info.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/smartparking/application/Constants.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/smartparking/application/Constants.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/smartparking/application/MySqlConnection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/smartparking/application/MySqlConnection.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/smartparking/application/ParkingSystem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/smartparking/application/ParkingSystem.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -59,7 +41,12 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "D:/GitHubRepo/Parking-System/Host3/src/main/resources"
+    "last_opened_file_path": "D:/",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Artifacts",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0",
+    "settings.editor.selected.configurable": "MavenSettings"
   },
   "keyToStringList": {
     "DatabaseDriversLRU": [
@@ -99,7 +86,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1665524741277</updated>
-      <workItem from="1665524742663" duration="1691000" />
+      <workItem from="1665524742663" duration="9246000" />
     </task>
     <servers />
   </component>

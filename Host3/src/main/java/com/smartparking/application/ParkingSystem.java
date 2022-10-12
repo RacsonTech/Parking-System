@@ -201,7 +201,9 @@ public class ParkingSystem  {
 
 //            ethernetClient = new EthernetClient(display.getIpAddress());
 //            ethernetClient = new EthernetClient("192.168.1.138");
-            ethernetClient = new EthernetClient("localhost");
+//            ethernetClient = new EthernetClient("localhost");
+            ethernetClient = new EthernetClient("192.168.1.114");
+            // Todo: change ip to display.getIpAddress() once we get a display working.
             try {
                 ethernetClient.connect();
                 response = EthernetClient.sendData(freeSpaces);

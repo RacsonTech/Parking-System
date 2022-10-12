@@ -113,3 +113,5 @@ db.properties
 # File created by IntelliJ when building an executable jar file
 MANIFEST.MF
 Host2_jar.xml
+Host3/target/
+Host3/.idea/artifacts/

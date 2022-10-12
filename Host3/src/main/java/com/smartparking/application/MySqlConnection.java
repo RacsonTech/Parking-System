@@ -45,8 +45,6 @@ public class MySqlConnection {
 
         try {
             inputFile = new FileInputStream("src\\main\\resources\\db.properties");
-//            inputFile = new FileInputStream("db.properties");
-
             properties.load(inputFile);
 
             mySqlUrl = properties.getProperty("JAVA_MYSQL_DB_URL");
@@ -57,9 +55,9 @@ public class MySqlConnection {
             properties.clear();
 
         } catch (IOException e) {
-//            e.printStackTrace();
             System.err.println("ERROR: db.properties file not found");
             System.out.println("ERROR: db.properties file not found");
+            e.printStackTrace();
             System.exit(5);
         }
     }
