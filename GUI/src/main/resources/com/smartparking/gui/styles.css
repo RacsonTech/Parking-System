@@ -124,8 +124,8 @@
     -fx-border-style: solid;
     -fx-border-color: -primary-color-medium ;
     -fx-background-color: -primary-color-text;
-    -fx-padding: 3px;
-    -fx-pref-height: 29px;
+    -fx-padding: 0px 5px 0px 5px;
+    -fx-pref-height: 36px;
 }
 
 .error-text{

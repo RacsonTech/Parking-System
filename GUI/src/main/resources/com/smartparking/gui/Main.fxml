@@ -137,21 +137,21 @@
                               <Font size="24.0" />
                            </font>
                         </Label>
-                        <GridPane layoutX="41.0" layoutY="69.0" prefHeight="171.0" prefWidth="418.0">
+                        <GridPane layoutX="23.0" layoutY="69.0" prefHeight="171.0" prefWidth="467.0">
                           <columnConstraints>
-                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="225.0" minWidth="10.0" prefWidth="109.0" />
-                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="259.0" minWidth="10.0" prefWidth="204.0" />
+                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="225.0" minWidth="10.0" prefWidth="162.0" />
+                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="307.0" minWidth="10.0" prefWidth="305.0" />
                           </columnConstraints>
                           <rowConstraints>
-                            <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                            <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                            <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                            <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="37.0" vgrow="SOMETIMES" />
+                            <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="37.0" vgrow="SOMETIMES" />
+                            <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="37.0" vgrow="SOMETIMES" />
                           </rowConstraints>
                            <children>
                               <Button layoutX="-46.0" layoutY="-65.0" mnemonicParsing="false" onAction="#handleTestMySQLConnection" prefHeight="30.0" prefWidth="150.0" styleClass="button-dev" stylesheets="@styles.css" text="Test MySQL Connection" />
-                              <Label fx:id="labelTestMySQLConnection" prefHeight="45.0" prefWidth="256.0" styleClass="label-area-dev-1" stylesheets="@styles.css" wrapText="true" GridPane.columnIndex="1" />
+                              <Label fx:id="labelTestMySQLConnection" prefHeight="45.0" prefWidth="314.0" styleClass="label-area-dev-1" stylesheets="@styles.css" wrapText="true" GridPane.columnIndex="1" />
                               <Button layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#handleDisplayMySQLServerAddress" prefHeight="30.0" prefWidth="150.0" styleClass="button-dev" stylesheets="@styles.css" text="Display MySQL Address:" GridPane.rowIndex="1" />
-                              <Label fx:id="labelDisplayMySQLAddress" layoutX="172.0" layoutY="10.0" prefHeight="45.0" prefWidth="256.0" styleClass="label-area-dev-1" stylesheets="@styles.css" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                              <Label fx:id="labelDisplayMySQLAddress" layoutX="172.0" layoutY="10.0" prefHeight="45.0" prefWidth="320.0" styleClass="label-area-dev-1" stylesheets="@styles.css" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                            </children>
                         </GridPane>
                      </children>
