@@ -8,6 +8,8 @@ public class ParkingSystem  {
 //    public static final int ID_NOT_FOUND = 9999;
 
     public static void main(String[] args) throws SQLException {
+        System.out.println("====== Program started ======");
+
         // Create a connection to the local MySQL DB
         MySqlConnection mySqlConnection = new MySqlConnection();
         Connection connectionToDB = mySqlConnection.getConnection();

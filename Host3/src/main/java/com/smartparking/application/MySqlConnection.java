@@ -3,6 +3,7 @@ package com.smartparking.application;
 import com.mysql.cj.jdbc.MysqlDataSource;
 
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -16,7 +17,8 @@ public class MySqlConnection {
     private MysqlDataSource dataSource = null;
     private Connection connection;
 
-    public MySqlConnection() throws SQLException {
+    // Constructor
+    public MySqlConnection() {
 
         // Reading the MySQL credentials from the dp.properties file
         System.out.println("Reading MySQL Credentials");
@@ -29,8 +31,21 @@ public class MySqlConnection {
         // Establish a connection to the database
         System.out.print("Connecting...");
         assert dataSource != null;
-        connection = dataSource.getConnection();
-        System.out.println("Connected.\n");
+        connection = null;
+
+        try {
+            connection = dataSource.getConnection();
+        } catch (SQLException e) {
+            System.out.println(" Failed");
+        }
+
+        if (connection != null) {
+            System.out.println(" Connected.\n");
+        } else {
+            System.err.println("Error connecting to MySQL.");
+            System.err.println("Program terminated.");
+            System.exit(1);
+        }
     }
 
     public Connection getConnection() {
@@ -54,11 +69,14 @@ public class MySqlConnection {
             inputFile.close();
             properties.clear();
 
-        } catch (IOException e) {
+        } catch (FileNotFoundException e) {
             System.err.println("ERROR: db.properties file not found");
             System.out.println("ERROR: db.properties file not found");
+            System.out.println("Program Terminated");
+            System.exit(1);
+
+        } catch (IOException e) {
             e.printStackTrace();
-            System.exit(5);
         }
     }
 
