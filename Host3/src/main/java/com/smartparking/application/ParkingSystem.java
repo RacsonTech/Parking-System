@@ -19,7 +19,7 @@ public class ParkingSystem  {
         // Loads data from the database
         iniParkingSystem(parkingGarage, connectionToDB);
 
-        // Reads new records from the database created by the python script
+        // Reads new records from the database created by the camera python script
         getNewCameraLogRecords(parkingGarage, connectionToDB);
 
         // ******************* Process new records ******************** //

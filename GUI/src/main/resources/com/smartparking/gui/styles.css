@@ -21,12 +21,10 @@
 }
 
 .toolbar {
-    /*-fx-background-color: #52438F;*/
     -fx-background-color: -primary-color-dark;
 }
 
 .menu-background {
-    /*-fx-background-color:  #6F5CC2;*/
     -fx-background-color:  -primary-color-medium;
 }
 
@@ -34,24 +32,15 @@
     -fx-background-color: -primary-color-medium;
     -fx-text-fill: -primary-color-text;
     -fx-font-size: 14px;
-    /*-fx-font-weight: bold;*/
     -fx-font-family: Verdana;
     -fx-padding: 5px 5px 5px 20px;
     -fx-background-radius: 0px;
 }
 
-.about-labels {
-    -fx-font-size: 14px;
-    -fx-font-family: Verdana;
-}
-
 .menu-button:hover {
     -fx-background-color: -primary-color-light ;
     -fx-text-fill: -primary-color-dark;
-    /*-fx-font-weight: bold;*/
-    /*-fx-background-image: url("images/icons8_info_24px_Gold.png");*/
     -fx-cursor: hand;
-    /*-fx-graphic: url("images/icons8_info_24px_Gold.png");*/
 }
 
 .menu-button:pressed {
@@ -95,4 +84,53 @@
 
 .bold {
     -fx-font-weight: bold;
+}
+
+/************************** About Pane *********************/
+
+/* Text in the About pane*/
+.about-labels {
+    -fx-font-size: 14px;
+    -fx-font-family: Verdana;
+}
+
+
+/**************** General to all Panes *********************/
+/*Titles in all the panes*/
+.pane-titles {
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+}
+
+
+/*.scroll-bar:vertical {*/
+/*    -fx-pref-width: 1;*/
+/*    -fx-opacity: 0;*/
+/*}*/
+/*.scroll-bar:horizontal {*/
+/*    -fx-pref-height: 1;*/
+/*    -fx-opacity: 0;*/
+/*}*/
+
+/******************* Development Pane *********************/
+
+.button-dev {
+    -fx-pref-height: 25px;
+}
+
+.label-area-dev-1 {
+    -fx-text-fill: -primary-color-dark;
+    -fx-font-size: 12px;
+    -fx-border-style: solid;
+    -fx-border-color: -primary-color-medium ;
+    -fx-background-color: -primary-color-text;
+    -fx-padding: 3px;
+    -fx-pref-height: 29px;
+}
+
+.error-text{
+    -fx-text-fill: red;
+}
+.warning-text {
+    -fx-text-fill: orangered;
 }
