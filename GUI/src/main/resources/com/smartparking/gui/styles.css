@@ -102,7 +102,6 @@
     -fx-font-weight: bold;
 }
 
-
 /*.scroll-bar:vertical {*/
 /*    -fx-pref-width: 1;*/
 /*    -fx-opacity: 0;*/
@@ -112,6 +111,49 @@
 /*    -fx-opacity: 0;*/
 /*}*/
 
+
+/******************* Garage Overview Pane *********************/
+
+.title-overview {
+    -fx-background-color: -secondary-color-text;
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+    -fx-alignment: top-center;
+}
+
+.pane-background {
+    -fx-background-color: -primary-color-medium;
+}
+
+.label-overview-text {
+    -fx-text-fill: -primary-color-text;
+    -fx-font-size: 16px;
+    /*-fx-font-weight: bold;*/
+    -fx-alignment: top-center;
+    /*!*-fx-font-family: "Roboto Thin";*!*/
+    /*-fx-font-family: "Roboto Light";*/
+}
+
+.label-overview-value {
+    -fx-text-fill: -secondary-color-text;
+    -fx-font-size: 16px;
+    -fx-alignment: top-center;
+}
+
+.table-overview-title-Text {
+    -fx-text-fill: -primary-color-medium;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-alignment: top-center;
+}
+
+.table-title-background {
+    -fx-background-color: -secondary-color-text;
+}
+
+.line-color {
+    -fx-stroke: -secondary-color-text;
+}
 /******************* Development Pane *********************/
 
 .button-dev {
