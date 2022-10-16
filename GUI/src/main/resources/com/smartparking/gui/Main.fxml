@@ -2,7 +2,10 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -17,6 +20,7 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Line?>
+<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="480.0" prefWidth="720.0" styleClass="main-background" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.smartparking.gui.MainController">
@@ -39,17 +43,9 @@
          <center>
             <StackPane prefHeight="150.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                <children>
-                  <Pane fx:id="paneLiveView" prefHeight="200.0" prefWidth="200.0" styleClass="main-background" stylesheets="@styles.css">
-                     <children>
-                        <Label layoutX="206.0" layoutY="14.0" text="Live View">
-                           <font>
-                              <Font size="24.0" />
-                           </font>
-                        </Label>
-                     </children></Pane>
                   <Pane fx:id="paneGarageSettings" prefHeight="200.0" prefWidth="200.0" styleClass="main-background" stylesheets="@styles.css">
                      <children>
-                        <Label layoutX="172.0" layoutY="14.0" text="Garage Settings">
+                        <Label layoutX="172.0" layoutY="14.0" styleClass="pane-titles" text="Garage Settings">
                            <font>
                               <Font size="24.0" />
                            </font>
@@ -57,7 +53,7 @@
                      </children></Pane>
                   <Pane fx:id="paneLevels" prefHeight="200.0" prefWidth="200.0" styleClass="main-background" stylesheets="@styles.css">
                      <children>
-                        <Label layoutX="224.0" layoutY="14.0" text="Levels">
+                        <Label layoutX="224.0" layoutY="14.0" styleClass="pane-titles" text="Levels">
                            <font>
                               <Font size="24.0" />
                            </font>
@@ -65,7 +61,7 @@
                      </children></Pane>
                   <Pane fx:id="paneSections" prefHeight="200.0" prefWidth="200.0" styleClass="main-background" stylesheets="@styles.css">
                      <children>
-                        <Label layoutX="211.0" layoutY="14.0" text="Sections">
+                        <Label layoutX="211.0" layoutY="14.0" styleClass="pane-titles" text="Sections">
                            <font>
                               <Font size="24.0" />
                            </font>
@@ -73,7 +69,7 @@
                      </children></Pane>
                   <Pane fx:id="paneCameras" prefHeight="200.0" prefWidth="200.0" styleClass="main-background" stylesheets="@styles.css">
                      <children>
-                        <Label layoutX="210.0" layoutY="14.0" text="Cameras">
+                        <Label layoutX="210.0" layoutY="14.0" styleClass="pane-titles" text="Cameras">
                            <font>
                               <Font size="24.0" />
                            </font>
@@ -81,7 +77,7 @@
                      </children></Pane>
                   <Pane fx:id="paneDisplays" prefHeight="200.0" prefWidth="200.0" styleClass="main-background" stylesheets="@styles.css">
                      <children>
-                        <Label layoutX="212.0" layoutY="14.0" text="Displays">
+                        <Label layoutX="212.0" layoutY="14.0" styleClass="pane-titles" text="Displays">
                            <font>
                               <Font size="24.0" />
                            </font>
@@ -89,7 +85,7 @@
                      </children></Pane>
                   <Pane fx:id="paneAbout" prefHeight="200.0" prefWidth="200.0" styleClass="main-background" stylesheets="@styles.css">
                      <children>
-                        <Label layoutX="223.0" layoutY="14.0" text="About">
+                        <Label layoutX="223.0" layoutY="14.0" styleClass="pane-titles" text="About">
                            <font>
                               <Font size="24.0" />
                            </font>
@@ -239,6 +235,29 @@
                         </Pane>
                      </children>
                   </Pane>
+                  <Pane fx:id="paneLiveView" prefHeight="200.0" prefWidth="200.0" styleClass="main-background" stylesheets="@styles.css">
+                     <children>
+                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ffffff00" height="40.0" layoutX="47.0" layoutY="51.0" stroke="BLACK" strokeType="INSIDE" width="420.0" />
+                        <Label layoutX="206.0" layoutY="14.0" styleClass="pane-titles" text="Live View">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="58.0" layoutY="59.0" prefHeight="25.0" prefWidth="120.0" styleClass="label-dark" text="Level" />
+                        <ChoiceBox layoutX="183.0" layoutY="58.0" prefHeight="25.0" prefWidth="60.0" />
+                        <Label layoutX="269.0" layoutY="59.0" prefHeight="25.0" prefWidth="120.0" styleClass="label-dark" text="Section" />
+                        <ChoiceBox layoutX="394.0" layoutY="58.0" prefHeight="25.0" prefWidth="60.0" />
+                        <TableView layoutX="59.0" layoutY="99.0" prefHeight="142.0" prefWidth="394.0">
+                          <columns>
+                            <TableColumn prefWidth="170.0" text="Time Stamp" />
+                            <TableColumn minWidth="7.0" prefWidth="96.0" text="Camera ID" />
+                              <TableColumn prefWidth="127.0" text="Changed In Spaces" />
+                          </columns>
+                        </TableView>
+                        <Label layoutX="59.0" layoutY="265.0" prefHeight="25.0" prefWidth="120.0" styleClass="label-dark" text="Camera" />
+                        <ChoiceBox layoutX="184.0" layoutY="264.0" prefHeight="25.0" prefWidth="60.0" />
+                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ffffff00" height="154.0" layoutX="256.0" layoutY="254.0" stroke="BLACK" strokeType="INSIDE" width="212.0" />
+                     </children></Pane>
                </children></StackPane>
          </center>
          <left>

@@ -10,9 +10,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2e957e34-d4d6-4949-8402-54e53a282bbb" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../GUI/src/main/java/com/smartparking/gui/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../GUI/src/main/java/com/smartparking/gui/MainController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../GUI/src/main/resources/com/smartparking/gui/Main.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/../GUI/src/main/resources/com/smartparking/gui/Main.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../GUI/src/main/resources/com/smartparking/gui/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/../GUI/src/main/resources/com/smartparking/gui/styles.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -88,7 +85,7 @@
       <updated>1665524741277</updated>
       <workItem from="1665524742663" duration="9474000" />
       <workItem from="1665703339889" duration="2471000" />
-      <workItem from="1665709707414" duration="3669000" />
+      <workItem from="1665709707414" duration="3888000" />
     </task>
     <servers />
   </component>
