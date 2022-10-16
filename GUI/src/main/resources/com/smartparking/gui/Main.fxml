@@ -19,6 +19,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.media.MediaView?>
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
@@ -257,6 +258,7 @@
                         <Label layoutX="59.0" layoutY="265.0" prefHeight="25.0" prefWidth="120.0" styleClass="label-dark" text="Camera" />
                         <ChoiceBox layoutX="184.0" layoutY="264.0" prefHeight="25.0" prefWidth="60.0" />
                         <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ffffff00" height="154.0" layoutX="256.0" layoutY="254.0" stroke="BLACK" strokeType="INSIDE" width="212.0" />
+                        <MediaView fitHeight="150.0" fitWidth="200.0" layoutX="262.0" layoutY="256.0" />
                      </children></Pane>
                </children></StackPane>
          </center>
