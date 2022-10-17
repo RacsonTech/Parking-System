@@ -19,7 +19,6 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.media.MediaView?>
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
@@ -146,96 +145,6 @@
                         </GridPane>
                      </children>
                   </Pane>
-                  <Pane fx:id="paneOverview" prefHeight="200.0" prefWidth="200.0" styleClass="main-background" stylesheets="@styles.css">
-                     <children>
-                        <Label fx:id="overviewTitle" layoutX="19.0" layoutY="49.0" prefHeight="35.0" prefWidth="473.0" styleClass="title-overview" text="Parking Garage C" />
-                        <Label layoutX="207.0" layoutY="14.0" styleClass="pane-titles" stylesheets="@styles.css" text="Overview">
-                           <font>
-                              <Font size="24.0" />
-                           </font>
-                        </Label>
-                        <Pane layoutX="19.0" layoutY="84.0" prefHeight="252.0" prefWidth="473.0" styleClass="pane-background">
-                           <children>
-                              <GridPane layoutX="39.0" layoutY="12.0" prefHeight="81.0" prefWidth="168.0">
-                                <columnConstraints>
-                                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="95.0" minWidth="10.0" prefWidth="75.0" />
-                                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="122.0" minWidth="10.0" prefWidth="93.0" />
-                                </columnConstraints>
-                                <rowConstraints>
-                                  <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="24.0" vgrow="SOMETIMES" />
-                                    <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="24.0" vgrow="SOMETIMES" />
-                                  <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="24.0" vgrow="SOMETIMES" />
-                                </rowConstraints>
-                                 <children>
-                                    <Label styleClass="label-overview-text" text="Capacity:" />
-                                    <Label layoutX="10.0" layoutY="13.0" styleClass="label-overview-text" text="Available:" GridPane.rowIndex="2" />
-                                    <Label layoutX="10.0" layoutY="13.0" styleClass="label-overview-value" text="1852" GridPane.columnIndex="1" />
-                                    <Label layoutX="10.0" layoutY="43.0" styleClass="label-overview-value" text="1350 (82%)" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                                    <Label layoutX="10.0" layoutY="10.0" styleClass="label-overview-text" text="Active:" GridPane.rowIndex="1" />
-                                    <Label layoutX="85.0" layoutY="65.0" styleClass="label-overview-value" text="Yes" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                                 </children>
-                              </GridPane>
-                              <HBox layoutX="11.0" layoutY="93.0" prefHeight="20.0" prefWidth="223.0" styleClass="table-title-background">
-                                 <children>
-                                    <Label fx:id="overviewTitle1" prefHeight="35.0" prefWidth="289.0" styleClass="table-overview-title-Text" text="Level No." />
-                                    <Label fx:id="overviewTitle11" layoutX="10.0" layoutY="10.0" prefHeight="35.0" prefWidth="289.0" styleClass="table-overview-title-Text" text="Capacity" />
-                                    <Label fx:id="overviewTitle111" layoutX="159.0" layoutY="10.0" prefHeight="35.0" prefWidth="289.0" styleClass="table-overview-title-Text" text="Available" />
-                                 </children>
-                              </HBox>
-                              <GridPane alignment="CENTER" layoutX="10.0" layoutY="115.0" prefHeight="105.0" prefWidth="226.0">
-                                <columnConstraints>
-                                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="95.0" minWidth="10.0" prefWidth="69.0" />
-                                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="141.0" minWidth="10.0" prefWidth="72.0" />
-                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="198.0" minWidth="10.0" prefWidth="93.0" />
-                                </columnConstraints>
-                                <rowConstraints>
-                                  <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="24.0" vgrow="SOMETIMES" />
-                                  <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="24.0" vgrow="SOMETIMES" />
-                                  <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="24.0" vgrow="SOMETIMES" />
-                                    <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="24.0" vgrow="SOMETIMES" />
-                                </rowConstraints>
-                                 <children>
-                                    <Label prefHeight="25.0" prefWidth="79.0" styleClass="label-overview-text" text="Level 1:" />
-                                    <Label layoutX="10.0" layoutY="13.0" prefHeight="25.0" prefWidth="76.0" styleClass="label-overview-text" text="Level 2:" GridPane.rowIndex="1" />
-                                    <Label layoutX="10.0" layoutY="43.0" prefHeight="25.0" prefWidth="81.0" styleClass="label-overview-text" text="Level 3:" GridPane.rowIndex="2" />
-                                    <Label layoutX="10.0" layoutY="73.0" prefHeight="25.0" prefWidth="81.0" styleClass="label-overview-text" text="Level 4:" GridPane.rowIndex="3" />
-                                    <Label alignment="CENTER" maxWidth="74.0" prefHeight="25.0" prefWidth="42.0" styleClass="label-overview-value" text="463" GridPane.columnIndex="1" />
-                                    <Label alignment="CENTER" layoutX="80.0" layoutY="13.0" maxWidth="74.0" prefHeight="25.0" prefWidth="42.0" styleClass="label-overview-value" text="463" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                                    <Label alignment="CENTER" layoutX="80.0" layoutY="43.0" maxWidth="74.0" prefHeight="25.0" prefWidth="42.0" styleClass="label-overview-value" text="463" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                                    <Label alignment="CENTER" layoutX="80.0" layoutY="73.0" maxWidth="74.0" prefHeight="25.0" prefWidth="42.0" styleClass="label-overview-value" text="463" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                                    <Label alignment="CENTER" layoutX="80.0" layoutY="103.0" maxWidth="102.0" prefHeight="25.0" prefWidth="102.0" styleClass="label-overview-value" text="450 (90%)" GridPane.columnIndex="2" />
-                                    <Label alignment="CENTER" layoutX="145.0" layoutY="13.0" maxWidth="102.0" prefHeight="25.0" prefWidth="102.0" styleClass="label-overview-value" text="450 (90%)" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-                                    <Label alignment="CENTER" layoutX="145.0" layoutY="38.0" maxWidth="102.0" prefHeight="25.0" prefWidth="102.0" styleClass="label-overview-value" text="450 (90%)" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-                                    <Label alignment="CENTER" layoutX="145.0" layoutY="63.0" maxWidth="102.0" prefHeight="25.0" prefWidth="102.0" styleClass="label-overview-value" text="450 (90%)" GridPane.columnIndex="2" GridPane.rowIndex="3" />
-                                 </children>
-                              </GridPane>
-                              <Line endX="-77.0" endY="174.0" layoutX="320.0" layoutY="57.0" startX="-77.0" startY="-45.0" styleClass="line-color" />
-                              <GridPane layoutX="250.0" layoutY="12.0" prefHeight="50.0" prefWidth="215.0">
-                                 <columnConstraints>
-                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="142.0" minWidth="10.0" prefWidth="139.0" />
-                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="122.0" minWidth="10.0" prefWidth="76.0" />
-                                 </columnConstraints>
-                                 <rowConstraints>
-                                    <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="24.0" vgrow="SOMETIMES" />
-                                    <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="24.0" vgrow="SOMETIMES" />
-                                 </rowConstraints>
-                                 <children>
-                                    <Label prefHeight="25.0" prefWidth="128.0" styleClass="label-overview-text" text="Next Maintenace:" />
-                                    <Label layoutX="10.0" layoutY="13.0" prefHeight="25.0" prefWidth="87.0" styleClass="label-overview-value" text="7/8/2023" GridPane.columnIndex="1" />
-                                    <Label layoutX="10.0" layoutY="10.0" prefHeight="25.0" prefWidth="69.0" styleClass="label-overview-text" text="Location:" GridPane.rowIndex="1" />
-                                    <Label layoutX="85.0" layoutY="65.0" prefHeight="25.0" prefWidth="95.0" styleClass="label-overview-value" text="East Side" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                                 </children>
-                              </GridPane>
-                              <TextArea layoutX="249.0" layoutY="98.0" prefHeight="144.0" prefWidth="216.0" text="10/15/2022: The Electrical Department will research about charging stations for electric vehicles for parking garage C in Dec 2022. About ten spaces on the east side of the parking garage on Level 1 is a possible location for the plugs with future expansions on the same side up to possibly 30. &#10;&#10; 10/30/2022: Charging plugs for the scooter company will remain in the current place (underneath ramp two on level 1) until new notice." wrapText="true">
-                                 <font>
-                                    <Font size="11.0" />
-                                 </font>
-                              </TextArea>
-                              <Label layoutX="258.0" layoutY="73.0" prefHeight="25.0" prefWidth="50.0" styleClass="label-overview-text" text="Notes:" />
-                           </children>
-                        </Pane>
-                     </children>
-                  </Pane>
                   <Pane fx:id="paneLiveView" prefHeight="200.0" prefWidth="200.0" styleClass="main-background" stylesheets="@styles.css">
                      <children>
                         <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ffffff00" height="40.0" layoutX="47.0" layoutY="51.0" stroke="BLACK" strokeType="INSIDE" width="420.0" />
@@ -258,8 +167,92 @@
                         <Label layoutX="59.0" layoutY="265.0" prefHeight="25.0" prefWidth="120.0" styleClass="label-dark" text="Camera" />
                         <ChoiceBox layoutX="184.0" layoutY="264.0" prefHeight="25.0" prefWidth="60.0" />
                         <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ffffff00" height="154.0" layoutX="256.0" layoutY="254.0" stroke="BLACK" strokeType="INSIDE" width="212.0" />
-                        <MediaView fitHeight="150.0" fitWidth="200.0" layoutX="262.0" layoutY="256.0" />
                      </children></Pane>
+                  <Pane fx:id="paneOverview" prefHeight="200.0" prefWidth="200.0" styleClass="main-background" stylesheets="@styles.css">
+                     <children>
+                        <Label layoutX="207.0" layoutY="14.0" styleClass="pane-titles" stylesheets="@styles.css" text="Overview">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="overviewTitle" layoutX="19.0" layoutY="72.0" prefHeight="35.0" prefWidth="473.0" styleClass="title-overview" text="Parking Garage C" />
+                        <Pane layoutX="19.0" layoutY="107.0" prefHeight="252.0" prefWidth="473.0" styleClass="pane-background">
+                           <children>
+                              <GridPane layoutX="22.0" layoutY="12.0" prefHeight="100.0" prefWidth="204.0">
+                                <columnConstraints>
+                                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="95.0" minWidth="10.0" prefWidth="78.0" />
+                                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="132.0" minWidth="10.0" prefWidth="126.0" />
+                                </columnConstraints>
+                                <rowConstraints>
+                                  <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="24.0" vgrow="SOMETIMES" />
+                                    <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="24.0" vgrow="SOMETIMES" />
+                                  <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="24.0" vgrow="SOMETIMES" />
+                                    <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                </rowConstraints>
+                                 <children>
+                                    <Label styleClass="label-overview-text" text="Capacity:" GridPane.rowIndex="1" />
+                                    <Label layoutX="10.0" layoutY="13.0" styleClass="label-overview-text" text="Available:" GridPane.rowIndex="2" />
+                                    <Label fx:id="overviewCapacity" layoutX="10.0" layoutY="13.0" styleClass="label-overview-value" text="1852 spaces" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                    <Label fx:id="overviewAvailable" layoutX="10.0" layoutY="43.0" prefHeight="25.0" prefWidth="135.0" styleClass="label-overview-value" text="1350 spaces" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                    <Label layoutX="10.0" layoutY="10.0" styleClass="label-overview-text" text="Active:" />
+                                    <Label layoutX="85.0" layoutY="65.0" styleClass="label-overview-value" text="Yes" GridPane.columnIndex="1" />
+                                    <Label layoutX="10.0" layoutY="56.0" styleClass="label-overview-text" text="\% Full:" GridPane.rowIndex="3" />
+                                    <Label fx:id="overviewFull" layoutX="88.0" layoutY="32.0" styleClass="label-overview-value" text="50% full" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                                 </children>
+                              </GridPane>
+                              <HBox layoutX="12.0" layoutY="120.0" prefHeight="20.0" prefWidth="250.0" styleClass="table-title-background">
+                                 <children>
+                                    <Label maxWidth="-Infinity" prefHeight="35.0" prefWidth="285.0" styleClass="table-overview-title-Text" text="Lvl No." />
+                                    <Label layoutX="10.0" layoutY="10.0" maxWidth="-Infinity" prefHeight="35.0" prefWidth="285.0" styleClass="table-overview-title-Text" text="Capacity" />
+                                    <Label layoutX="159.0" layoutY="10.0" maxWidth="-Infinity" prefHeight="35.0" prefWidth="285.0" styleClass="table-overview-title-Text" text="Available" />
+                                    <Label layoutX="158.0" layoutY="10.0" maxWidth="-Infinity" prefHeight="35.0" prefWidth="280.0" styleClass="table-overview-title-Text" text="\%Full" />
+                                 </children>
+                              </HBox>
+                              <GridPane alignment="CENTER" layoutX="11.0" layoutY="137.0" prefHeight="105.0" prefWidth="253.0">
+                                <columnConstraints>
+                                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="10.0" prefWidth="63.0" />
+                                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="65.0" minWidth="10.0" prefWidth="64.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="73.0" minWidth="10.0" prefWidth="71.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="70.0" minWidth="10.0" prefWidth="56.0" />
+                                </columnConstraints>
+                                <rowConstraints>
+                                  <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="24.0" vgrow="SOMETIMES" />
+                                  <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="24.0" vgrow="SOMETIMES" />
+                                  <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="24.0" vgrow="SOMETIMES" />
+                                    <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="24.0" vgrow="SOMETIMES" />
+                                </rowConstraints>
+                                 <children>
+                                    <Label prefHeight="25.0" prefWidth="79.0" styleClass="label-overview-text" text="Level 1:" />
+                                    <Label layoutX="10.0" layoutY="13.0" prefHeight="25.0" prefWidth="76.0" styleClass="label-overview-text" text="Level 2:" GridPane.rowIndex="1" />
+                                    <Label layoutX="10.0" layoutY="43.0" prefHeight="25.0" prefWidth="81.0" styleClass="label-overview-text" text="Level 3:" GridPane.rowIndex="2" />
+                                    <Label layoutX="10.0" layoutY="73.0" prefHeight="25.0" prefWidth="81.0" styleClass="label-overview-text" text="Level 4:" GridPane.rowIndex="3" />
+                                    <Label fx:id="overviewCapLvl1" alignment="CENTER" maxWidth="74.0" prefHeight="25.0" prefWidth="42.0" styleClass="label-overview-value-table" text="463" GridPane.columnIndex="1" />
+                                    <Label fx:id="overviewCapLvl2" alignment="CENTER" layoutX="80.0" layoutY="13.0" maxWidth="74.0" prefHeight="25.0" prefWidth="42.0" styleClass="label-overview-value-table" text="463" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                    <Label fx:id="overviewCapLvl3" alignment="CENTER" layoutX="80.0" layoutY="43.0" maxWidth="74.0" prefHeight="25.0" prefWidth="42.0" styleClass="label-overview-value-table" text="463" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                    <Label fx:id="overviewCapLvl4" alignment="CENTER" layoutX="80.0" layoutY="73.0" maxWidth="74.0" prefHeight="25.0" prefWidth="42.0" styleClass="label-overview-value-table" text="463" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                                    <Label fx:id="overviewAvailableLvl1" alignment="CENTER" layoutX="80.0" layoutY="103.0" maxWidth="102.0" prefHeight="25.0" prefWidth="102.0" styleClass="label-overview-value-table" text="450" GridPane.columnIndex="2" />
+                                    <Label fx:id="overviewAvailableLvl2" alignment="CENTER" layoutX="145.0" layoutY="13.0" maxWidth="102.0" prefHeight="25.0" prefWidth="102.0" styleClass="label-overview-value-table" text="450" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                                    <Label fx:id="overviewAvailableLvl3" alignment="CENTER" layoutX="145.0" layoutY="38.0" maxWidth="102.0" prefHeight="25.0" prefWidth="102.0" styleClass="label-overview-value-table" text="450" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                                    <Label fx:id="overviewAvailableLvl4" alignment="CENTER" layoutX="145.0" layoutY="63.0" maxWidth="102.0" prefHeight="25.0" prefWidth="102.0" styleClass="label-overview-value-table" text="450" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+                                    <Label fx:id="overviewPercentFullLvl1" alignment="CENTER" layoutX="131.0" layoutY="86.0" maxWidth="102.0" prefHeight="25.0" prefWidth="102.0" styleClass="label-overview-value-table" text="50%" GridPane.columnIndex="3" />
+                                    <Label fx:id="overviewPercentFullLvl2" alignment="CENTER" layoutX="188.0" layoutY="14.0" maxWidth="102.0" prefHeight="25.0" prefWidth="102.0" styleClass="label-overview-value-table" text="50%" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+                                    <Label fx:id="overviewPercentFullLvl3" alignment="CENTER" layoutX="188.0" layoutY="38.0" maxWidth="102.0" prefHeight="25.0" prefWidth="102.0" styleClass="label-overview-value-table" text="50%" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+                                    <Label fx:id="overviewPercentFullLvl4" alignment="CENTER" layoutX="188.0" layoutY="62.0" maxWidth="102.0" prefHeight="25.0" prefWidth="102.0" styleClass="label-overview-value-table" text="50%" GridPane.columnIndex="3" GridPane.rowIndex="3" />
+                                 </children>
+                              </GridPane>
+                              <Line endX="-77.0" endY="174.0" layoutX="348.0" layoutY="61.0" startX="-77.0" startY="-45.0" styleClass="line-color" />
+                              <Label layoutX="306.0" layoutY="16.0" prefHeight="25.0" prefWidth="128.0" styleClass="label-overview-text" text="Next Maintenace:" />
+                              <Label layoutX="336.0" layoutY="41.0" prefHeight="25.0" prefWidth="68.0" styleClass="label-overview-value" text="7/8/2023" />
+                              <TextArea layoutX="279.0" layoutY="86.0" prefHeight="156.0" prefWidth="186.0" text="10/15/2022: The Electrical Department will research about charging stations for electric vehicles for parking garage C in Dec 2022. About ten spaces on the east side of the parking garage on Level 1 is a possible location for the plugs with future expansions on the same side up to possibly 30. &#10;&#10; 10/30/2022: Charging plugs for the scooter company will remain in the current place (underneath ramp two on level 1) until new notice." wrapText="true">
+                                 <font>
+                                    <Font size="11.0" />
+                                 </font>
+                              </TextArea>
+                              <Label layoutX="281.0" layoutY="62.0" prefHeight="25.0" prefWidth="50.0" styleClass="label-overview-text" text="Notes:" />
+                           </children>
+                        </Pane>
+                     </children>
+                  </Pane>
                </children></StackPane>
          </center>
          <left>

@@ -144,6 +144,11 @@
 .label-overview-value {
     -fx-text-fill: -secondary-color-text;
     -fx-font-size: 16px;
+    -fx-alignment: center-left;
+}
+.label-overview-value-table {
+    -fx-text-fill: -secondary-color-text;
+    -fx-font-size: 16px;
     -fx-alignment: top-center;
 }
 

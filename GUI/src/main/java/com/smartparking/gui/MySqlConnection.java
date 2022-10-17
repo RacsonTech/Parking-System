@@ -3,7 +3,6 @@ package com.smartparking.gui;
 import com.mysql.cj.jdbc.MysqlDataSource;
 
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -19,6 +18,12 @@ public class MySqlConnection {
 
     // Constructor
     public MySqlConnection() {
+    }
+
+    // Constructor 2
+    public MySqlConnection(boolean bol) {
+        readMySqlCredentials();
+        connect();
     }
 
     public Connection getConnection() {
@@ -68,7 +73,19 @@ public class MySqlConnection {
         dataSource.setPassword(mySqlPassword);
     }
 
-    public String connect () {
+    public void connect() {
+
+        assert dataSource != null;
+
+        try {
+            connection = dataSource.getConnection();
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public String testConnect() {
 
         // Establish a connection to the database
         System.out.print("Connecting...");
