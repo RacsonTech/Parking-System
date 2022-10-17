@@ -12,30 +12,36 @@ public class ParkingGarage {
     private int totalSpaces;
     private int numLevels;
     private int availableSpaces;
+    private int percentFull;
     private ArrayList<Camera> cameraArrayList;
     private ArrayList<Display> displayArrayList;
     private ArrayList<Section> sectionArrayList;
     private ArrayList<Level> levelArrayList;
     private ArrayList<CameraRecord> recordArrayList;
 
-    // Constructor
+    // Constructor 1
     public ParkingGarage() {
     }
 
+    // Constructor 2
     public ParkingGarage(MySqlConnection mySqlConnection) throws SQLException {
 
         // Load parking garage data from the database
         loadData(mySqlConnection.getConnection());
     }
 
+    private int calculatePercentFull() {
+        return (int)Math.round( 100 * ((double) ((totalSpaces - availableSpaces) / totalSpaces)));
+    }
+
+    public int getPercentFull() {
+        return percentFull;
+    }
+
     private void loadData(Connection connection) throws SQLException {
 
         System.out.println("Initializing the Parking Garage Program ");
         Statement statement = connection.createStatement();
-
-//        Statement statement = connection.createStatement(       // Allows to move up and down the rows and update them
-//                ResultSet.TYPE_SCROLL_SENSITIVE,
-//                ResultSet.CONCUR_UPDATABLE);
 
         getGarageInfo(statement);
         getCameraList(statement);
@@ -116,7 +122,6 @@ public class ParkingGarage {
         }
         return -1;
     }
-
 
     public int getGarageAvailableSpaces() {
         return availableSpaces;
@@ -204,8 +209,19 @@ public class ParkingGarage {
         }
     }
 
+    public void updateLevel(int id, int totalSpaces, int availableSpaces) {
+        for (Level level : levelArrayList) {
+            if (id == level.getId()) {
+                level.setTotalSpaces(totalSpaces);
+                level.setAvailableSpaces(availableSpaces);
+                break;
+            }
+        }
+    }
+
     public void updateGarageAvailableSpaces(int changedSpaces) {
         availableSpaces += changedSpaces;
+        percentFull = calculatePercentFull();
     }
 
     public boolean removeCamera(int cameraId) {
@@ -271,8 +287,6 @@ public class ParkingGarage {
         }
     }
 
-
-
     private void getGarageInfo(Statement statement) throws SQLException {
 
         // Prepare the query
@@ -291,8 +305,8 @@ public class ParkingGarage {
         setAvailableSpaces(resultSet.getInt("available_spaces"));
         setNumLevels(resultSet.getInt("levels"));
 
+        percentFull = calculatePercentFull();
         printGarageInfo();
-
         resultSet.close();
     }
 
@@ -420,5 +434,42 @@ public class ParkingGarage {
         resultSet.close();
     }
 
+    public void reloadOverviewData(Connection dbConnection) throws SQLException {
 
+//        System.out.println("\n--- Reload Garage Overview Data----");
+
+        Statement statement = dbConnection.createStatement();
+
+        // Prepare the query
+        String query = ("SELECT * FROM overview");
+
+        // Execute the query statement
+//        System.out.println("Obtaining garage overview from the database");
+        ResultSet resultSet = statement.executeQuery(query);
+
+        // Store the result
+        resultSet.next();
+        garageName =  resultSet.getString("name");
+        totalSpaces = resultSet.getInt("garage_capacity");
+        availableSpaces = resultSet.getInt("garage_free");
+        percentFull  = calculatePercentFull();
+//        System.out.println("Garage Name: " + garageName);
+//        System.out.println("Capacity: " + totalSpaces);
+//        System.out.println("Available Spaces: " + availableSpaces);
+//        System.out.println("Percent Full: " + percentFull + "% full");
+
+        int levelId = Integer.parseInt(resultSet.getString("level_id"));
+        int levelCapacity = Integer.parseInt(resultSet.getString("level_capacity"));
+        int levelFreeSpaces = Integer.parseInt(resultSet.getString("level_free"));
+
+        updateLevel(levelId, levelCapacity, levelFreeSpaces );
+
+        while(resultSet.next()) {
+            levelId = Integer.parseInt(resultSet.getString("level_id"));
+            levelCapacity = Integer.parseInt(resultSet.getString("level_capacity"));
+            levelFreeSpaces = Integer.parseInt(resultSet.getString("level_free"));
+
+            updateLevel(levelId, levelCapacity, levelFreeSpaces );
+        }
+    }
 }

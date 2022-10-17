@@ -175,7 +175,7 @@
                               <Font size="24.0" />
                            </font>
                         </Label>
-                        <Label fx:id="overviewTitle" layoutX="19.0" layoutY="72.0" prefHeight="35.0" prefWidth="473.0" styleClass="title-overview" text="Parking Garage C" />
+                        <Label fx:id="overviewTitle" layoutX="19.0" layoutY="72.0" prefHeight="35.0" prefWidth="473.0" styleClass="title-overview" text="[Parking Garage Name]" />
                         <Pane layoutX="19.0" layoutY="107.0" prefHeight="252.0" prefWidth="473.0" styleClass="pane-background">
                            <children>
                               <GridPane layoutX="22.0" layoutY="12.0" prefHeight="100.0" prefWidth="204.0">
@@ -192,12 +192,12 @@
                                  <children>
                                     <Label styleClass="label-overview-text" text="Capacity:" GridPane.rowIndex="1" />
                                     <Label layoutX="10.0" layoutY="13.0" styleClass="label-overview-text" text="Available:" GridPane.rowIndex="2" />
-                                    <Label fx:id="overviewCapacity" layoutX="10.0" layoutY="13.0" styleClass="label-overview-value" text="1852 spaces" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                                    <Label fx:id="overviewAvailable" layoutX="10.0" layoutY="43.0" prefHeight="25.0" prefWidth="135.0" styleClass="label-overview-value" text="1350 spaces" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                    <Label fx:id="overviewCapacity" layoutX="10.0" layoutY="13.0" styleClass="label-overview-value" text="9999 spaces" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                    <Label fx:id="overviewAvailable" layoutX="10.0" layoutY="43.0" prefHeight="25.0" prefWidth="135.0" styleClass="label-overview-value" text="9999 spaces" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                                     <Label layoutX="10.0" layoutY="10.0" styleClass="label-overview-text" text="Active:" />
                                     <Label layoutX="85.0" layoutY="65.0" styleClass="label-overview-value" text="Yes" GridPane.columnIndex="1" />
                                     <Label layoutX="10.0" layoutY="56.0" styleClass="label-overview-text" text="\% Full:" GridPane.rowIndex="3" />
-                                    <Label fx:id="overviewFull" layoutX="88.0" layoutY="32.0" styleClass="label-overview-value" text="50% full" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                                    <Label fx:id="overviewFull" layoutX="88.0" layoutY="32.0" styleClass="label-overview-value" text="9999% full" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                                  </children>
                               </GridPane>
                               <HBox layoutX="12.0" layoutY="120.0" prefHeight="20.0" prefWidth="250.0" styleClass="table-title-background">
@@ -226,18 +226,18 @@
                                     <Label layoutX="10.0" layoutY="13.0" prefHeight="25.0" prefWidth="76.0" styleClass="label-overview-text" text="Level 2:" GridPane.rowIndex="1" />
                                     <Label layoutX="10.0" layoutY="43.0" prefHeight="25.0" prefWidth="81.0" styleClass="label-overview-text" text="Level 3:" GridPane.rowIndex="2" />
                                     <Label layoutX="10.0" layoutY="73.0" prefHeight="25.0" prefWidth="81.0" styleClass="label-overview-text" text="Level 4:" GridPane.rowIndex="3" />
-                                    <Label fx:id="overviewCapLvl1" alignment="CENTER" maxWidth="74.0" prefHeight="25.0" prefWidth="42.0" styleClass="label-overview-value-table" text="463" GridPane.columnIndex="1" />
-                                    <Label fx:id="overviewCapLvl2" alignment="CENTER" layoutX="80.0" layoutY="13.0" maxWidth="74.0" prefHeight="25.0" prefWidth="42.0" styleClass="label-overview-value-table" text="463" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                                    <Label fx:id="overviewCapLvl3" alignment="CENTER" layoutX="80.0" layoutY="43.0" maxWidth="74.0" prefHeight="25.0" prefWidth="42.0" styleClass="label-overview-value-table" text="463" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                                    <Label fx:id="overviewCapLvl4" alignment="CENTER" layoutX="80.0" layoutY="73.0" maxWidth="74.0" prefHeight="25.0" prefWidth="42.0" styleClass="label-overview-value-table" text="463" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                                    <Label fx:id="overviewAvailableLvl1" alignment="CENTER" layoutX="80.0" layoutY="103.0" maxWidth="102.0" prefHeight="25.0" prefWidth="102.0" styleClass="label-overview-value-table" text="450" GridPane.columnIndex="2" />
-                                    <Label fx:id="overviewAvailableLvl2" alignment="CENTER" layoutX="145.0" layoutY="13.0" maxWidth="102.0" prefHeight="25.0" prefWidth="102.0" styleClass="label-overview-value-table" text="450" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-                                    <Label fx:id="overviewAvailableLvl3" alignment="CENTER" layoutX="145.0" layoutY="38.0" maxWidth="102.0" prefHeight="25.0" prefWidth="102.0" styleClass="label-overview-value-table" text="450" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-                                    <Label fx:id="overviewAvailableLvl4" alignment="CENTER" layoutX="145.0" layoutY="63.0" maxWidth="102.0" prefHeight="25.0" prefWidth="102.0" styleClass="label-overview-value-table" text="450" GridPane.columnIndex="2" GridPane.rowIndex="3" />
-                                    <Label fx:id="overviewPercentFullLvl1" alignment="CENTER" layoutX="131.0" layoutY="86.0" maxWidth="102.0" prefHeight="25.0" prefWidth="102.0" styleClass="label-overview-value-table" text="50%" GridPane.columnIndex="3" />
-                                    <Label fx:id="overviewPercentFullLvl2" alignment="CENTER" layoutX="188.0" layoutY="14.0" maxWidth="102.0" prefHeight="25.0" prefWidth="102.0" styleClass="label-overview-value-table" text="50%" GridPane.columnIndex="3" GridPane.rowIndex="1" />
-                                    <Label fx:id="overviewPercentFullLvl3" alignment="CENTER" layoutX="188.0" layoutY="38.0" maxWidth="102.0" prefHeight="25.0" prefWidth="102.0" styleClass="label-overview-value-table" text="50%" GridPane.columnIndex="3" GridPane.rowIndex="2" />
-                                    <Label fx:id="overviewPercentFullLvl4" alignment="CENTER" layoutX="188.0" layoutY="62.0" maxWidth="102.0" prefHeight="25.0" prefWidth="102.0" styleClass="label-overview-value-table" text="50%" GridPane.columnIndex="3" GridPane.rowIndex="3" />
+                                    <Label fx:id="overviewCapLvl1" alignment="CENTER" maxWidth="74.0" prefHeight="25.0" prefWidth="42.0" styleClass="label-overview-value-table" text="9999" GridPane.columnIndex="1" />
+                                    <Label fx:id="overviewCapLvl2" alignment="CENTER" layoutX="80.0" layoutY="13.0" maxWidth="74.0" prefHeight="25.0" prefWidth="42.0" styleClass="label-overview-value-table" text="9999" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                    <Label fx:id="overviewCapLvl3" alignment="CENTER" layoutX="80.0" layoutY="43.0" maxWidth="74.0" prefHeight="25.0" prefWidth="42.0" styleClass="label-overview-value-table" text="9999" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                    <Label fx:id="overviewCapLvl4" alignment="CENTER" layoutX="80.0" layoutY="73.0" maxWidth="74.0" prefHeight="25.0" prefWidth="42.0" styleClass="label-overview-value-table" text="9999" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                                    <Label fx:id="overviewAvailableLvl1" alignment="CENTER" layoutX="80.0" layoutY="103.0" maxWidth="102.0" prefHeight="25.0" prefWidth="102.0" styleClass="label-overview-value-table" text="9999" GridPane.columnIndex="2" />
+                                    <Label fx:id="overviewAvailableLvl2" alignment="CENTER" layoutX="145.0" layoutY="13.0" maxWidth="102.0" prefHeight="25.0" prefWidth="102.0" styleClass="label-overview-value-table" text="9999" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                                    <Label fx:id="overviewAvailableLvl3" alignment="CENTER" layoutX="145.0" layoutY="38.0" maxWidth="102.0" prefHeight="25.0" prefWidth="102.0" styleClass="label-overview-value-table" text="9999" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                                    <Label fx:id="overviewAvailableLvl4" alignment="CENTER" layoutX="145.0" layoutY="63.0" maxWidth="102.0" prefHeight="25.0" prefWidth="102.0" styleClass="label-overview-value-table" text="9999" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+                                    <Label fx:id="overviewPercentFullLvl1" alignment="CENTER" layoutX="131.0" layoutY="86.0" maxWidth="102.0" prefHeight="25.0" prefWidth="102.0" styleClass="label-overview-value-table" text="9999%" GridPane.columnIndex="3" />
+                                    <Label fx:id="overviewPercentFullLvl2" alignment="CENTER" layoutX="188.0" layoutY="14.0" maxWidth="102.0" prefHeight="25.0" prefWidth="102.0" styleClass="label-overview-value-table" text="9999%" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+                                    <Label fx:id="overviewPercentFullLvl3" alignment="CENTER" layoutX="188.0" layoutY="38.0" maxWidth="102.0" prefHeight="25.0" prefWidth="102.0" styleClass="label-overview-value-table" text="9999%" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+                                    <Label fx:id="overviewPercentFullLvl4" alignment="CENTER" layoutX="188.0" layoutY="62.0" maxWidth="102.0" prefHeight="25.0" prefWidth="102.0" styleClass="label-overview-value-table" text="9999%" GridPane.columnIndex="3" GridPane.rowIndex="3" />
                                  </children>
                               </GridPane>
                               <Line endX="-77.0" endY="174.0" layoutX="348.0" layoutY="61.0" startX="-77.0" startY="-45.0" styleClass="line-color" />

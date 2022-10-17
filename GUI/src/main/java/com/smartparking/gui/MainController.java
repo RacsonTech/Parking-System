@@ -51,70 +51,70 @@ public class MainController implements Initializable {
         // Establish a connection to the parking system MySQL DB.
         mySqlConnection = new MySqlConnection(true);
 
+
         try {
-            // Create the parking garage object and load data from the DB.
+            // Create the parking garage object and load it with data from the DB.
             garage = new ParkingGarage(mySqlConnection);
 
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-        overviewTitle.setText("Parking Garage " + garage.getGarageName());
-        overviewCapacity.setText(String.valueOf(garage.getTotalSpaces()));
-        overviewAvailable.setText(String.valueOf(garage.getAvailableSpaces()));
 
-        double available = 1.0 * garage.getAvailableSpaces();
-        double capacity = 1.0 * garage.getTotalSpaces();
-        int fullPercent = (int) (Math.round(100.0 * ((capacity - available) / capacity)));
-        
-        overviewFull.setText(fullPercent + "% full");
-
-        // For each level in the garage...
-        for (Level level : garage.getLevelList()) {
-            
-            available = 1.0 * level.getAvailableSpaces();
-            capacity = 1.0 * level.getTotalSpaces();
-            fullPercent = (int) (Math.round(100.0 * ((capacity - available) / capacity)));
-
-
-            switch (level.getId()) {
-                case 1 -> {
-                    overviewCapLvl1.setText(String.valueOf((int) capacity));
-                    overviewAvailableLvl1.setText(String.valueOf(level.getAvailableSpaces()));
-                    overviewPercentFullLvl1.setText(String.valueOf(fullPercent + "%"));
-                }
-                case 2 -> {
-                    overviewCapLvl2.setText(String.valueOf((int) capacity));
-                    overviewAvailableLvl2.setText(String.valueOf(level.getAvailableSpaces()));
-                    overviewPercentFullLvl2.setText(String.valueOf(fullPercent + "%"));
-                }
-                case 3 -> {
-                    overviewCapLvl3.setText(String.valueOf((int) capacity));
-                    overviewAvailableLvl3.setText(String.valueOf(level.getAvailableSpaces()));
-                    overviewPercentFullLvl3.setText(String.valueOf(fullPercent + "%"));
-                }
-                case 4 -> {
-                    overviewCapLvl4.setText(String.valueOf((int) capacity));
-                    overviewAvailableLvl4.setText(String.valueOf(level.getAvailableSpaces()));
-                    overviewPercentFullLvl4.setText(String.valueOf(fullPercent) + "%");
-                }
-            }
-        }
-
-
-
-
-
+        updateOverviewPane();
         paneOverview.toFront();
     }
 
-//    void initData(ParkingGarage parkingGarage) {
-//        garage = parkingGarage;
-//
-//    }
+
+    //  ==============   Overview Pane Methods  =================
+
+    private void updateOverviewPane() {
+        System.out.println("\n--- Update Garage Overview GUI----");
+        overviewTitle.setText("Parking Garage " + garage.getGarageName());
+        overviewCapacity.setText(String.valueOf(garage.getTotalSpaces()));
+        overviewAvailable.setText(String.valueOf(garage.getAvailableSpaces()));
+        overviewFull.setText(garage.getPercentFull() + "% full");
+        System.out.println("Garage Name: " + garage.getGarageName());
+        System.out.println("Capacity: " + garage.getTotalSpaces());
+        System.out.println("Available Spaces: " + garage.getAvailableSpaces());
+        System.out.println("Percent Full: " + garage.getPercentFull() + "% full");
+
+        // For each level in the garage...
+        for (Level level : garage.getLevelList()) {
+
+            switch (level.getId()) {
+                case 1 -> {
+                    overviewCapLvl1.setText(String.valueOf(level.getTotalSpaces()));
+                    overviewAvailableLvl1.setText(String.valueOf(level.getAvailableSpaces()));
+                    overviewPercentFullLvl1.setText(level.getPercentFull() + "%");
+                }
+                case 2 -> {
+                    overviewCapLvl2.setText(String.valueOf(level.getTotalSpaces()));
+                    overviewAvailableLvl2.setText(String.valueOf(level.getAvailableSpaces()));
+                    overviewPercentFullLvl2.setText(level.getPercentFull() + "%");
+                }
+                case 3 -> {
+                    overviewCapLvl3.setText(String.valueOf(level.getTotalSpaces()));
+                    overviewAvailableLvl3.setText(String.valueOf(level.getAvailableSpaces()));
+                    overviewPercentFullLvl3.setText(level.getPercentFull() + "%");
+                }
+                case 4 -> {
+                    overviewCapLvl4.setText(String.valueOf(level.getTotalSpaces()));
+                    overviewAvailableLvl4.setText(String.valueOf(level.getAvailableSpaces()));
+                    overviewPercentFullLvl4.setText(level.getPercentFull() + "%");
+                }
+            }
+            System.out.println("Level " + level.getId() + ": | Cap: " + level.getTotalSpaces() +
+                    " | Free: " + level.getAvailableSpaces() + " | " + level.getPercentFull() + "% full");
+        }
+    }
+
+
 
     //  ==============   Handles for Menu Buttons  =================
     @FXML
-    public void handleOverviewButtonClick() {
+    public void handleOverviewButtonClick() throws SQLException {
+        garage.reloadOverviewData(mySqlConnection.getConnection());
+        updateOverviewPane();
         paneOverview.toFront();
     }
 
@@ -160,6 +160,7 @@ public class MainController implements Initializable {
 
     @FXML
     public void handleExitButtonClick() {
+        mySqlConnection.disconnect();
         Platform.exit();
     }
 
