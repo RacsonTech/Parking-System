@@ -46,7 +46,7 @@ public class ParkingGarage {
         getGarageInfo(statement);
         getCameraList(statement);
         getDisplayList(statement);
-        getSectionList(statement);
+        loadSectionList(statement);
         getLevelList(statement);
         statement.close();
     }
@@ -87,7 +87,7 @@ public class ParkingGarage {
         int sectionId = -1;
 
         // For every camera in the list...
-        // Find the sectionId where the camera with id cameraId is located.
+        // Find the sectionId where the camera located.
         for (Camera camera : cameraArrayList) {
             if (cameraId == camera.getId()) {
                 sectionId = camera.getSectionId();
@@ -372,7 +372,7 @@ public class ParkingGarage {
         resultSet.close();
     }
 
-    private void getSectionList(Statement statement) throws SQLException {
+    private void loadSectionList(Statement statement) throws SQLException {
         int id;
         int levelId;
         int totalSpaces;
@@ -471,5 +471,9 @@ public class ParkingGarage {
 
             updateLevel(levelId, levelCapacity, levelFreeSpaces );
         }
+    }
+
+    public ArrayList<Section> getSectionArrayList() {
+        return sectionArrayList;
     }
 }
