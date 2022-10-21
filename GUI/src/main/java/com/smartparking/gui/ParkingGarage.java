@@ -1,9 +1,8 @@
 package com.smartparking.gui;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import javafx.collections.ObservableList;
+
+import java.sql.*;
 import java.util.ArrayList;
 
 public class ParkingGarage {
@@ -18,6 +17,10 @@ public class ParkingGarage {
     private ArrayList<Section> sectionArrayList;
     private ArrayList<Level> levelArrayList;
     private ArrayList<CameraRecord> recordArrayList;
+    private ArrayList<String> levelIdList;
+    private ArrayList<ArrayList<String>> sectionIdListByLevel;
+    private ArrayList<ArrayList<String>> cameraIdListByLevel;
+
 
     // Constructor 1
     public ParkingGarage() {
@@ -28,7 +31,74 @@ public class ParkingGarage {
 
         // Load parking garage data from the database
         loadData(mySqlConnection.getConnection());
+
+        // Prepare Level ID, Section ID, and Camera ID lists.
+        createLevelIdList();
+//        createSectionIdListByLevel();
     }
+
+    // Get a list that includes only the level IDs as String.
+    public ArrayList<String> getLevelIdList () {
+        levelIdList = new ArrayList<>();
+
+        // For every level in the garage, add it to the list
+        for(Level currentLevel : levelArrayList) {
+            levelIdList.add(String.valueOf(currentLevel.getId()));
+        }
+
+        return levelIdList;
+    }
+
+    private void createLevelIdList() {
+        getLevelIdList();
+    }
+
+    public ArrayList<String> getSectionIdListByLevel(int levelId) {
+
+        sectionIdListByLevel = new ArrayList<>();
+
+        // Initialize the array list
+        for (int i = 0; i < 10; i++) {
+            sectionIdListByLevel.add(i, null);
+        }
+
+        for(Level currentLevel : levelArrayList) {
+
+            ArrayList<String> sectionList = new ArrayList<>();
+
+            for(Section currentSection : sectionArrayList) {
+                if(currentSection.getLevelId() == currentLevel.getId()) {
+                    sectionList.add(String.valueOf(currentSection.getId()));
+                }
+            }
+
+            sectionIdListByLevel.add(currentLevel.getId(), sectionList);
+        }
+        return sectionIdListByLevel.get(levelId);
+    }
+
+    public ArrayList<String> getCameraIdListBySection(int sectionId) {
+        cameraIdListByLevel = new ArrayList<>();
+
+        // Initialize the array list
+        for (int i = 0; i < 150; i++) {
+            cameraIdListByLevel.add(i, null);
+        }
+
+        for(Section currentSection : sectionArrayList) {
+
+            ArrayList<String> cameraList = new ArrayList<>();
+
+            for( Camera currentCamera : cameraArrayList) {
+                if(currentCamera.getSectionId() == currentSection.getId()) {
+                    cameraList.add(String.valueOf(currentCamera.getId()));
+                }
+            }
+            cameraIdListByLevel.add(currentSection.getId(), cameraList);
+        }
+        return cameraIdListByLevel.get(sectionId);
+    }
+
 
     private int calculatePercentFull() {
         return (int)Math.round( 100 * ((double) ((totalSpaces - availableSpaces) / totalSpaces)));

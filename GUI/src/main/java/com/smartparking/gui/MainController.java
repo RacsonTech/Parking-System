@@ -1,16 +1,17 @@
 package com.smartparking.gui;
 
 import javafx.application.Platform;
+import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
 
 import java.net.URL;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class MainController implements Initializable {
@@ -46,10 +47,10 @@ public class MainController implements Initializable {
     public ChoiceBox<String> liveViewLevelChoiceBox;
     public ChoiceBox<String> liveViewSectionChoiceBox;
     public ChoiceBox<String> liveViewCameraChoiceBox;
+    public Button liveViewConnectButton;
 
     private ParkingGarage garage;
     private MySqlConnection mySqlConnection;
-    private ArrayList<ArrayList<String>> sectionListByLevel;
 
     @Override
     // Runs before GUI shows up.
@@ -57,7 +58,6 @@ public class MainController implements Initializable {
 
         // Establish a connection to the parking system MySQL DB.
         mySqlConnection = new MySqlConnection(true);
-
 
         try {
             // Create the parking garage object and load it with data from the DB.
@@ -118,40 +118,13 @@ public class MainController implements Initializable {
     }
 
     private void loadLiveViewData() {
+        // Populate the Level Choice Box values
+        liveViewLevelChoiceBox.setItems(FXCollections.observableArrayList(garage.getLevelIdList()));
 
-        // 2D ArrayList, index = Level ID, each index list all the sections in that level.
-        sectionListByLevel = new ArrayList<>();
-
-        // Initialize the array list
-        for (int i = 0; i < 10; i++) {
-            sectionListByLevel.add(i, null);
-        }
-
-        // For every level in the garage...
-        for (Level currentLevel : garage.getLevelList()) {
-
-            // Populate the Choice Box values
-            liveViewLevelChoiceBox.getItems().add(String.valueOf(currentLevel.getId()));
-
-            // The list of Sections for this level will be stored here.
-            ArrayList<String> sectionList = new ArrayList<>();
-
-            // For every section in the garage
-            for (Section section : garage.getSectionArrayList()) {
-
-                // Only store the section that matches the current level
-                if(section.getLevelId() == currentLevel.getId()) {
-                    sectionList.add(String.valueOf(section.getId()));
-                }
-            }
-
-            // Similar to sectionListByLeve[level.getId()] = sectionList.
-            // Basically, inserting the sectionList at the index specified by level.getId().
-            sectionListByLevel.add(currentLevel.getId(), sectionList);
-        }
-
-        // Register the event handler.
+        // Register the event handlers.
         liveViewLevelChoiceBox.setOnAction(this::handleLevelChoiceBoxAction);
+        liveViewSectionChoiceBox.setOnAction(this::handleSectionChoiceBoxAction);
+        liveViewCameraChoiceBox.setOnAction(this::handleCameraChoiceBoxAction);
     }
 
     //  ==============   Handles for Menu Buttons  =================
@@ -266,10 +239,38 @@ public class MainController implements Initializable {
 
     //  ==============   Handles for Live View Pane  =================
     public void handleLevelChoiceBoxAction(ActionEvent event) {
+
         int levelId = Integer.parseInt(liveViewLevelChoiceBox.getValue());
 
-        // Update the section Choice Box items whenever the Level Choice Box is updated.
         liveViewSectionChoiceBox.getItems().clear();
-        liveViewSectionChoiceBox.getItems().setAll(sectionListByLevel.get(levelId));
+        liveViewCameraChoiceBox.getItems().clear();
+        liveViewConnectButton.setDisable(true);
+
+        // Populate the Section choice box
+        liveViewSectionChoiceBox.getItems().setAll(garage.getSectionIdListByLevel(levelId));
+    }
+
+    public void handleSectionChoiceBoxAction(ActionEvent event) {
+
+        if (liveViewSectionChoiceBox.getValue() != null) {
+            int sectionId = Integer.parseInt(liveViewSectionChoiceBox.getValue());
+            liveViewCameraChoiceBox.getItems().clear();
+            liveViewConnectButton.setDisable(true);
+
+            // Populate the Camera choice box
+            liveViewCameraChoiceBox.getItems().setAll(garage.getCameraIdListBySection(sectionId));
+        }
+    }
+    
+    public void handleCameraChoiceBoxAction(ActionEvent event) {
+        if(liveViewCameraChoiceBox.getValue() != null) {
+            liveViewConnectButton.setDisable(false);
+        }
+    }
+
+
+    public void handleLiveViewConnectButton(ActionEvent actionEvent) {
+        System.out.println("Connect button pressed");
+//        TODO
     }
 }
