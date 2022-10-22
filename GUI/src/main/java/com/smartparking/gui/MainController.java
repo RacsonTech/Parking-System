@@ -127,6 +127,11 @@ public class MainController implements Initializable {
         liveViewCameraChoiceBox.setOnAction(this::handleCameraChoiceBoxAction);
     }
 
+    public void handleOverviewRefreshButton(ActionEvent actionEvent) throws SQLException {
+        garage.reloadOverviewData(mySqlConnection.getConnection());
+        updateOverviewPane();
+    }
+
     //  ==============   Handles for Menu Buttons  =================
     @FXML
     public void handleOverviewButtonClick() throws SQLException {
@@ -267,7 +272,6 @@ public class MainController implements Initializable {
             liveViewConnectButton.setDisable(false);
         }
     }
-
 
     public void handleLiveViewConnectButton(ActionEvent actionEvent) {
         System.out.println("Connect button pressed");

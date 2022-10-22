@@ -10,6 +10,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2e957e34-d4d6-4949-8402-54e53a282bbb" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../GUI/src/main/java/com/smartparking/gui/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../GUI/src/main/java/com/smartparking/gui/MainController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../GUI/src/main/java/com/smartparking/gui/ParkingGarage.java" beforeDir="false" afterPath="$PROJECT_DIR$/../GUI/src/main/java/com/smartparking/gui/ParkingGarage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../GUI/src/main/resources/com/smartparking/gui/Main.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/../GUI/src/main/resources/com/smartparking/gui/Main.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../GUI/src/main/resources/com/smartparking/gui/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/../GUI/src/main/resources/com/smartparking/gui/styles.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -38,7 +42,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "D:/GitHubRepo/Parking-System/Host3",
+    "last_opened_file_path": "D:/GitHubRepo/Parking-System/EthernetServer",
     "nodejs_package_manager_path": "npm",
     "project.structure.last.edited": "Artifacts",
     "project.structure.proportion": "0.0",
@@ -87,6 +91,7 @@
       <workItem from="1665703339889" duration="2471000" />
       <workItem from="1665709707414" duration="3888000" />
       <workItem from="1665940640826" duration="2976000" />
+      <workItem from="1666333940241" duration="611000" />
     </task>
     <servers />
   </component>
