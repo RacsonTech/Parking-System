@@ -2,7 +2,6 @@ package com.smartparking.gui;
 
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -123,18 +122,6 @@ public class MainController implements Initializable {
 
     private void loadLiveViewData() {
 
-        ObservableList<CameraLog> list = FXCollections.observableArrayList(
-                new CameraLog("10/22/2022 3:31pm", 1, -1),
-                new CameraLog("10/22/2022 3:32pm", 1, -2),
-                new CameraLog("10/22/2022 3:33pm", 1, 2)
-        );
-
-        // Populate the table
-        liveViewTableColumnTime.setCellValueFactory(new PropertyValueFactory<CameraLog, String>("timeStamp"));
-        liveViewTableColumnCamera.setCellValueFactory(new PropertyValueFactory<CameraLog, Integer>("cameraId"));
-        liveViewTableColumnSpaces.setCellValueFactory(new PropertyValueFactory<CameraLog, Integer>("changedSpaces"));
-        liveViewTable.setItems(list);
-
         // Populate the Level Choice Box values
         liveViewLevelChoiceBox.setItems(FXCollections.observableArrayList(garage.getLevelIdList()));
 
@@ -159,6 +146,7 @@ public class MainController implements Initializable {
 
     @FXML
     public void handleLiveViewButtonClick() {
+        reloadLiveViewTable();
         paneLiveView.toFront();
     }
 
@@ -293,5 +281,19 @@ public class MainController implements Initializable {
     public void handleLiveViewConnectButton(ActionEvent actionEvent) {
         System.out.println("Connect button pressed");
 //        TODO
+    }
+
+    private void reloadLiveViewTable() {
+        // Populate the table
+        liveViewTableColumnTime.setCellValueFactory(new PropertyValueFactory<>("timeStamp"));
+        liveViewTableColumnCamera.setCellValueFactory(new PropertyValueFactory<>("cameraId"));
+        liveViewTableColumnSpaces.setCellValueFactory(new PropertyValueFactory<>("changedSpaces"));
+
+        try {
+            liveViewTable.setItems(FXCollections.observableArrayList(garage.getCameraLogList(mySqlConnection.getConnection())));
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        System.out.println("\nLive View Table reloaded");
     }
 }

@@ -18,7 +18,7 @@ public class ParkingGarage {
     private ArrayList<String> levelIdList;
     private ArrayList<ArrayList<String>> sectionIdListByLevel;
     private ArrayList<ArrayList<String>> cameraIdListByLevel;
-
+    private ArrayList<CameraLog> cameraLogArrayList;
 
     // Constructor 1
     public ParkingGarage() {
@@ -539,6 +539,38 @@ public class ParkingGarage {
 
             updateLevel(levelId, levelCapacity, levelFreeSpaces );
         }
+    }
+
+    public ArrayList<CameraLog> getCameraLogList(Connection dbConnection) throws SQLException {
+        String timeStamp;
+        int cameraId;
+        int changedSpaces;
+        cameraLogArrayList = new ArrayList<>();
+
+        Statement statement = dbConnection.createStatement();
+
+        // Prepare a new query (Gets the last 6 rows in ascending order)
+        String query = ("SELECT * FROM " +
+                "(SELECT time_stamp, camera_id, changed_spaces FROM camera_log ORDER BY time_stamp DESC LIMIT 6)" +
+                " AS sub" +
+                " ORDER BY time_stamp;");
+
+        // Execute the query
+        ResultSet resultSet = statement.executeQuery(query);
+
+        // Store the result
+        while (resultSet.next()) {
+            timeStamp = resultSet.getString("time_stamp");
+            cameraId = resultSet.getInt("camera_id");
+            changedSpaces = resultSet.getInt("changed_spaces");
+
+            CameraLog cameraLog = new CameraLog(timeStamp, cameraId, changedSpaces);
+            cameraLogArrayList.add(cameraLog);
+        }
+
+        resultSet.close();
+        statement.close();
+        return cameraLogArrayList;
     }
 
     public ArrayList<Section> getSectionArrayList() {
