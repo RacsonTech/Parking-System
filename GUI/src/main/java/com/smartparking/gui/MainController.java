@@ -123,7 +123,8 @@ public class MainController implements Initializable {
     private void loadLiveViewData() {
 
         // Populate the Level Choice Box values
-        liveViewLevelChoiceBox.setItems(FXCollections.observableArrayList(garage.getLevelIdList()));
+//        liveViewLevelChoiceBox.setItems(FXCollections.observableArrayList(garage.getLevelIdList()));
+        reloadLiveViewChoiceBoxes();
 
         // Register the event handlers.
         liveViewLevelChoiceBox.setOnAction(this::handleLevelChoiceBoxAction);
@@ -147,6 +148,7 @@ public class MainController implements Initializable {
     @FXML
     public void handleLiveViewButtonClick() {
         reloadLiveViewTable();
+        reloadLiveViewChoiceBoxes();
         paneLiveView.toFront();
     }
 
@@ -250,14 +252,16 @@ public class MainController implements Initializable {
     //  ==============   Handles for Live View Pane  =================
     public void handleLevelChoiceBoxAction(ActionEvent event) {
 
-        int levelId = Integer.parseInt(liveViewLevelChoiceBox.getValue());
+        if (liveViewLevelChoiceBox.getValue() != null) {
+            int levelId = Integer.parseInt(liveViewLevelChoiceBox.getValue());
 
-        liveViewSectionChoiceBox.getItems().clear();
-        liveViewCameraChoiceBox.getItems().clear();
-        liveViewConnectButton.setDisable(true);
+            liveViewSectionChoiceBox.getItems().clear();
+            liveViewCameraChoiceBox.getItems().clear();
+            liveViewConnectButton.setDisable(true);
 
-        // Populate the Section choice box
-        liveViewSectionChoiceBox.getItems().setAll(garage.getSectionIdListByLevel(levelId));
+            // Populate the Section choice box
+            liveViewSectionChoiceBox.getItems().setAll(garage.getSectionIdListByLevel(levelId));
+        }
     }
 
     public void handleSectionChoiceBoxAction(ActionEvent event) {
@@ -295,5 +299,12 @@ public class MainController implements Initializable {
             throw new RuntimeException(e);
         }
         System.out.println("\nLive View Table reloaded");
+    }
+
+    private void reloadLiveViewChoiceBoxes() {
+        liveViewCameraChoiceBox.getItems().clear();
+        liveViewSectionChoiceBox.getItems().clear();
+        liveViewLevelChoiceBox.getItems().clear();
+        liveViewLevelChoiceBox.setItems(FXCollections.observableArrayList(garage.getLevelIdList()));
     }
 }
