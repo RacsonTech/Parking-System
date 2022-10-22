@@ -2,12 +2,12 @@ package com.smartparking.gui;
 
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.Label;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.Pane;
 
 import java.net.URL;
@@ -48,6 +48,10 @@ public class MainController implements Initializable {
     public ChoiceBox<String> liveViewSectionChoiceBox;
     public ChoiceBox<String> liveViewCameraChoiceBox;
     public Button liveViewConnectButton;
+    private TableView<CameraLog> liveViewTable;
+    private TableColumn<CameraLog, String> liveViewTableColumnTime;
+    private TableColumn<CameraLog, Integer> liveViewTableColumnCamera;
+    private TableColumn<CameraLog, Integer> liveViewTableColumnSpaces;
 
     private ParkingGarage garage;
     private MySqlConnection mySqlConnection;
@@ -118,6 +122,19 @@ public class MainController implements Initializable {
     }
 
     private void loadLiveViewData() {
+
+        ObservableList<CameraLog> list = FXCollections.observableArrayList(
+                new CameraLog("10/22/2022 3:31pm", 1, -1),
+                new CameraLog("10/22/2022 3:32pm", 1, -2),
+                new CameraLog("10/22/2022 3:33pm", 1, 2)
+        );
+
+        // Populate the table
+        liveViewTableColumnTime.setCellValueFactory(new PropertyValueFactory<CameraLog, String>("timeStamp"));
+        liveViewTableColumnCamera.setCellValueFactory(new PropertyValueFactory<CameraLog, Integer>("cameraId"));
+        liveViewTableColumnSpaces.setCellValueFactory(new PropertyValueFactory<CameraLog, Integer>("changedSpaces"));
+        liveViewTable.setItems(list);
+
         // Populate the Level Choice Box values
         liveViewLevelChoiceBox.setItems(FXCollections.observableArrayList(garage.getLevelIdList()));
 
