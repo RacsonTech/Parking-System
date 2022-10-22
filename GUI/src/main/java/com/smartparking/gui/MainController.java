@@ -282,7 +282,7 @@ public class MainController implements Initializable {
         }
     }
 
-    public void handleLiveViewConnectButton(ActionEvent actionEvent) {
+    public void handleLiveViewConnectButton() {
         System.out.println("Connect button pressed");
 //        TODO
     }
@@ -308,4 +308,10 @@ public class MainController implements Initializable {
         liveViewLevelChoiceBox.setItems(FXCollections.observableArrayList(garage.getLevelIdList()));
         liveViewConnectButton.setDisable(true);
     }
+
+    public void handleLiveViewTableRefreshButton() {
+        reloadLiveViewTable();
+
+    }
+
 }

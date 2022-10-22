@@ -175,6 +175,7 @@
 
 .button-dev {
     -fx-pref-height: 30px;
+    -fx-font-size: 14px;
 }
 
 .label-area-dev-1 {
