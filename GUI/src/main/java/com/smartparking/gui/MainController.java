@@ -123,10 +123,10 @@ public class MainController implements Initializable {
     private void loadLiveViewData() {
 
         // Populate the Level Choice Box values
-//        liveViewLevelChoiceBox.setItems(FXCollections.observableArrayList(garage.getLevelIdList()));
         reloadLiveViewChoiceBoxes();
 
-        // Register the event handlers.
+        // Register the event handlers (For some reason, Scene builder does not register Choice boxes
+        // event handlers).
         liveViewLevelChoiceBox.setOnAction(this::handleLevelChoiceBoxAction);
         liveViewSectionChoiceBox.setOnAction(this::handleSectionChoiceBoxAction);
         liveViewCameraChoiceBox.setOnAction(this::handleCameraChoiceBoxAction);
@@ -306,5 +306,6 @@ public class MainController implements Initializable {
         liveViewSectionChoiceBox.getItems().clear();
         liveViewLevelChoiceBox.getItems().clear();
         liveViewLevelChoiceBox.setItems(FXCollections.observableArrayList(garage.getLevelIdList()));
+        liveViewConnectButton.setDisable(true);
     }
 }
