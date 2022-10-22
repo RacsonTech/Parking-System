@@ -1,7 +1,5 @@
 package com.smartparking.gui;
 
-import javafx.collections.ObservableList;
-
 import java.sql.*;
 import java.util.ArrayList;
 
@@ -34,7 +32,6 @@ public class ParkingGarage {
 
         // Prepare Level ID, Section ID, and Camera ID lists.
         createLevelIdList();
-//        createSectionIdListByLevel();
     }
 
     // Get a list that includes only the level IDs as String.
@@ -101,7 +98,7 @@ public class ParkingGarage {
 
 
     private int calculatePercentFull() {
-        return (int)Math.round( 100 * ((double) ((totalSpaces - availableSpaces) / totalSpaces)));
+        return (int)Math.ceil((double)(totalSpaces - availableSpaces)  / totalSpaces);
     }
 
     public int getPercentFull() {
@@ -404,9 +401,7 @@ public class ParkingGarage {
         }
 
         setCameraArrayList(cameraArrayList);
-
         printCameraList();
-
         resultSet.close();
     }
 
@@ -431,14 +426,11 @@ public class ParkingGarage {
             ipAddress = resultSet.getString("ipaddress");
 
             Display display = new Display(displayId, sectionId, displayNumber, ipAddress);
-
             displayArrayList.add(display);
         }
 
         setDisplayArrayList(displayArrayList);
-
         printDisplayList();
-
         resultSet.close();
     }
 
@@ -468,9 +460,7 @@ public class ParkingGarage {
         }
 
         setSectionArrayList(sectionArrayList);
-
         printSectionList();
-
         resultSet.close();
     }
 
@@ -498,27 +488,33 @@ public class ParkingGarage {
         }
 
         setLevelArrayList(levelArrayList);
-
         printLevelList();
-
         resultSet.close();
     }
 
     public void reloadOverviewData(Connection dbConnection) throws SQLException {
+        // Note: the overview table used in the query is a VIEW table constructed
+        // specifically for this query. Every row returned contains the garage info
+        // plus the info of one level. So, if there are four levels, then four rows
+        // are returned from the DB query. This also means that each row has the
+        // garage information fields Name, Capacity, and free spaces repeated in
+        // every row. So, instead of running two queries, one of parking garage info
+        // and one for the level info, one query is run that obtains both data, with
+        // the caveat of returning the garage info multiple times (once per row)
+        // unnecessarily. Since there will ever be a few levels in a garage, this
+        // does not seem like a big deal.
 
 //        System.out.println("\n--- Reload Garage Overview Data----");
-
         Statement statement = dbConnection.createStatement();
 
         // Prepare the query
         String query = ("SELECT * FROM overview");
 
         // Execute the query statement
-//        System.out.println("Obtaining garage overview from the database");
         ResultSet resultSet = statement.executeQuery(query);
 
-        // Store the result
         resultSet.next();
+        // Extract the garage info from the first row in the resultSet.
         garageName =  resultSet.getString("name");
         totalSpaces = resultSet.getInt("garage_capacity");
         availableSpaces = resultSet.getInt("garage_free");
@@ -528,12 +524,14 @@ public class ParkingGarage {
 //        System.out.println("Available Spaces: " + availableSpaces);
 //        System.out.println("Percent Full: " + percentFull + "% full");
 
+        // Extract the level info also in the first row of the result set.
         int levelId = Integer.parseInt(resultSet.getString("level_id"));
         int levelCapacity = Integer.parseInt(resultSet.getString("level_capacity"));
         int levelFreeSpaces = Integer.parseInt(resultSet.getString("level_free"));
 
         updateLevel(levelId, levelCapacity, levelFreeSpaces );
 
+        // Extract the level information from the remaining rows in the resultSet.
         while(resultSet.next()) {
             levelId = Integer.parseInt(resultSet.getString("level_id"));
             levelCapacity = Integer.parseInt(resultSet.getString("level_capacity"));

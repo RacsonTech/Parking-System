@@ -14,7 +14,7 @@ public class Level {
     }
 
     private int calculatePercentFull() {
-        return (int)Math.round( 100 * ((double) ((totalSpaces - availableSpaces) / totalSpaces)));
+        return (int)Math.ceil( 100.0 * (((double)totalSpaces - availableSpaces) / totalSpaces));
     }
 
     public int getPercentFull() {
