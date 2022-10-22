@@ -48,10 +48,10 @@ public class MainController implements Initializable {
     public ChoiceBox<String> liveViewSectionChoiceBox;
     public ChoiceBox<String> liveViewCameraChoiceBox;
     public Button liveViewConnectButton;
-    private TableView<CameraLog> liveViewTable;
-    private TableColumn<CameraLog, String> liveViewTableColumnTime;
-    private TableColumn<CameraLog, Integer> liveViewTableColumnCamera;
-    private TableColumn<CameraLog, Integer> liveViewTableColumnSpaces;
+    public TableView<CameraLog> liveViewTable;
+    public TableColumn<CameraLog, String> liveViewTableColumnTime;
+    public TableColumn<CameraLog, Integer> liveViewTableColumnCamera;
+    public TableColumn<CameraLog, Integer> liveViewTableColumnSpaces;
 
     private ParkingGarage garage;
     private MySqlConnection mySqlConnection;
