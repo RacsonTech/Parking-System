@@ -127,7 +127,7 @@ public class MainController implements Initializable {
         liveViewCameraChoiceBox.setOnAction(this::handleCameraChoiceBoxAction);
     }
 
-    public void handleOverviewRefreshButton(ActionEvent actionEvent) throws SQLException {
+    public void handleOverviewRefreshButton() throws SQLException {
         garage.reloadOverviewData(mySqlConnection.getConnection());
         updateOverviewPane();
     }

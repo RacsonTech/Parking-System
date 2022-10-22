@@ -31,12 +31,10 @@
                <children>
                   <Region prefHeight="50.0" prefWidth="17.0" />
                   <ImageView fitHeight="36.0" fitWidth="242.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@images/Logo_Gold_417x50.png" />
-                     </image>
                      <HBox.margin>
-                        <Insets top="10.0" />
+                        <Insets top="10.0"/>
                      </HBox.margin>
+                     <Image url="@images/Logo_Gold_417x50.png"/>
                   </ImageView>
                </children></HBox>
          </top>
@@ -251,7 +249,7 @@
                               <Label layoutX="281.0" layoutY="62.0" prefHeight="25.0" prefWidth="50.0" styleClass="label-overview-text" text="Notes:" />
                            </children>
                         </Pane>
-                        <Button fx:id="overviewRefreshButton" layoutX="197.0" layoutY="59.0" mnemonicParsing="false" onAction="#handleOverviewRefreshButton" prefWidth="125.0" styleClass="button-dev" stylesheets="@styles.css" text="Refresh">
+                        <Button layoutX="197.0" layoutY="59.0" mnemonicParsing="false" onAction="#handleOverviewRefreshButton" prefWidth="125.0" styleClass="button-dev" stylesheets="@styles.css" text="Refresh">
                            <font>
                               <Font size="14.0" />
                            </font>
@@ -264,91 +262,73 @@
             <VBox alignment="TOP_CENTER" prefHeight="430.0" prefWidth="209.0" styleClass="menu-background" stylesheets="@styles.css" BorderPane.alignment="CENTER">
                <children>
                   <Region prefHeight="18.0" prefWidth="209.0" />
-                  <Button id="buttonOverview" fx:id="buttonOverview" alignment="BASELINE_LEFT" defaultButton="true" graphicTextGap="10.0" mnemonicParsing="false" onAction="#handleOverviewButtonClick" prefHeight="39.0" prefWidth="271.0" styleClass="menu-button" stylesheets="@styles.css" text="Garage Overview">
+                  <Button id="buttonOverview" alignment="BASELINE_LEFT" defaultButton="true" graphicTextGap="10.0" mnemonicParsing="false" onAction="#handleOverviewButtonClick" prefHeight="39.0" prefWidth="271.0" styleClass="menu-button" stylesheets="@styles.css" text="Garage Overview">
                      <graphic>
                         <ImageView fitHeight="30.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@images/icons8_traffic_jam_24px.png" />
-                           </image></ImageView>
+                           <Image url="@images/icons8_traffic_jam_24px.png" />
+                        </ImageView>
                      </graphic>
                   </Button>
                   <Button id="buttonLiveView" alignment="BASELINE_LEFT" graphicTextGap="10.0" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#handleLiveViewButtonClick" prefHeight="39.0" prefWidth="260.0" styleClass="menu-button" stylesheets="@styles.css" text="Live View">
                      <graphic>
                         <ImageView fitHeight="30.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@images/icons8_tv_show_24px.png" />
-                           </image></ImageView>
+                           <Image url="@images/icons8_tv_show_24px.png" />
+                        </ImageView>
                      </graphic>
                   </Button>
                   <Button id="buttonGarageSettings" alignment="BASELINE_LEFT" graphicTextGap="10.0" layoutX="33.0" layoutY="49.0" mnemonicParsing="false" onAction="#handleGarageSettingsButtonClick" prefHeight="39.0" prefWidth="237.0" styleClass="menu-button" stylesheets="@styles.css" text="Garage Settings">
                      <graphic>
                         <ImageView fitHeight="30.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@images/icons8_carpark_24px.png" />
-                           </image>
+                           <Image url="@images/icons8_carpark_24px.png" />
                         </ImageView>
                      </graphic>
                   </Button>
                   <Button id="buttonLevels" alignment="BASELINE_LEFT" graphicTextGap="10.0" layoutX="33.0" layoutY="88.0" mnemonicParsing="false" onAction="#handleLevelsButtonClick" prefHeight="39.0" prefWidth="239.0" styleClass="menu-button" stylesheets="@styles.css" text="Levels">
                      <graphic>
                         <ImageView fitHeight="30.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@images/icons8_fit_vertical_24px.png" />
-                           </image>
+                           <Image url="@images/icons8_fit_vertical_24px.png" />
                         </ImageView>
                      </graphic>
                   </Button>
                   <Button id="buttonSections" alignment="BASELINE_LEFT" graphicTextGap="10.0" layoutX="33.0" layoutY="127.0" mnemonicParsing="false" onAction="#handleSectionsButtonClick" prefHeight="39.0" prefWidth="235.0" styleClass="menu-button" stylesheets="@styles.css" text="Sections">
                      <graphic>
                         <ImageView fitHeight="30.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@images/icons8_streets_24px.png" />
-                           </image>
+                           <Image url="@images/icons8_streets_24px.png" />
                         </ImageView>
                      </graphic>
                   </Button>
                   <Button id="buttonCameras" alignment="BASELINE_LEFT" graphicTextGap="10.0" layoutX="33.0" layoutY="166.0" mnemonicParsing="false" onAction="#handleCamerasButtonClick" prefHeight="39.0" prefWidth="240.0" styleClass="menu-button" stylesheets="@styles.css" text="Cameras">
                      <graphic>
                         <ImageView fitHeight="30.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@images/icons8_wall_mount_camera_24px.png" />
-                           </image>
+                           <Image url="@images/icons8_wall_mount_camera_24px.png" />
                         </ImageView>
                      </graphic>
                   </Button>
                   <Button id="buttonDisplays" alignment="BASELINE_LEFT" graphicTextGap="10.0" layoutX="33.0" layoutY="205.0" mnemonicParsing="false" onAction="#handleDisplaysButtonClick" prefHeight="39.0" prefWidth="232.0" styleClass="menu-button" stylesheets="@styles.css" text="Displays">
                      <graphic>
                         <ImageView fitHeight="30.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@images/icons8_directions_four_way_24px.png" />
-                           </image>
+                           <Image url="@images/icons8_directions_four_way_24px.png" />
                         </ImageView>
                      </graphic>
                   </Button>
                   <Button id="buttonDevelopment" alignment="BASELINE_LEFT" graphicTextGap="10.0" layoutX="33.0" layoutY="244.0" mnemonicParsing="false" onAction="#handleDevelopmentButtonClick" prefHeight="39.0" prefWidth="251.0" styleClass="menu-button" stylesheets="@styles.css" text="Development">
                      <graphic>
                         <ImageView fitHeight="30.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@images/icons8_imac_settings_24px.png" />
-                           </image>
+                           <Image url="@images/icons8_imac_settings_24px.png" />
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Button id="buttonAbout" fx:id="buttonAbout" alignment="BASELINE_LEFT" graphicTextGap="10.0" layoutX="33.0" layoutY="283.0" mnemonicParsing="false" onAction="#handleAboutButtonClick" prefHeight="39.0" prefWidth="246.0" styleClass="menu-button" stylesheets="@styles.css" text="About">
+                  <Button id="buttonAbout" alignment="BASELINE_LEFT" graphicTextGap="10.0" layoutX="33.0" layoutY="283.0" mnemonicParsing="false" onAction="#handleAboutButtonClick" prefHeight="39.0" prefWidth="246.0" styleClass="menu-button" stylesheets="@styles.css" text="About">
                      <graphic>
-                        <ImageView id="iconAbout" fx:id="iconAbout" fitHeight="30.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@images/icons8_info_24px.png" />
-                           </image>
+                        <ImageView id="iconAbout" fitHeight="30.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
+                           <Image url="@images/icons8_info_24px.png" />
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Button fx:id="buttonExit" alignment="BASELINE_LEFT" graphicTextGap="10.0" layoutX="10.0" layoutY="340.0" mnemonicParsing="false" onAction="#handleExitButtonClick" prefHeight="39.0" prefWidth="246.0" styleClass="menu-button" stylesheets="@styles.css" text="Exit">
+                  <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" layoutX="10.0" layoutY="340.0" mnemonicParsing="false" onAction="#handleExitButtonClick" prefHeight="39.0" prefWidth="246.0" styleClass="menu-button" stylesheets="@styles.css" text="Exit">
                      <graphic>
                         <ImageView fitHeight="30.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@images/icons8_logout_24px.png" />
-                           </image>
+                           <Image url="@images/icons8_logout_24px.png"/>
                         </ImageView>
                      </graphic>
                   </Button>
