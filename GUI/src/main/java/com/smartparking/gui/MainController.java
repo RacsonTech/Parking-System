@@ -9,6 +9,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.Pane;
 
+import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
@@ -51,6 +52,7 @@ public class MainController implements Initializable {
     public TableColumn<CameraLog, String> liveViewTableColumnTime;
     public TableColumn<CameraLog, Integer> liveViewTableColumnCamera;
     public TableColumn<CameraLog, Integer> liveViewTableColumnSpaces;
+    public Label labelLaunchDisplaySim;
 
     private ParkingGarage garage;
     private MySqlConnection mySqlConnection;
@@ -249,6 +251,15 @@ public class MainController implements Initializable {
         }
     }
 
+    public void handleLaunchDisplaySim(ActionEvent actionEvent) {
+        try {
+            Process p = Runtime.getRuntime().exec("cmd /k start Run_EthernetServer.bat");
+            labelLaunchDisplaySim.setText("Display simulator launched");
+        } catch (IOException e) {
+            labelLaunchDisplaySim.setText(e.getMessage());
+        }
+    }
+
     //  ==============   Handles for Live View Pane  =================
     public void handleLevelChoiceBoxAction(ActionEvent event) {
 
@@ -311,7 +322,6 @@ public class MainController implements Initializable {
 
     public void handleLiveViewTableRefreshButton() {
         reloadLiveViewTable();
-
     }
 
 }
