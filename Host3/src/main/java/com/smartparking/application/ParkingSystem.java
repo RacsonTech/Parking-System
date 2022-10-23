@@ -5,7 +5,6 @@ import java.sql.*;
 import java.util.ArrayList;
 
 public class ParkingSystem  {
-//    public static final int ID_NOT_FOUND = 9999;
 
     public static void main(String[] args) throws SQLException {
         System.out.println("====== Program started ======");
@@ -21,8 +20,23 @@ public class ParkingSystem  {
 
         // Reads new records from the database created by the camera python script
         getNewCameraLogRecords(parkingGarage, connectionToDB);
+        
+        processNewCameraRecords(parkingGarage, connectionToDB);
 
-        // ******************* Process new records ******************** //
+        // Close the DB connection
+        (mySqlConnection.getConnection()).close();
+
+//        EthernetClient.close();
+//      try {
+//        Thread.sleep(5000);
+//      } catch (InterruptedException e) {
+//        throw new RuntimeException(e);
+//      }
+//    } // While Loop
+    }
+
+
+    static void processNewCameraRecords(ParkingGarage parkingGarage, Connection connectionToDB) throws SQLException {
         int cameraId;
         int sectionId;
         int levelId;
@@ -54,7 +68,7 @@ public class ParkingSystem  {
 
             // Get new number of available spaces from the database
             sectionAvailableSpaces = queryAvailableSpaces(sectionId, connectionToDB);
-//            System.out.println("New Available Spaces in Section " + sectionId + " is " + sectionAvailableSpaces);
+            //  System.out.println("New Available Spaces in Section " + sectionId + " is " + sectionAvailableSpaces);
 
             // Get the displays ID for the section being processed.
             ArrayList<Display> displayList = parkingGarage.getDisplayList(sectionId);
@@ -77,7 +91,7 @@ public class ParkingSystem  {
 
             // Update local level variable
             parkingGarage.updateLevelAvailableSpaces(levelId, changedSpaces);
-            System.out.println("Level: " + levelId + " | New available spaces: " + parkingGarage.getLevelAvailableSpaces(levelId));
+            System.out.println("Level: " + levelId + "  | New available spaces: " + parkingGarage.getLevelAvailableSpaces(levelId));
 
             // Update DB Garage Table
             updateGarageTable(garageId, changedSpaces, connectionToDB);
@@ -104,24 +118,13 @@ public class ParkingSystem  {
             //  tries to update with -1 the number of free spaces, an error is thrown (can't get less
             //  that 0 free spaces).
 
-            //            updateDisplay()
+            //  updateDisplay()
             // for every display in the list...
-//            for(Display display : displayList) {
-//
-//            }
+            // for(Display display : displayList) {
+            //  }
         }
-
-        // Close the connection
-        (mySqlConnection.getConnection()).close();
-//        EthernetClient.close();
-//      try {
-//        Thread.sleep(5000);
-//      } catch (InterruptedException e) {
-//        throw new RuntimeException(e);
-//      }
-//    } // While Loop
     }
-
+    
     static void updateGarageTable(int id, int changedSpaces, Connection connection) throws SQLException {
         // Prepare the query using id as a parameter
         String query = ("UPDATE garage SET available_spaces = available_spaces + ? WHERE id = ?");
@@ -199,24 +202,23 @@ public class ParkingSystem  {
 
 
         for (Display display : displayList) {
-            System.out.println("Sending: " + freeSpaces + " to display with IP address: " + display.getIpAddress());
-
-//            ethernetClient = new EthernetClient(display.getIpAddress());
-//            ethernetClient = new EthernetClient("192.168.1.138");
-//            ethernetClient = new EthernetClient("localhost");
-            ethernetClient = new EthernetClient("192.168.1.114");
             // Todo: change ip to display.getIpAddress() once we get a display working.
+            // ethernetClient = new EthernetClient(display.getIpAddress());  // When connecting to the LED sign's PCB
+            // ethernetClient = new EthernetClient("192.168.1.114"); // When connecting to the MiniPC
+            ethernetClient = new EthernetClient("localhost");   // When connecting to my PC
+
             try {
                 ethernetClient.connect();
+
+                System.out.println("- Sending: " + freeSpaces + " to display with IP address: " + display.getIpAddress());
                 response = EthernetClient.sendData(freeSpaces);
 
-                System.out.println("Response from Server: \"" + response + "\"");
+                System.out.println("- Response from Server: \"" + response + "\"");
 
                 EthernetClient.close();
 
             } catch (IOException e) {
-                System.out.println("Connection to display timed out");
-//                throw new RuntimeException(e);
+                System.err.println("--> ERROR: Connection to display timed out <--");
             }
         }
     }
@@ -492,8 +494,7 @@ public class ParkingSystem  {
         resultSet.close();
         statement.close();
     }
-
-
+    
 }
 
 
