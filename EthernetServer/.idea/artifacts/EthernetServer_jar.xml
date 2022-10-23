@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="EthernetServer:jar">
+    <output-path>$PROJECT_DIR$/../GUI</output-path>
+    <root id="archive" name="EthernetServer.jar">
+      <element id="module-output" name="EthernetServer" />
+    </root>
+  </artifact>
+</component>
