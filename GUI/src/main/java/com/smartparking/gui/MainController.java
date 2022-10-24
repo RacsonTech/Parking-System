@@ -118,7 +118,7 @@ public class MainController implements Initializable {
             while((line = bufferedReader.readLine()) != null) {
 
                 // Finds the Parking System java program
-                if(line.contains("ParkingSystem")) {
+                if(line.contains("ParkingSystem") || line.contains("Host3.jar")) {
                     parkingSystemIsRunning = true;
                     break;
                 };
