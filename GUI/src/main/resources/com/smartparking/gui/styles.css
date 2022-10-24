@@ -24,6 +24,13 @@
     -fx-background-color: -primary-color-dark;
 }
 
+.status {
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-text-fill: -primary-color-text;
+    -fx-alignment: center-right;
+}
+
 .menu-background {
     -fx-background-color:  -primary-color-medium;
 }

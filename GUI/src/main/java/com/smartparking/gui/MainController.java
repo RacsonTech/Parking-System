@@ -1,5 +1,7 @@
 package com.smartparking.gui;
 
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
@@ -8,8 +10,15 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
+import javafx.scene.paint.PhongMaterial;
+import javafx.scene.shape.Sphere;
+import javafx.util.Duration;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
@@ -53,6 +62,8 @@ public class MainController implements Initializable {
     public TableColumn<CameraLog, Integer> liveViewTableColumnCamera;
     public TableColumn<CameraLog, Integer> liveViewTableColumnSpaces;
     public Label labelLaunchDisplaySim;
+    public Sphere statusLed;
+    public Label statusLedLabel;
 
     private ParkingGarage garage;
     private MySqlConnection mySqlConnection;
@@ -76,8 +87,62 @@ public class MainController implements Initializable {
         paneOverview.toFront();
 
         loadLiveViewData();
+
+        // Checks every 5 seconds whether the Parking System java program is running
+        // Since JavaFX GUI runs on a single thread, the Timeline class is used instead of Thread.
+        Timeline timeline = new Timeline(
+                new KeyFrame(Duration.seconds(5),
+                        actionEvent -> checkParkingSystemStatus()
+                )
+        );
+        timeline.setCycleCount(Timeline.INDEFINITE);
+        timeline.play();
+
     }
 
+    private void checkParkingSystemStatus() {
+
+        boolean parkingSystemIsRunning = false;
+
+        try {
+            // Build command that finds all running java programs
+            String cmd = "C:/Program Files/Java/jdk-17.0.4.1/bin/jps.exe -l";
+
+            // Execute command and captures the output of the command
+            InputStream inputStream = Runtime.getRuntime().exec(cmd).getInputStream();
+            InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
+            BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+            String line;
+
+            // Read the output line by line
+            while((line = bufferedReader.readLine()) != null) {
+
+                // Finds the Parking System java program
+                if(line.contains("ParkingSystem")) {
+                    parkingSystemIsRunning = true;
+                    break;
+                };
+            }
+
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
+
+        // Updates the Status LED
+        if(parkingSystemIsRunning) {
+            statusLedLabel.setText("Parking System Online");
+            setLedStatusColor(statusLed, Color.GREENYELLOW);
+        } else {
+            statusLedLabel.setText("Parking System Offline");
+            setLedStatusColor(statusLed, Color.RED);
+        }
+    }
+
+    private void setLedStatusColor(Sphere statusLED, Color color) {
+        PhongMaterial materialColor = new PhongMaterial();
+        materialColor.setDiffuseColor(color);
+        statusLED.setMaterial(materialColor);
+    }
 
     //  ==============   Overview Pane Methods  =================
 
