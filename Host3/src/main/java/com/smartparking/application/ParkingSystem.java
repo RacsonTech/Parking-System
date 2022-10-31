@@ -9,6 +9,16 @@ public class ParkingSystem  {
     public static void main(String[] args) throws SQLException {
         System.out.println("====== Program started ======");
 
+//        new HeartBeat();
+
+        try {
+            System.out.println("Parking System Thread sleeping");
+            Thread.sleep(60000000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+
+
         // Create a connection to the local MySQL DB
         MySqlConnection mySqlConnection = new MySqlConnection();
         Connection connectionToDB = mySqlConnection.getConnection();
