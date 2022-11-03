@@ -19,6 +19,10 @@
 #   1) The latest version of Python 3
 #   2) PyCharm IDE
 #   3) MySQL installed and configured with the parking system database.
+#       - The user in the env file must be added to the parking system database
+#       - Create this user in the DB and use '%' as the Limit to Hosts Matching
+#       - Create another user with the same information, but using 'localhost' instead of '%'
+#       - Given the INSERT privileges for the Schema parkingsystem for both users.
 #
 # Configuring PyCharm:
 #   1) Create a new project in PyCharm with the following options:
@@ -32,7 +36,7 @@
 #   3) Install all the import packages missing (Hover your mouse pointer over any code with a red underline)
 #       - For mysql.connector: Select "more actions" >> Install package mysql-connector-python
 #       - For dotenv: Select "more actions" >> Install package python-dotenv
-#   4) Add a Database source:
+#   4) Add a Database source (This step may be skipped. Test the code without doing this step):
 #       - To go: View >> Tools Windows >> Database
 #       - "+" >> Data Source >> MySQL
 #       - Host: localhost      <-- Note: Enter: "localhost" if your computer has the parking system DB, or enter:
