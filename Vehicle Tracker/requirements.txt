@@ -1,6 +1,6 @@
-opencv-python~=4.6.0.66
-depthai==2.16.0.0
+cmake
 blobconverter==1.2.9
-
 numpy~=1.23.4
+opencv-python~=4.6.0.66
+depthai==2.19.0.0
 mysql-connector-python~=8.0.31
