@@ -105,7 +105,7 @@ public class MainController implements Initializable {
         boolean parkingSystemIsRunning = false;
 
         try {
-            // Build command that finds all running java programs
+            // Command that finds all running java programs
             String cmd = "C:/Program Files/Java/jdk-17.0.4.1/bin/jps.exe -l";
 
             // Execute command and captures the output of the command
@@ -130,10 +130,10 @@ public class MainController implements Initializable {
 
         // Updates the Status LED
         if(parkingSystemIsRunning) {
-            statusLedLabel.setText("Parking System Online");
+            statusLedLabel.setText("Parking System is Online");
             setLedStatusColor(statusLed, Color.GREENYELLOW);
         } else {
-            statusLedLabel.setText("Parking System Offline");
+            statusLedLabel.setText("Parking System is Offline");
             setLedStatusColor(statusLed, Color.RED);
         }
     }
