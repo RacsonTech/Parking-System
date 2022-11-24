@@ -229,54 +229,6 @@ public class MainController implements Initializable {
     }
 
 
-    //  ==============   Overview Pane Methods  =================
-
-    private void updateOverviewPane() {
-        System.out.println("\n--- Update Garage Overview GUI----");
-        overviewTitle.setText("Parking Garage " + garage.getGarageName());
-        overviewCapacity.setText(String.valueOf(garage.getTotalSpaces()));
-        overviewAvailable.setText(String.valueOf(garage.getAvailableSpaces()));
-        overviewFull.setText(garage.getPercentFull() + "% full");
-        System.out.println("Garage Name: " + garage.getGarageName());
-        System.out.println("Capacity: " + garage.getTotalSpaces());
-        System.out.println("Available Spaces: " + garage.getAvailableSpaces());
-        System.out.println("Percent Full: " + garage.getPercentFull() + "% full");
-
-        // For each level in the garage...
-        for (Level level : garage.getLevelList()) {
-
-            switch (level.getId()) {
-                case 1 -> {
-                    overviewCapLvl1.setText(String.valueOf(level.getTotalSpaces()));
-                    overviewAvailableLvl1.setText(String.valueOf(level.getAvailableSpaces()));
-                    overviewPercentFullLvl1.setText(level.getPercentFull() + "%");
-                }
-                case 2 -> {
-                    overviewCapLvl2.setText(String.valueOf(level.getTotalSpaces()));
-                    overviewAvailableLvl2.setText(String.valueOf(level.getAvailableSpaces()));
-                    overviewPercentFullLvl2.setText(level.getPercentFull() + "%");
-                }
-                case 3 -> {
-                    overviewCapLvl3.setText(String.valueOf(level.getTotalSpaces()));
-                    overviewAvailableLvl3.setText(String.valueOf(level.getAvailableSpaces()));
-                    overviewPercentFullLvl3.setText(level.getPercentFull() + "%");
-                }
-                case 4 -> {
-                    overviewCapLvl4.setText(String.valueOf(level.getTotalSpaces()));
-                    overviewAvailableLvl4.setText(String.valueOf(level.getAvailableSpaces()));
-                    overviewPercentFullLvl4.setText(level.getPercentFull() + "%");
-                }
-            }
-            System.out.println("Level " + level.getId() + ": | Cap: " + level.getTotalSpaces() +
-                    " | Free: " + level.getAvailableSpaces() + " | " + level.getPercentFull() + "% full");
-        }
-    }
-
-    public void handleOverviewRefreshButton() throws SQLException {
-        garage.reloadOverviewData(mySqlConnection.getConnection());
-        updateOverviewPane();
-    }
-
     //  ==============   Handles for Menu Buttons  =================
     @FXML
     public void handleOverviewButtonClick() throws SQLException {
@@ -385,71 +337,55 @@ public class MainController implements Initializable {
         Platform.exit();
     }
 
-    //  ==============   Handles for Development Pane  =================
 
-    @FXML
-    public void handleTestMySQLConnection() {
+    //  ==============   Methods for the Garage Overview Pane  =================
 
-        // Clear GUI Label
-        labelTestMySQLConnection.setText("");
-        labelTestMySQLConnection.getStyleClass().remove("error-text");
-        labelTestMySQLConnection.getStyleClass().remove("warning-text");
+    private void updateOverviewPane() {
+        System.out.println("\n--- Update Garage Overview GUI----");
+        overviewTitle.setText("Parking Garage " + garage.getGarageName());
+        overviewCapacity.setText(String.valueOf(garage.getTotalSpaces()));
+        overviewAvailable.setText(String.valueOf(garage.getAvailableSpaces()));
+        overviewFull.setText(garage.getPercentFull() + "% full");
+        System.out.println("Garage Name: " + garage.getGarageName());
+        System.out.println("Capacity: " + garage.getTotalSpaces());
+        System.out.println("Available Spaces: " + garage.getAvailableSpaces());
+        System.out.println("Percent Full: " + garage.getPercentFull() + "% full");
 
-        // Read credentials from the db properties dile
-        MySqlConnection mySqlConnection = new MySqlConnection();
-        String result = mySqlConnection.readMySqlCredentials();
+        // For each level in the garage...
+        for (Level level : garage.getLevelList()) {
 
-        if(result != null) {
-            labelTestMySQLConnection.getStyleClass().add("error-text");
-            labelTestMySQLConnection.setText(result);
-            return;
-        }
-
-        result = mySqlConnection.testConnect();
-
-        if(result != null) {
-            labelTestMySQLConnection.getStyleClass().add("error-text");
-            labelTestMySQLConnection.setText(result);
-        }
-
-        result = mySqlConnection.disconnect();
-
-        if(result != null) {
-            labelTestMySQLConnection.getStyleClass().add("warning-text");
-            labelTestMySQLConnection.setText("Connection OK. Could not close connection.");
-        } else {
-            labelTestMySQLConnection.setText("Connection Successful");
-        }
-    }
-
-    @FXML
-    public void handleDisplayMySQLServerAddress () {
-        // Clear GUI Label
-        labelDisplayMySQLAddress.setText("");
-        labelDisplayMySQLAddress.getStyleClass().remove("error-text");
-        labelDisplayMySQLAddress.getStyleClass().remove("warning-text");
-
-        // Read credentials from the db properties dile
-        MySqlConnection mySqlConnection = new MySqlConnection();
-        String result = mySqlConnection.readMySqlCredentials();
-
-        if(result != null) {
-            labelDisplayMySQLAddress.getStyleClass().add("error-text");
-            labelDisplayMySQLAddress.setText(result);
-        } else {
-            labelDisplayMySQLAddress.setText(mySqlConnection.getServerAddress());
+            switch (level.getId()) {
+                case 1 -> {
+                    overviewCapLvl1.setText(String.valueOf(level.getTotalSpaces()));
+                    overviewAvailableLvl1.setText(String.valueOf(level.getAvailableSpaces()));
+                    overviewPercentFullLvl1.setText(level.getPercentFull() + "%");
+                }
+                case 2 -> {
+                    overviewCapLvl2.setText(String.valueOf(level.getTotalSpaces()));
+                    overviewAvailableLvl2.setText(String.valueOf(level.getAvailableSpaces()));
+                    overviewPercentFullLvl2.setText(level.getPercentFull() + "%");
+                }
+                case 3 -> {
+                    overviewCapLvl3.setText(String.valueOf(level.getTotalSpaces()));
+                    overviewAvailableLvl3.setText(String.valueOf(level.getAvailableSpaces()));
+                    overviewPercentFullLvl3.setText(level.getPercentFull() + "%");
+                }
+                case 4 -> {
+                    overviewCapLvl4.setText(String.valueOf(level.getTotalSpaces()));
+                    overviewAvailableLvl4.setText(String.valueOf(level.getAvailableSpaces()));
+                    overviewPercentFullLvl4.setText(level.getPercentFull() + "%");
+                }
+            }
+            System.out.println("Level " + level.getId() + ": | Cap: " + level.getTotalSpaces() +
+                    " | Free: " + level.getAvailableSpaces() + " | " + level.getPercentFull() + "% full");
         }
     }
 
-    @FXML
-    public void handleLaunchDisplaySim(ActionEvent actionEvent) {
-        try {
-            Process p = Runtime.getRuntime().exec("cmd /k start Run_EthernetServer.bat");
-            labelLaunchDisplaySim.setText("Display simulator launched");
-        } catch (IOException e) {
-            labelLaunchDisplaySim.setText(e.getMessage());
-        }
+    public void handleOverviewRefreshButton() throws SQLException {
+        garage.reloadOverviewData(mySqlConnection.getConnection());
+        updateOverviewPane();
     }
+
 
     //  ==============   Handles for Live View Pane  =================
     public void handleLevelChoiceBoxAction(ActionEvent event) {
@@ -515,6 +451,18 @@ public class MainController implements Initializable {
         reloadLiveViewTable();
     }
 
+    //  ==============   Methods for the Garage Settings Pane  =================
+        // None
+
+
+    //  ==============   Methods for the Levels Pane  =================
+        // None
+
+
+    //  ==============   Methods for the Sections Pane  =================
+        // None
+
+
     //  ==============   Handles for Cameras Pane  =================
     private void reloadCamerasChoiceBoxes() {
         camerasCameraChoiceBox.getItems().clear();
@@ -558,6 +506,7 @@ public class MainController implements Initializable {
             camerasIPAddress.setText(camera.getIpAddress());
         }
     }
+
 
     //  ==============   Handles for Displays Pane  =================
     private void reloadDisplaysChoiceBoxes() {
@@ -604,4 +553,74 @@ public class MainController implements Initializable {
         }
     }
 
+
+    //  ==============   Methods for the Development Pane  =================
+
+    @FXML
+    public void handleTestMySQLConnection() {
+
+        // Clear GUI Label
+        labelTestMySQLConnection.setText("");
+        labelTestMySQLConnection.getStyleClass().remove("error-text");
+        labelTestMySQLConnection.getStyleClass().remove("warning-text");
+
+        // Read credentials from the db properties dile
+        MySqlConnection mySqlConnection = new MySqlConnection();
+        String result = mySqlConnection.readMySqlCredentials();
+
+        if(result != null) {
+            labelTestMySQLConnection.getStyleClass().add("error-text");
+            labelTestMySQLConnection.setText(result);
+            return;
+        }
+
+        result = mySqlConnection.testConnect();
+
+        if(result != null) {
+            labelTestMySQLConnection.getStyleClass().add("error-text");
+            labelTestMySQLConnection.setText(result);
+        }
+
+        result = mySqlConnection.disconnect();
+
+        if(result != null) {
+            labelTestMySQLConnection.getStyleClass().add("warning-text");
+            labelTestMySQLConnection.setText("Connection OK. Could not close connection.");
+        } else {
+            labelTestMySQLConnection.setText("Connection Successful");
+        }
+    }
+
+    @FXML
+    public void handleDisplayMySQLServerAddress () {
+        // Clear GUI Label
+        labelDisplayMySQLAddress.setText("");
+        labelDisplayMySQLAddress.getStyleClass().remove("error-text");
+        labelDisplayMySQLAddress.getStyleClass().remove("warning-text");
+
+        // Read credentials from the db properties dile
+        MySqlConnection mySqlConnection = new MySqlConnection();
+        String result = mySqlConnection.readMySqlCredentials();
+
+        if(result != null) {
+            labelDisplayMySQLAddress.getStyleClass().add("error-text");
+            labelDisplayMySQLAddress.setText(result);
+        } else {
+            labelDisplayMySQLAddress.setText(mySqlConnection.getServerAddress());
+        }
+    }
+
+    @FXML
+    public void handleLaunchDisplaySim(ActionEvent actionEvent) {
+        try {
+            Process p = Runtime.getRuntime().exec("cmd /k start Run_EthernetServer.bat");
+            labelLaunchDisplaySim.setText("Display simulator launched");
+        } catch (IOException e) {
+            labelLaunchDisplaySim.setText(e.getMessage());
+        }
+    }
+
+
+    //  ==============   Methods for the About Pane  =================
+        // None
 }
