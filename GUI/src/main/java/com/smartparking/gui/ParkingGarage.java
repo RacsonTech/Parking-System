@@ -18,6 +18,7 @@ public class ParkingGarage {
     private ArrayList<String> levelIdList;
     private ArrayList<ArrayList<String>> sectionIdListByLevel;
     private ArrayList<ArrayList<String>> cameraIdListByLevel;
+    private ArrayList<ArrayList<String>> displayIdListByLevel;
     private ArrayList<CameraLog> cameraLogArrayList;
 
     // Constructor 1
@@ -96,6 +97,28 @@ public class ParkingGarage {
         return cameraIdListByLevel.get(sectionId);
     }
 
+    public ArrayList<String> getDisplayIdListBySection(int sectionId) {
+        displayIdListByLevel = new ArrayList<>();
+
+        // Initialize the array list
+        for (int i = 0; i < 150; i++) {
+            displayIdListByLevel.add(i, null);
+        }
+
+        for(Section currentSection : sectionArrayList) {
+
+            ArrayList<String> displayList = new ArrayList<>();
+
+            for(Display currentDisplay : displayArrayList) {
+
+                if(currentDisplay.getSectionId() == currentSection.getId()) {
+                    displayList.add(String.valueOf(currentDisplay.getId()));
+                }
+            }
+            displayIdListByLevel.add(currentSection.getId(), displayList);
+        }
+        return displayIdListByLevel.get(sectionId);
+    }
 
     private int calculatePercentFull() {
         return (int)Math.ceil((double)(totalSpaces - availableSpaces)  / totalSpaces);
@@ -145,6 +168,17 @@ public class ParkingGarage {
 
             if (cameraId == camera.getId()) {
                 return camera;
+            }
+        }
+        return null;
+    }
+
+    public Display getDisplay(int displayId) {
+
+        for (Display display : displayArrayList) {
+
+            if (displayId == display.getId()) {
+                return display;
             }
         }
         return null;

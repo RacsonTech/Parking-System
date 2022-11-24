@@ -98,14 +98,6 @@
                         <Label layoutX="265.0" layoutY="338.0" styleClass="about-labels" stylesheets="@styles.css" text="Computer Engineering" />
                      </children>
                   </Pane>
-                  <Pane fx:id="paneDisplays" prefHeight="200.0" prefWidth="200.0" styleClass="main-background" stylesheets="@styles.css">
-                     <children>
-                        <Label layoutX="212.0" layoutY="14.0" styleClass="pane-titles" text="Displays">
-                           <font>
-                              <Font size="24.0" />
-                           </font>
-                        </Label>
-                     </children></Pane>
                   <Pane fx:id="paneDevelopment" prefHeight="200.0" prefWidth="200.0" styleClass="main-background" stylesheets="@styles.css">
                      <children>
                         <Label layoutX="184.0" layoutY="14.0" styleClass="pane-titles" stylesheets="@styles.css" text="Development">
@@ -445,6 +437,22 @@
                         </Pane>
                      </children>
                   </Pane>
+                  <Pane fx:id="paneDisplays" prefHeight="200.0" prefWidth="200.0" styleClass="main-background" stylesheets="@styles.css">
+                     <children>
+                        <Label layoutX="212.0" layoutY="14.0" styleClass="pane-titles" text="Displays">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="161.0" layoutY="67.0" prefHeight="25.0" prefWidth="120.0" styleClass="label-dark" text="Level" />
+                        <ChoiceBox fx:id="displaysLevelChoiceBox" layoutX="291.0" layoutY="67.0" prefHeight="25.0" prefWidth="60.0" />
+                        <Label layoutX="161.0" layoutY="110.0" prefHeight="25.0" prefWidth="120.0" styleClass="label-dark" text="Section" />
+                        <ChoiceBox fx:id="displaysSectionChoiceBox" layoutX="291.0" layoutY="110.0" prefHeight="25.0" prefWidth="60.0" />
+                        <Label layoutX="161.0" layoutY="153.0" prefHeight="25.0" prefWidth="120.0" styleClass="label-dark" text="Display" />
+                        <ChoiceBox fx:id="displaysCameraChoiceBox" layoutX="291.0" layoutY="153.0" prefHeight="25.0" prefWidth="60.0" />
+                        <Label layoutX="106.0" layoutY="263.0" prefHeight="25.0" prefWidth="150.0" styleClass="label-dark-3" text="IP Address" />
+                        <Label fx:id="displaysIPAddress" layoutX="256.0" layoutY="263.0" prefHeight="25.0" prefWidth="150.0" styleClass="label-dark-2" />
+                     </children></Pane>
                   <Pane fx:id="paneCameras" prefHeight="200.0" prefWidth="200.0" styleClass="main-background" stylesheets="@styles.css">
                      <children>
                         <Label layoutX="210.0" layoutY="14.0" styleClass="pane-titles" text="Cameras">

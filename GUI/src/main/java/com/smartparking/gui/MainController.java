@@ -103,6 +103,10 @@ public class MainController implements Initializable {
     public ChoiceBox<String> camerasSectionChoiceBox;
     public ChoiceBox<String> camerasLevelChoiceBox;
     public Label camerasIPAddress;
+    public ChoiceBox<String> displaysLevelChoiceBox;
+    public ChoiceBox<String> displaysSectionChoiceBox;
+    public ChoiceBox<String> displaysCameraChoiceBox;
+    public Label displaysIPAddress;
 
 
     private ParkingGarage garage;
@@ -139,6 +143,7 @@ public class MainController implements Initializable {
         timeline.play();
 
         loadCamerasData();
+        loadDisplaysData();
     }
 
     private void checkParkingSystemStatus() {
@@ -252,6 +257,18 @@ public class MainController implements Initializable {
         camerasCameraChoiceBox.setOnAction(this::handleCamerasCameraChoiceBoxAction);
     }
 
+    private void loadDisplaysData() {
+
+        // Populate the Level Choice Box values
+        reloadDisplaysChoiceBoxes();
+
+        // Register the event handlers (For some reason, Scene builder does not register Choice boxes
+        // event handlers).
+        displaysLevelChoiceBox.setOnAction(this::handleDisplaysLevelChoiceBoxAction);
+        displaysSectionChoiceBox.setOnAction(this::handleDisplaysSectionChoiceBoxAction);
+        displaysCameraChoiceBox.setOnAction(this::handleDisplaysCameraChoiceBoxAction);
+
+    }
 
     public void handleOverviewRefreshButton() throws SQLException {
         garage.reloadOverviewData(mySqlConnection.getConnection());
@@ -495,6 +512,7 @@ public class MainController implements Initializable {
         reloadLiveViewTable();
     }
 
+    //  ==============   Handles for Cameras Pane  =================
     private void reloadCamerasChoiceBoxes() {
         camerasCameraChoiceBox.getItems().clear();
         camerasSectionChoiceBox.getItems().clear();
@@ -502,8 +520,9 @@ public class MainController implements Initializable {
         camerasLevelChoiceBox.setItems(FXCollections.observableArrayList(garage.getLevelIdList()));
     }
 
-    //  ==============   Handles for Cameras Pane  =================
     public void handleCamerasLevelChoiceBoxAction(ActionEvent event) {
+
+        camerasIPAddress.setText("");
 
         if (camerasLevelChoiceBox.getValue() != null) {
             int levelId = Integer.parseInt(camerasLevelChoiceBox.getValue());
@@ -517,6 +536,8 @@ public class MainController implements Initializable {
     }
 
     public void handleCamerasSectionChoiceBoxAction(ActionEvent event) {
+
+        camerasIPAddress.setText("");
 
         if (camerasSectionChoiceBox.getValue() != null) {
             int sectionId = Integer.parseInt(camerasSectionChoiceBox.getValue());
@@ -532,6 +553,51 @@ public class MainController implements Initializable {
             int cameraId = Integer.parseInt(camerasCameraChoiceBox.getValue());
             Camera camera = garage.getCamera(cameraId);
             camerasIPAddress.setText(camera.getIpAddress());
+        }
+    }
+
+    //  ==============   Handles for Displays Pane  =================
+    private void reloadDisplaysChoiceBoxes() {
+        displaysCameraChoiceBox.getItems().clear();
+        displaysSectionChoiceBox.getItems().clear();
+        displaysLevelChoiceBox.getItems().clear();
+        displaysLevelChoiceBox.setItems(FXCollections.observableArrayList(garage.getLevelIdList()));
+        displaysIPAddress.setText("");
+    }
+
+    public void handleDisplaysLevelChoiceBoxAction(ActionEvent event) {
+
+        displaysIPAddress.setText("");
+
+        if (displaysLevelChoiceBox.getValue() != null) {
+            int levelId = Integer.parseInt(displaysLevelChoiceBox.getValue());
+
+            displaysSectionChoiceBox.getItems().clear();
+            displaysCameraChoiceBox.getItems().clear();
+
+            // Populate the Section choice box
+            displaysSectionChoiceBox.getItems().setAll(garage.getSectionIdListByLevel(levelId));
+        }
+    }
+
+    public void handleDisplaysSectionChoiceBoxAction(ActionEvent event) {
+
+        displaysIPAddress.setText("");
+
+        if (displaysSectionChoiceBox.getValue() != null) {
+            int sectionId = Integer.parseInt(displaysSectionChoiceBox.getValue());
+            displaysCameraChoiceBox.getItems().clear();
+
+            // Populate the Display choice box
+            displaysCameraChoiceBox.getItems().setAll(garage.getDisplayIdListBySection(sectionId));
+        }
+    }
+
+    public void handleDisplaysCameraChoiceBoxAction(ActionEvent event) {
+        if(displaysCameraChoiceBox.getValue() != null) {
+            int displayId = Integer.parseInt(displaysCameraChoiceBox.getValue());
+            Display display = garage.getDisplay(displayId);
+            displaysIPAddress.setText(display.getIpAddress());
         }
     }
 
