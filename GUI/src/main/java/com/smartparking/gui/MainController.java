@@ -20,6 +20,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.URL;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -111,7 +113,7 @@ public class MainController implements Initializable {
 
 
     private ParkingGarage garage;
-    private MySqlConnection mySqlConnection;
+    private static MySqlConnection mySqlConnection;
 
     @Override
     // Runs before GUI shows up.
@@ -140,6 +142,7 @@ public class MainController implements Initializable {
                         actionEvent -> checkParkingSystemStatus()
                 )
         );
+
         timeline.setCycleCount(Timeline.INDEFINITE);
         timeline.play();
 
@@ -246,6 +249,7 @@ public class MainController implements Initializable {
 
     @FXML
     public void handleGarageSettingsButtonClick() {
+        settingsGarageName.setText(garage.getGarageName());
         paneGarageSettings.toFront();
     }
 
@@ -452,8 +456,38 @@ public class MainController implements Initializable {
     }
 
     //  ==============   Methods for the Garage Settings Pane  =================
-        // None
+    public void handleGarageSettingsSaveButtonOnClick(ActionEvent event) {
+        String newGarageName = settingsGarageName.getText();
+        System.out.println("\nParking Garage Name has been changed to: " + newGarageName);
 
+        try {
+            updateGarageName(newGarageName);
+        } catch (SQLException e) {
+            System.err.println("ERROR updating the garage name in Garage Table. See updateGarageName function.");
+        }
+    }
+
+    static void updateGarageName(String newName) throws SQLException {
+        Connection connection = mySqlConnection.getConnection();
+
+        // Prepare the query using newName as a parameter
+        String query = ("UPDATE garage SET name = ? ");
+
+        // Prepare the statement
+        PreparedStatement preparedStatement = connection.prepareStatement(query);
+
+        // Set Parameters (1 means the 1st "?" in the query, 2 means the 2nd "?" and so on)
+        preparedStatement.setString (1, newName);
+
+        // Execute SQL query
+        int rowChanged = preparedStatement.executeUpdate();
+
+        if (rowChanged == 0) {
+            System.err.println("ERROR updating the garage name in Garage Table. See updateGarageName function.");
+        }
+
+        preparedStatement.close();
+    }
 
     //  ==============   Methods for the Levels Pane  =================
         // None

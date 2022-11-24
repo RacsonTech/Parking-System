@@ -7,6 +7,7 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -54,14 +55,6 @@
          <center>
             <StackPane prefHeight="150.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                <children>
-                  <Pane fx:id="paneGarageSettings" prefHeight="200.0" prefWidth="200.0" styleClass="main-background" stylesheets="@styles.css">
-                     <children>
-                        <Label layoutX="172.0" layoutY="14.0" styleClass="pane-titles" text="Garage Settings">
-                           <font>
-                              <Font size="24.0" />
-                           </font>
-                        </Label>
-                     </children></Pane>
                   <Pane fx:id="paneAbout" prefHeight="200.0" prefWidth="200.0" styleClass="main-background" stylesheets="@styles.css">
                      <children>
                         <Label layoutX="223.0" layoutY="14.0" styleClass="pane-titles" text="About">
@@ -265,49 +258,6 @@
                         </Button>
                      </children>
                   </Pane>
-                  <Pane fx:id="paneLiveView" prefHeight="200.0" prefWidth="200.0" styleClass="main-background" stylesheets="@styles.css">
-                     <children>
-                        <Label layoutX="206.0" layoutY="14.0" styleClass="pane-titles" text="Live View">
-                           <font>
-                              <Font size="24.0" />
-                           </font>
-                        </Label>
-                        <TableView fx:id="liveViewTable" layoutX="59.0" layoutY="51.0" prefHeight="190.0" prefWidth="394.0">
-                          <columns>
-                            <TableColumn fx:id="liveViewTableColumnTime" prefWidth="170.0" text="Time Stamp" />
-                            <TableColumn fx:id="liveViewTableColumnCamera" minWidth="7.0" prefWidth="96.0" text="Camera ID" />
-                              <TableColumn fx:id="liveViewTableColumnSpaces" prefWidth="127.0" text="Changed In Spaces" />
-                          </columns>
-                        </TableView>
-                        <Label layoutX="59.0" layoutY="256.0" prefHeight="25.0" prefWidth="120.0" styleClass="label-dark" text="Level" />
-                        <ChoiceBox fx:id="liveViewLevelChoiceBox" layoutX="184.0" layoutY="255.0" prefHeight="25.0" prefWidth="60.0" />
-                        <Label layoutX="59.0" layoutY="299.0" prefHeight="25.0" prefWidth="120.0" styleClass="label-dark" text="Section" />
-                        <ChoiceBox fx:id="liveViewSectionChoiceBox" layoutX="184.0" layoutY="298.0" prefHeight="25.0" prefWidth="60.0" />
-                        <Label layoutX="59.0" layoutY="342.0" prefHeight="25.0" prefWidth="120.0" styleClass="label-dark" text="Camera" />
-                        <ChoiceBox fx:id="liveViewCameraChoiceBox" layoutX="184.0" layoutY="341.0" prefHeight="25.0" prefWidth="60.0" />
-                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ffffff00" height="154.0" layoutX="256.0" layoutY="254.0" stroke="BLACK" strokeType="INSIDE" width="212.0" />
-                        <Button fx:id="liveViewConnectButton" disable="true" layoutX="59.0" layoutY="381.0" maxHeight="-Infinity" mnemonicParsing="false" onAction="#handleLiveViewConnectButton" prefHeight="30.0" prefWidth="185.0" styleClass="button-dev" stylesheets="@styles.css" text="Connect to camera">
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                        </Button>
-                        <Label layoutX="317.0" layoutY="298.0" text="Video Feed">
-                           <font>
-                              <Font size="18.0" />
-                           </font>
-                        </Label>
-                        <Label layoutX="307.0" layoutY="329.0" text="Coming Soon">
-                           <font>
-                              <Font size="18.0" />
-                           </font>
-                        </Label>
-                        <Button layoutX="14.0" layoutY="9.0" mnemonicParsing="false" onAction="#handleLiveViewTableRefreshButton" prefWidth="125.0" styleClass="button-dev" stylesheets="@styles.css" text="Refresh">
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                        </Button>
-                     </children>
-                  </Pane>
                   <Pane fx:id="paneSections" prefHeight="200.0" prefWidth="200.0" styleClass="main-background" stylesheets="@styles.css">
                      <children>
                         <Label layoutX="211.0" layoutY="14.0" styleClass="pane-titles" text="Sections">
@@ -470,6 +420,60 @@
                         <Label fx:id="camerasIPAddress" layoutX="258.0" layoutY="246.0" prefHeight="25.0" prefWidth="150.0" styleClass="label-dark-2" />
                      </children>
                   </Pane>
+                  <Pane fx:id="paneLiveView" prefHeight="200.0" prefWidth="200.0" styleClass="main-background" stylesheets="@styles.css">
+                     <children>
+                        <Label layoutX="206.0" layoutY="14.0" styleClass="pane-titles" text="Live View">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                        </Label>
+                        <TableView fx:id="liveViewTable" layoutX="59.0" layoutY="51.0" prefHeight="198.0" prefWidth="394.0">
+                          <columns>
+                            <TableColumn fx:id="liveViewTableColumnTime" prefWidth="170.0" text="Time Stamp" />
+                            <TableColumn fx:id="liveViewTableColumnCamera" minWidth="7.0" prefWidth="96.0" text="Camera ID" />
+                              <TableColumn fx:id="liveViewTableColumnSpaces" prefWidth="127.0" text="Changed In Spaces" />
+                          </columns>
+                        </TableView>
+                        <Label layoutX="59.0" layoutY="256.0" prefHeight="25.0" prefWidth="120.0" styleClass="label-dark" text="Level" visible="false" />
+                        <ChoiceBox fx:id="liveViewLevelChoiceBox" layoutX="184.0" layoutY="255.0" prefHeight="25.0" prefWidth="60.0" visible="false" />
+                        <Label layoutX="59.0" layoutY="299.0" prefHeight="25.0" prefWidth="120.0" styleClass="label-dark" text="Section" visible="false" />
+                        <ChoiceBox fx:id="liveViewSectionChoiceBox" layoutX="184.0" layoutY="298.0" prefHeight="25.0" prefWidth="60.0" visible="false" />
+                        <Label layoutX="59.0" layoutY="342.0" prefHeight="25.0" prefWidth="120.0" styleClass="label-dark" text="Camera" visible="false" />
+                        <ChoiceBox fx:id="liveViewCameraChoiceBox" layoutX="184.0" layoutY="341.0" prefHeight="25.0" prefWidth="60.0" visible="false" />
+                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ffffff00" height="154.0" layoutX="256.0" layoutY="254.0" stroke="BLACK" strokeType="INSIDE" visible="false" width="212.0" />
+                        <Button fx:id="liveViewConnectButton" disable="true" layoutX="59.0" layoutY="381.0" maxHeight="-Infinity" mnemonicParsing="false" onAction="#handleLiveViewConnectButton" prefHeight="30.0" prefWidth="185.0" styleClass="button-dev" stylesheets="@styles.css" text="Connect to camera" visible="false">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Button>
+                        <Label layoutX="317.0" layoutY="298.0" text="Video Feed" visible="false">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="307.0" layoutY="329.0" text="Coming Soon" visible="false">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                        <Button layoutX="14.0" layoutY="9.0" mnemonicParsing="false" onAction="#handleLiveViewTableRefreshButton" prefWidth="125.0" styleClass="button-dev" stylesheets="@styles.css" text="Refresh">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Button>
+                     </children>
+                  </Pane>
+                  <Pane fx:id="paneGarageSettings" prefHeight="200.0" prefWidth="200.0" styleClass="main-background" stylesheets="@styles.css">
+                     <children>
+                        <Label layoutX="172.0" layoutY="14.0" styleClass="pane-titles" text="Garage Settings">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="45.0" layoutY="89.0" prefHeight="25.0" prefWidth="150.0" styleClass="label-dark-3" text="Garage Name" />
+                        <TextField fx:id="settingsGarageName" layoutX="195.0" layoutY="89.0" />
+                        <Button layoutX="372.0" layoutY="89.0" mnemonicParsing="false" onAction="#handleGarageSettingsSaveButtonOnClick" prefHeight="25.0" prefWidth="100.0" text="Save" />
+                     </children></Pane>
                </children></StackPane>
          </center>
          <left>
