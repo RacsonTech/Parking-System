@@ -107,6 +107,7 @@ public class MainController implements Initializable {
     public ChoiceBox<String> displaysSectionChoiceBox;
     public ChoiceBox<String> displaysCameraChoiceBox;
     public Label displaysIPAddress;
+    public TextField settingsGarageName;
 
 
     private ParkingGarage garage;
@@ -190,6 +191,44 @@ public class MainController implements Initializable {
         statusLED.setMaterial(materialColor);
     }
 
+    private void loadLiveViewData() {
+
+        // Populate the Level Choice Box values
+        reloadLiveViewChoiceBoxes();
+
+        // Register the event handlers (For some reason, Scene builder does not register Choice boxes
+        // event handlers).
+        liveViewLevelChoiceBox.setOnAction(this::handleLevelChoiceBoxAction);
+        liveViewSectionChoiceBox.setOnAction(this::handleSectionChoiceBoxAction);
+        liveViewCameraChoiceBox.setOnAction(this::handleCameraChoiceBoxAction);
+    }
+
+    private void loadCamerasData() {
+
+        // Populate the Level Choice Box values
+        reloadCamerasChoiceBoxes();
+
+        // Register the event handlers (For some reason, Scene builder does not register Choice boxes
+        // event handlers).
+        camerasLevelChoiceBox.setOnAction(this::handleCamerasLevelChoiceBoxAction);
+        camerasSectionChoiceBox.setOnAction(this::handleCamerasSectionChoiceBoxAction);
+        camerasCameraChoiceBox.setOnAction(this::handleCamerasCameraChoiceBoxAction);
+    }
+
+    private void loadDisplaysData() {
+
+        // Populate the Level Choice Box values
+        reloadDisplaysChoiceBoxes();
+
+        // Register the event handlers (For some reason, Scene builder does not register Choice boxes
+        // event handlers).
+        displaysLevelChoiceBox.setOnAction(this::handleDisplaysLevelChoiceBoxAction);
+        displaysSectionChoiceBox.setOnAction(this::handleDisplaysSectionChoiceBoxAction);
+        displaysCameraChoiceBox.setOnAction(this::handleDisplaysCameraChoiceBoxAction);
+
+    }
+
+
     //  ==============   Overview Pane Methods  =================
 
     private void updateOverviewPane() {
@@ -231,43 +270,6 @@ public class MainController implements Initializable {
             System.out.println("Level " + level.getId() + ": | Cap: " + level.getTotalSpaces() +
                     " | Free: " + level.getAvailableSpaces() + " | " + level.getPercentFull() + "% full");
         }
-    }
-
-    private void loadLiveViewData() {
-
-        // Populate the Level Choice Box values
-        reloadLiveViewChoiceBoxes();
-
-        // Register the event handlers (For some reason, Scene builder does not register Choice boxes
-        // event handlers).
-        liveViewLevelChoiceBox.setOnAction(this::handleLevelChoiceBoxAction);
-        liveViewSectionChoiceBox.setOnAction(this::handleSectionChoiceBoxAction);
-        liveViewCameraChoiceBox.setOnAction(this::handleCameraChoiceBoxAction);
-    }
-
-    private void loadCamerasData() {
-
-        // Populate the Level Choice Box values
-        reloadCamerasChoiceBoxes();
-
-        // Register the event handlers (For some reason, Scene builder does not register Choice boxes
-        // event handlers).
-        camerasLevelChoiceBox.setOnAction(this::handleCamerasLevelChoiceBoxAction);
-        camerasSectionChoiceBox.setOnAction(this::handleCamerasSectionChoiceBoxAction);
-        camerasCameraChoiceBox.setOnAction(this::handleCamerasCameraChoiceBoxAction);
-    }
-
-    private void loadDisplaysData() {
-
-        // Populate the Level Choice Box values
-        reloadDisplaysChoiceBoxes();
-
-        // Register the event handlers (For some reason, Scene builder does not register Choice boxes
-        // event handlers).
-        displaysLevelChoiceBox.setOnAction(this::handleDisplaysLevelChoiceBoxAction);
-        displaysSectionChoiceBox.setOnAction(this::handleDisplaysSectionChoiceBoxAction);
-        displaysCameraChoiceBox.setOnAction(this::handleDisplaysCameraChoiceBoxAction);
-
     }
 
     public void handleOverviewRefreshButton() throws SQLException {
@@ -439,6 +441,7 @@ public class MainController implements Initializable {
         }
     }
 
+    @FXML
     public void handleLaunchDisplaySim(ActionEvent actionEvent) {
         try {
             Process p = Runtime.getRuntime().exec("cmd /k start Run_EthernetServer.bat");
@@ -474,7 +477,7 @@ public class MainController implements Initializable {
             liveViewCameraChoiceBox.getItems().setAll(garage.getCameraIdListBySection(sectionId));
         }
     }
-    
+
     public void handleCameraChoiceBoxAction(ActionEvent event) {
         if(liveViewCameraChoiceBox.getValue() != null) {
             liveViewConnectButton.setDisable(false);
