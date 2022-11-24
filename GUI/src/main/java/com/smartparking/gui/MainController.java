@@ -99,8 +99,10 @@ public class MainController implements Initializable {
     public Label SectionSection22Cap;
     public Label SectionSection23Cap;
     public Label SectionSection24Cap;
-
-
+    public ChoiceBox<String> camerasCameraChoiceBox;
+    public ChoiceBox<String> camerasSectionChoiceBox;
+    public ChoiceBox<String> camerasLevelChoiceBox;
+    public Label camerasIPAddress;
 
 
     private ParkingGarage garage;
@@ -136,6 +138,7 @@ public class MainController implements Initializable {
         timeline.setCycleCount(Timeline.INDEFINITE);
         timeline.play();
 
+        loadCamerasData();
     }
 
     private void checkParkingSystemStatus() {
@@ -236,6 +239,19 @@ public class MainController implements Initializable {
         liveViewSectionChoiceBox.setOnAction(this::handleSectionChoiceBoxAction);
         liveViewCameraChoiceBox.setOnAction(this::handleCameraChoiceBoxAction);
     }
+
+    private void loadCamerasData() {
+
+        // Populate the Level Choice Box values
+        reloadCamerasChoiceBoxes();
+
+        // Register the event handlers (For some reason, Scene builder does not register Choice boxes
+        // event handlers).
+        camerasLevelChoiceBox.setOnAction(this::handleCamerasLevelChoiceBoxAction);
+        camerasSectionChoiceBox.setOnAction(this::handleCamerasSectionChoiceBoxAction);
+        camerasCameraChoiceBox.setOnAction(this::handleCamerasCameraChoiceBoxAction);
+    }
+
 
     public void handleOverviewRefreshButton() throws SQLException {
         garage.reloadOverviewData(mySqlConnection.getConnection());
@@ -349,7 +365,7 @@ public class MainController implements Initializable {
         mySqlConnection.disconnect();
         Platform.exit();
     }
-    
+
     //  ==============   Handles for Development Pane  =================
 
     @FXML
@@ -477,6 +493,46 @@ public class MainController implements Initializable {
 
     public void handleLiveViewTableRefreshButton() {
         reloadLiveViewTable();
+    }
+
+    private void reloadCamerasChoiceBoxes() {
+        camerasCameraChoiceBox.getItems().clear();
+        camerasSectionChoiceBox.getItems().clear();
+        camerasLevelChoiceBox.getItems().clear();
+        camerasLevelChoiceBox.setItems(FXCollections.observableArrayList(garage.getLevelIdList()));
+    }
+
+    //  ==============   Handles for Cameras Pane  =================
+    public void handleCamerasLevelChoiceBoxAction(ActionEvent event) {
+
+        if (camerasLevelChoiceBox.getValue() != null) {
+            int levelId = Integer.parseInt(camerasLevelChoiceBox.getValue());
+
+            camerasSectionChoiceBox.getItems().clear();
+            camerasCameraChoiceBox.getItems().clear();
+
+            // Populate the Section choice box
+            camerasSectionChoiceBox.getItems().setAll(garage.getSectionIdListByLevel(levelId));
+        }
+    }
+
+    public void handleCamerasSectionChoiceBoxAction(ActionEvent event) {
+
+        if (camerasSectionChoiceBox.getValue() != null) {
+            int sectionId = Integer.parseInt(camerasSectionChoiceBox.getValue());
+            camerasCameraChoiceBox.getItems().clear();
+
+            // Populate the Camera choice box
+            camerasCameraChoiceBox.getItems().setAll(garage.getCameraIdListBySection(sectionId));
+        }
+    }
+
+    public void handleCamerasCameraChoiceBoxAction(ActionEvent event) {
+        if(camerasCameraChoiceBox.getValue() != null) {
+            int cameraId = Integer.parseInt(camerasCameraChoiceBox.getValue());
+            Camera camera = garage.getCamera(cameraId);
+            camerasIPAddress.setText(camera.getIpAddress());
+        }
     }
 
 }
