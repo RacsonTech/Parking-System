@@ -116,6 +116,21 @@
     -fx-alignment: top-center;
 }
 
+.label-dark-2 {
+    -fx-background-color: -primary-color-medium;
+    -fx-text-fill: -secondary-color-text ;
+    -fx-font-size: 16px;
+    -fx-alignment: top-center;
+}
+
+.label-dark-3 {
+    -fx-background-color: -secondary-color-text ;
+    -fx-text-fill: -primary-color-medium ;
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-alignment: top-center;
+}
+
 /*.scroll-bar:vertical {*/
 /*    -fx-pref-width: 1;*/
 /*    -fx-opacity: 0;*/

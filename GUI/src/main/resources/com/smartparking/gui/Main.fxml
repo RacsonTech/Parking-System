@@ -48,7 +48,8 @@
                         <Sphere fx:id="statusLed" radius="10.0" styleClass="sphere" />
                      </children>
                   </VBox>
-               </children></HBox>
+               </children>
+            </HBox>
          </top>
          <center>
             <StackPane prefHeight="150.0" prefWidth="200.0" BorderPane.alignment="CENTER">
@@ -56,30 +57,6 @@
                   <Pane fx:id="paneGarageSettings" prefHeight="200.0" prefWidth="200.0" styleClass="main-background" stylesheets="@styles.css">
                      <children>
                         <Label layoutX="172.0" layoutY="14.0" styleClass="pane-titles" text="Garage Settings">
-                           <font>
-                              <Font size="24.0" />
-                           </font>
-                        </Label>
-                     </children></Pane>
-                  <Pane fx:id="paneLevels" prefHeight="200.0" prefWidth="200.0" styleClass="main-background" stylesheets="@styles.css">
-                     <children>
-                        <Label layoutX="224.0" layoutY="14.0" styleClass="pane-titles" text="Levels">
-                           <font>
-                              <Font size="24.0" />
-                           </font>
-                        </Label>
-                     </children></Pane>
-                  <Pane fx:id="paneSections" prefHeight="200.0" prefWidth="200.0" styleClass="main-background" stylesheets="@styles.css">
-                     <children>
-                        <Label layoutX="211.0" layoutY="14.0" styleClass="pane-titles" text="Sections">
-                           <font>
-                              <Font size="24.0" />
-                           </font>
-                        </Label>
-                     </children></Pane>
-                  <Pane fx:id="paneCameras" prefHeight="200.0" prefWidth="200.0" styleClass="main-background" stylesheets="@styles.css">
-                     <children>
-                        <Label layoutX="210.0" layoutY="14.0" styleClass="pane-titles" text="Cameras">
                            <font>
                               <Font size="24.0" />
                            </font>
@@ -158,46 +135,53 @@
                         </GridPane>
                      </children>
                   </Pane>
-                  <Pane fx:id="paneLiveView" prefHeight="200.0" prefWidth="200.0" styleClass="main-background" stylesheets="@styles.css">
+                  <Pane fx:id="paneLevels" prefHeight="200.0" prefWidth="200.0" styleClass="main-background" stylesheets="@styles.css">
                      <children>
-                        <Label layoutX="206.0" layoutY="14.0" styleClass="pane-titles" text="Live View">
+                        <Label layoutX="224.0" layoutY="14.0" styleClass="pane-titles" text="Levels">
                            <font>
                               <Font size="24.0" />
                            </font>
                         </Label>
-                        <Label layoutX="59.0" layoutY="256.0" prefHeight="25.0" prefWidth="120.0" styleClass="label-dark" text="Level" />
-                        <ChoiceBox fx:id="liveViewLevelChoiceBox" layoutX="184.0" layoutY="255.0" prefHeight="25.0" prefWidth="60.0" />
-                        <Label layoutX="59.0" layoutY="299.0" prefHeight="25.0" prefWidth="120.0" styleClass="label-dark" text="Section" />
-                        <ChoiceBox fx:id="liveViewSectionChoiceBox" layoutX="184.0" layoutY="298.0" prefHeight="25.0" prefWidth="60.0" />
-                        <TableView fx:id="liveViewTable" layoutX="59.0" layoutY="51.0" prefHeight="190.0" prefWidth="394.0">
-                          <columns>
-                            <TableColumn fx:id="liveViewTableColumnTime" prefWidth="170.0" text="Time Stamp" />
-                            <TableColumn fx:id="liveViewTableColumnCamera" minWidth="7.0" prefWidth="96.0" text="Camera ID" />
-                              <TableColumn fx:id="liveViewTableColumnSpaces" prefWidth="127.0" text="Changed In Spaces" />
-                          </columns>
-                        </TableView>
-                        <Label layoutX="59.0" layoutY="342.0" prefHeight="25.0" prefWidth="120.0" styleClass="label-dark" text="Camera" />
-                        <ChoiceBox fx:id="liveViewCameraChoiceBox" layoutX="184.0" layoutY="341.0" prefHeight="25.0" prefWidth="60.0" />
-                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ffffff00" height="154.0" layoutX="256.0" layoutY="254.0" stroke="BLACK" strokeType="INSIDE" width="212.0" />
-                        <Button fx:id="liveViewConnectButton" disable="true" layoutX="59.0" layoutY="381.0" maxHeight="-Infinity" mnemonicParsing="false" onAction="#handleLiveViewConnectButton" prefHeight="30.0" prefWidth="185.0" styleClass="button-dev" stylesheets="@styles.css" text="Connect to camera">
-                           <font>
-                              <Font size="14.0" />
-                           </font></Button>
-                        <Label layoutX="317.0" layoutY="298.0" text="Video Feed">
-                           <font>
-                              <Font size="18.0" />
-                           </font>
-                        </Label>
-                        <Label layoutX="307.0" layoutY="329.0" text="Coming Soon">
-                           <font>
-                              <Font size="18.0" />
-                           </font>
-                        </Label>
-                        <Button layoutX="14.0" layoutY="9.0" mnemonicParsing="false" onAction="#handleLiveViewTableRefreshButton" prefWidth="125.0" styleClass="button-dev" stylesheets="@styles.css" text="Refresh">
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                        </Button>
+                        <Label layoutX="109.0" layoutY="72.0" prefHeight="25.0" prefWidth="150.0" styleClass="label-dark-3" text="No. of Levels" />
+                        <Label fx:id="levelNumOfLevels" layoutX="259.0" layoutY="72.0" prefHeight="25.0" prefWidth="150.0" styleClass="label-dark-2" text="999" />
+                        <Pane layoutX="122.0" layoutY="130.0" prefHeight="145.0" prefWidth="273.0" styleClass="pane-background">
+                           <children>
+                              <HBox layoutX="11.0" layoutY="14.0" prefHeight="20.0" prefWidth="250.0" styleClass="table-title-background">
+                                 <children>
+                                    <Label maxWidth="-Infinity" prefHeight="35.0" prefWidth="285.0" styleClass="table-overview-title-Text" text="Lvl No." />
+                                    <Label layoutX="10.0" layoutY="10.0" maxWidth="-Infinity" prefHeight="35.0" prefWidth="285.0" styleClass="table-overview-title-Text" text="Capacity" />
+                                    <Label layoutX="135.0" layoutY="10.0" maxWidth="-Infinity" prefHeight="35.0" prefWidth="285.0" styleClass="table-overview-title-Text" text="Sections" />
+                                 </children>
+                              </HBox>
+                              <GridPane alignment="CENTER" layoutX="14.0" layoutY="34.0" prefHeight="106.0" prefWidth="245.0">
+                                 <columnConstraints>
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="124.0" minWidth="10.0" prefWidth="85.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="109.0" minWidth="10.0" prefWidth="84.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="109.0" minWidth="10.0" prefWidth="76.0" />
+                                 </columnConstraints>
+                                 <rowConstraints>
+                                    <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="24.0" vgrow="SOMETIMES" />
+                                    <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="24.0" vgrow="SOMETIMES" />
+                                    <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="24.0" vgrow="SOMETIMES" />
+                                    <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="24.0" vgrow="SOMETIMES" />
+                                 </rowConstraints>
+                                 <children>
+                                    <Label prefHeight="25.0" prefWidth="79.0" styleClass="label-overview-text" text="Level 1:" />
+                                    <Label layoutX="10.0" layoutY="13.0" prefHeight="25.0" prefWidth="76.0" styleClass="label-overview-text" text="Level 2:" GridPane.rowIndex="1" />
+                                    <Label layoutX="10.0" layoutY="43.0" prefHeight="25.0" prefWidth="81.0" styleClass="label-overview-text" text="Level 3:" GridPane.rowIndex="2" />
+                                    <Label layoutX="10.0" layoutY="73.0" prefHeight="25.0" prefWidth="81.0" styleClass="label-overview-text" text="Level 4:" GridPane.rowIndex="3" />
+                                    <Label fx:id="LevelsCapLvl1" alignment="CENTER" maxWidth="74.0" prefHeight="25.0" prefWidth="42.0" styleClass="label-overview-value-table" text="9999" GridPane.columnIndex="1" />
+                                    <Label fx:id="LevelsCapLvl2" alignment="CENTER" layoutX="80.0" layoutY="13.0" maxWidth="74.0" prefHeight="25.0" prefWidth="42.0" styleClass="label-overview-value-table" text="9999" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                    <Label fx:id="LevelsCapLvl3" alignment="CENTER" layoutX="80.0" layoutY="43.0" maxWidth="74.0" prefHeight="25.0" prefWidth="42.0" styleClass="label-overview-value-table" text="9999" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                    <Label fx:id="LevelsCapLvl4" alignment="CENTER" layoutX="80.0" layoutY="73.0" maxWidth="74.0" prefHeight="25.0" prefWidth="42.0" styleClass="label-overview-value-table" text="9999" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                                    <Label fx:id="LevelsLevel1NumOfSections" alignment="CENTER" layoutX="95.0" layoutY="15.0" maxWidth="74.0" prefHeight="25.0" prefWidth="42.0" styleClass="label-overview-value-table" text="9999" GridPane.columnIndex="2" />
+                                    <Label fx:id="LevelsLevel2NumOfSections" alignment="CENTER" layoutX="179.0" layoutY="15.0" maxWidth="74.0" prefHeight="25.0" prefWidth="42.0" styleClass="label-overview-value-table" text="9999" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                                    <Label fx:id="LevelsLevel3NumOfSections" alignment="CENTER" layoutX="179.0" layoutY="39.0" maxWidth="74.0" prefHeight="25.0" prefWidth="42.0" styleClass="label-overview-value-table" text="9999" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                                    <Label fx:id="LevelsLevel4NumOfSections" alignment="CENTER" layoutX="179.0" layoutY="63.0" maxWidth="74.0" prefHeight="25.0" prefWidth="42.0" styleClass="label-overview-value-table" text="9999" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+                                 </children>
+                              </GridPane>
+                           </children>
+                        </Pane>
                      </children></Pane>
                   <Pane fx:id="paneOverview" prefHeight="200.0" prefWidth="200.0" styleClass="main-background" stylesheets="@styles.css">
                      <children>
@@ -289,6 +273,192 @@
                         </Button>
                      </children>
                   </Pane>
+                  <Pane fx:id="paneSections" prefHeight="200.0" prefWidth="200.0" styleClass="main-background" stylesheets="@styles.css">
+                     <children>
+                        <Label layoutX="211.0" layoutY="14.0" styleClass="pane-titles" text="Sections">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="106.0" layoutY="49.0" prefHeight="25.0" prefWidth="150.0" styleClass="label-dark-3" text="No. of Sections" />
+                        <Label fx:id="SectionNumOfSections" layoutX="256.0" layoutY="49.0" prefHeight="25.0" prefWidth="150.0" styleClass="label-dark-2" text="999" />
+                        <Pane layoutX="9.0" layoutY="78.0" prefHeight="346.0" prefWidth="498.0" styleClass="pane-background">
+                           <children>
+                              <HBox layoutX="6.0" layoutY="4.0" prefHeight="20.0" prefWidth="233.0" styleClass="table-title-background">
+                                 <children>
+                                    <Label maxWidth="-Infinity" prefHeight="35.0" prefWidth="285.0" styleClass="table-overview-title-Text" text="Lvl No." />
+                                    <Label layoutX="10.0" layoutY="10.0" maxWidth="-Infinity" prefHeight="35.0" prefWidth="285.0" styleClass="table-overview-title-Text" text="Section No." />
+                                    <Label layoutX="135.0" layoutY="10.0" maxWidth="-Infinity" prefHeight="35.0" prefWidth="285.0" styleClass="table-overview-title-Text" text="Capacity" />
+                                 </children>
+                              </HBox>
+                              <GridPane alignment="CENTER" layoutX="3.0" layoutY="24.0" prefHeight="285.0" prefWidth="240.0">
+                                 <columnConstraints>
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="124.0" minWidth="10.0" prefWidth="82.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="109.0" minWidth="10.0" prefWidth="86.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="109.0" minWidth="10.0" prefWidth="81.0" />
+                                 </columnConstraints>
+                                 <rowConstraints>
+                                    <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                 </rowConstraints>
+                                 <children>
+                                    <Label prefHeight="25.0" prefWidth="79.0" styleClass="label-overview-text" text="Level 1:" />
+                                    <Label layoutX="10.0" layoutY="13.0" prefHeight="25.0" prefWidth="76.0" styleClass="label-overview-text" text="Level 2:" GridPane.rowIndex="6" />
+                                    <Label fx:id="SectionSection1Cap" alignment="CENTER" maxWidth="74.0" prefHeight="25.0" prefWidth="42.0" styleClass="label-overview-value-table" text="9999" GridPane.columnIndex="2" />
+                                    <Label fx:id="SectionSection2Cap" alignment="CENTER" layoutX="80.0" layoutY="13.0" maxWidth="74.0" prefHeight="25.0" prefWidth="42.0" styleClass="label-overview-value-table" text="9999" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                                    <Label fx:id="SectionSection3Cap" alignment="CENTER" layoutX="80.0" layoutY="43.0" maxWidth="74.0" prefHeight="25.0" prefWidth="42.0" styleClass="label-overview-value-table" text="9999" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                                    <Label fx:id="SectionSection4Cap" alignment="CENTER" layoutX="80.0" layoutY="73.0" maxWidth="74.0" prefHeight="25.0" prefWidth="42.0" styleClass="label-overview-value-table" text="9999" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+                                    <Label fx:id="SectionSection5Cap" alignment="CENTER" layoutX="129.0" layoutY="54.0" maxWidth="74.0" prefHeight="25.0" prefWidth="42.0" styleClass="label-overview-value-table" text="9999" GridPane.columnIndex="2" GridPane.rowIndex="4" />
+                                    <Label fx:id="SectionSection6Cap" alignment="CENTER" layoutX="97.0" layoutY="87.0" maxWidth="74.0" prefHeight="25.0" prefWidth="42.0" styleClass="label-overview-value-table" text="9999" GridPane.columnIndex="2" GridPane.rowIndex="6" />
+                                    <Label fx:id="SectionSection7Cap" alignment="CENTER" layoutX="166.0" layoutY="139.0" maxWidth="74.0" prefHeight="25.0" prefWidth="42.0" styleClass="label-overview-value-table" text="9999" GridPane.columnIndex="2" GridPane.rowIndex="7" />
+                                    <Label fx:id="SectionSection8Cap" alignment="CENTER" layoutX="166.0" layoutY="165.0" maxWidth="74.0" prefHeight="25.0" prefWidth="42.0" styleClass="label-overview-value-table" text="9999" GridPane.columnIndex="2" GridPane.rowIndex="8" />
+                                    <Label fx:id="SectionSection9Cap" alignment="CENTER" layoutX="166.0" layoutY="191.0" maxWidth="74.0" prefHeight="25.0" prefWidth="42.0" styleClass="label-overview-value-table" text="9999" GridPane.columnIndex="2" GridPane.rowIndex="9" />
+                                    <Label fx:id="SectionSection10Cap" alignment="CENTER" layoutX="166.0" layoutY="217.0" maxWidth="74.0" prefHeight="25.0" prefWidth="42.0" styleClass="label-overview-value-table" text="9999" GridPane.columnIndex="2" GridPane.rowIndex="10" />
+                                    <Label fx:id="SectionSection11Cap" alignment="CENTER" layoutX="166.0" layoutY="243.0" maxWidth="74.0" prefHeight="25.0" prefWidth="42.0" styleClass="label-overview-value-table" text="9999" GridPane.columnIndex="2" GridPane.rowIndex="11" />
+                                    <Label layoutX="10.0" layoutY="7.0" prefHeight="25.0" prefWidth="79.0" styleClass="label-overview-text" text="Section 1" GridPane.columnIndex="1" />
+                                    <Label layoutX="97.0" layoutY="7.0" prefHeight="25.0" prefWidth="79.0" styleClass="label-overview-text" text="Section 2" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                    <Label layoutX="97.0" layoutY="7.0" prefHeight="25.0" prefWidth="79.0" styleClass="label-overview-text" text="Section 3" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                    <Label layoutX="97.0" layoutY="7.0" prefHeight="25.0" prefWidth="79.0" styleClass="label-overview-text" text="Section 4" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                                    <Label layoutX="97.0" layoutY="26.0" prefHeight="25.0" prefWidth="79.0" styleClass="label-overview-text" text="Section 5" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                                    <Label layoutX="97.0" layoutY="45.0" prefHeight="25.0" prefWidth="79.0" styleClass="label-overview-text" text="Section 6" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                                    <Label layoutX="97.0" layoutY="7.0" prefHeight="25.0" prefWidth="79.0" styleClass="label-overview-text" text="Section 7" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+                                    <Label layoutX="97.0" layoutY="26.0" prefHeight="25.0" prefWidth="79.0" styleClass="label-overview-text" text="Section 8" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+                                    <Label layoutX="97.0" layoutY="45.0" prefHeight="25.0" prefWidth="79.0" styleClass="label-overview-text" text="Section 9" GridPane.columnIndex="1" GridPane.rowIndex="9" />
+                                    <Label layoutX="97.0" layoutY="64.0" prefHeight="25.0" prefWidth="79.0" styleClass="label-overview-text" text="Section 10" GridPane.columnIndex="1" GridPane.rowIndex="10" />
+                                    <Label layoutX="97.0" layoutY="87.0" prefHeight="25.0" prefWidth="79.0" styleClass="label-overview-text" text="Section 11" GridPane.columnIndex="1" GridPane.rowIndex="11" />
+                                 </children>
+                              </GridPane>
+                              <HBox layoutX="258.0" layoutY="4.0" prefHeight="20.0" prefWidth="233.0" styleClass="table-title-background">
+                                 <children>
+                                    <Label maxWidth="-Infinity" prefHeight="35.0" prefWidth="285.0" styleClass="table-overview-title-Text" text="Lvl No." />
+                                    <Label layoutX="10.0" layoutY="10.0" maxWidth="-Infinity" prefHeight="35.0" prefWidth="285.0" styleClass="table-overview-title-Text" text="Section No." />
+                                    <Label layoutX="135.0" layoutY="10.0" maxWidth="-Infinity" prefHeight="35.0" prefWidth="285.0" styleClass="table-overview-title-Text" text="Capacity" />
+                                 </children>
+                              </HBox>
+                              <GridPane alignment="CENTER" layoutX="256.0" layoutY="25.0" prefHeight="320.0" prefWidth="235.0">
+                                 <columnConstraints>
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="124.0" minWidth="10.0" prefWidth="76.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="109.0" minWidth="10.0" prefWidth="91.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="109.0" minWidth="10.0" prefWidth="70.0" />
+                                 </columnConstraints>
+                                 <rowConstraints>
+                                    <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                 </rowConstraints>
+                                 <children>
+                                    <Label prefHeight="25.0" prefWidth="79.0" styleClass="label-overview-text" text="Level 3:" />
+                                    <Label layoutX="10.0" layoutY="13.0" prefHeight="25.0" prefWidth="76.0" styleClass="label-overview-text" text="Level 4:" GridPane.rowIndex="7" />
+                                    <Label fx:id="SectionSection12Cap" alignment="CENTER" maxWidth="74.0" prefHeight="25.0" prefWidth="42.0" styleClass="label-overview-value-table" text="9999" GridPane.columnIndex="2" />
+                                    <Label fx:id="SectionSection13Cap" alignment="CENTER" layoutX="80.0" layoutY="13.0" maxWidth="74.0" prefHeight="25.0" prefWidth="42.0" styleClass="label-overview-value-table" text="9999" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                                    <Label fx:id="SectionSection14Cap" alignment="CENTER" layoutX="80.0" layoutY="43.0" maxWidth="74.0" prefHeight="25.0" prefWidth="42.0" styleClass="label-overview-value-table" text="9999" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                                    <Label fx:id="SectionSection15Cap" alignment="CENTER" layoutX="80.0" layoutY="73.0" maxWidth="74.0" prefHeight="25.0" prefWidth="42.0" styleClass="label-overview-value-table" text="9999" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+                                    <Label fx:id="SectionSection16Cap" alignment="CENTER" layoutX="129.0" layoutY="54.0" maxWidth="74.0" prefHeight="25.0" prefWidth="42.0" styleClass="label-overview-value-table" text="9999" GridPane.columnIndex="2" GridPane.rowIndex="4" />
+                                    <Label fx:id="SectionSection17Cap" alignment="CENTER" layoutX="97.0" layoutY="87.0" maxWidth="74.0" prefHeight="25.0" prefWidth="42.0" styleClass="label-overview-value-table" text="9999" GridPane.columnIndex="2" GridPane.rowIndex="5" />
+                                    <Label fx:id="SectionSection18Cap" alignment="CENTER" layoutX="166.0" layoutY="139.0" maxWidth="74.0" prefHeight="25.0" prefWidth="42.0" styleClass="label-overview-value-table" text="9999" GridPane.columnIndex="2" GridPane.rowIndex="7" />
+                                    <Label fx:id="SectionSection19Cap" alignment="CENTER" layoutX="166.0" layoutY="165.0" maxWidth="74.0" prefHeight="25.0" prefWidth="42.0" styleClass="label-overview-value-table" text="9999" GridPane.columnIndex="2" GridPane.rowIndex="8" />
+                                    <Label fx:id="SectionSection20Cap" alignment="CENTER" layoutX="166.0" layoutY="191.0" maxWidth="74.0" prefHeight="25.0" prefWidth="42.0" styleClass="label-overview-value-table" text="9999" GridPane.columnIndex="2" GridPane.rowIndex="9" />
+                                    <Label fx:id="SectionSection21Cap" alignment="CENTER" layoutX="166.0" layoutY="217.0" maxWidth="74.0" prefHeight="25.0" prefWidth="42.0" styleClass="label-overview-value-table" text="9999" GridPane.columnIndex="2" GridPane.rowIndex="10" />
+                                    <Label fx:id="SectionSection22Cap" alignment="CENTER" layoutX="166.0" layoutY="243.0" maxWidth="74.0" prefHeight="25.0" prefWidth="42.0" styleClass="label-overview-value-table" text="9999" GridPane.columnIndex="2" GridPane.rowIndex="11" />
+                                    <Label layoutX="10.0" layoutY="7.0" prefHeight="25.0" prefWidth="79.0" styleClass="label-overview-text" text="Section 12" GridPane.columnIndex="1" />
+                                    <Label layoutX="97.0" layoutY="7.0" prefHeight="25.0" prefWidth="79.0" styleClass="label-overview-text" text="Section 13" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                    <Label layoutX="97.0" layoutY="7.0" prefHeight="25.0" prefWidth="79.0" styleClass="label-overview-text" text="Section 14" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                    <Label layoutX="97.0" layoutY="7.0" prefHeight="25.0" prefWidth="79.0" styleClass="label-overview-text" text="Section 15" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                                    <Label layoutX="97.0" layoutY="26.0" prefHeight="25.0" prefWidth="79.0" styleClass="label-overview-text" text="Section 16" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                                    <Label layoutX="97.0" layoutY="45.0" prefHeight="25.0" prefWidth="79.0" styleClass="label-overview-text" text="Section 17" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                                    <Label layoutX="97.0" layoutY="7.0" prefHeight="25.0" prefWidth="79.0" styleClass="label-overview-text" text="Section 18" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+                                    <Label layoutX="97.0" layoutY="26.0" prefHeight="25.0" prefWidth="79.0" styleClass="label-overview-text" text="Section 19" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+                                    <Label layoutX="97.0" layoutY="45.0" prefHeight="25.0" prefWidth="79.0" styleClass="label-overview-text" text="Section 20" GridPane.columnIndex="1" GridPane.rowIndex="9" />
+                                    <Label layoutX="97.0" layoutY="64.0" prefHeight="25.0" prefWidth="79.0" styleClass="label-overview-text" text="Section 21" GridPane.columnIndex="1" GridPane.rowIndex="10" />
+                                    <Label layoutX="97.0" layoutY="87.0" prefHeight="25.0" prefWidth="79.0" styleClass="label-overview-text" text="Section 22" GridPane.columnIndex="1" GridPane.rowIndex="11" />
+                                    <Label layoutX="85.0" layoutY="251.0" prefHeight="25.0" prefWidth="79.0" styleClass="label-overview-text" text="Section 23" GridPane.columnIndex="1" GridPane.rowIndex="12" />
+                                    <Label layoutX="85.0" layoutY="273.0" prefHeight="25.0" prefWidth="79.0" styleClass="label-overview-text" text="Section 24" GridPane.columnIndex="1" GridPane.rowIndex="13" />
+                                    <Label fx:id="SectionSection23Cap" alignment="CENTER" layoutX="175.0" layoutY="260.0" maxWidth="74.0" prefHeight="25.0" prefWidth="42.0" styleClass="label-overview-value-table" text="9999" GridPane.columnIndex="2" GridPane.rowIndex="12" />
+                                    <Label fx:id="SectionSection24Cap" alignment="CENTER" layoutX="175.0" layoutY="283.0" maxWidth="74.0" prefHeight="25.0" prefWidth="42.0" styleClass="label-overview-value-table" text="9999" GridPane.columnIndex="2" GridPane.rowIndex="13" />
+                                 </children>
+                              </GridPane>
+                           </children>
+                        </Pane>
+                     </children>
+                  </Pane>
+                  <Pane fx:id="paneLiveView" prefHeight="200.0" prefWidth="200.0" styleClass="main-background" stylesheets="@styles.css">
+                     <children>
+                        <Label layoutX="206.0" layoutY="14.0" styleClass="pane-titles" text="Live View">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                        </Label>
+                        <TableView fx:id="liveViewTable" layoutX="59.0" layoutY="51.0" prefHeight="190.0" prefWidth="394.0">
+                          <columns>
+                            <TableColumn fx:id="liveViewTableColumnTime" prefWidth="170.0" text="Time Stamp" />
+                            <TableColumn fx:id="liveViewTableColumnCamera" minWidth="7.0" prefWidth="96.0" text="Camera ID" />
+                              <TableColumn fx:id="liveViewTableColumnSpaces" prefWidth="127.0" text="Changed In Spaces" />
+                          </columns>
+                        </TableView>
+                        <Label layoutX="59.0" layoutY="256.0" prefHeight="25.0" prefWidth="120.0" styleClass="label-dark" text="Level" />
+                        <ChoiceBox fx:id="liveViewLevelChoiceBox" layoutX="184.0" layoutY="255.0" prefHeight="25.0" prefWidth="60.0" />
+                        <Label layoutX="59.0" layoutY="299.0" prefHeight="25.0" prefWidth="120.0" styleClass="label-dark" text="Section" />
+                        <ChoiceBox fx:id="liveViewSectionChoiceBox" layoutX="184.0" layoutY="298.0" prefHeight="25.0" prefWidth="60.0" />
+                        <Label layoutX="59.0" layoutY="342.0" prefHeight="25.0" prefWidth="120.0" styleClass="label-dark" text="Camera" />
+                        <ChoiceBox fx:id="liveViewCameraChoiceBox" layoutX="184.0" layoutY="341.0" prefHeight="25.0" prefWidth="60.0" />
+                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ffffff00" height="154.0" layoutX="256.0" layoutY="254.0" stroke="BLACK" strokeType="INSIDE" width="212.0" />
+                        <Button fx:id="liveViewConnectButton" disable="true" layoutX="59.0" layoutY="381.0" maxHeight="-Infinity" mnemonicParsing="false" onAction="#handleLiveViewConnectButton" prefHeight="30.0" prefWidth="185.0" styleClass="button-dev" stylesheets="@styles.css" text="Connect to camera">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Button>
+                        <Label layoutX="317.0" layoutY="298.0" text="Video Feed">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="307.0" layoutY="329.0" text="Coming Soon">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                        <Button layoutX="14.0" layoutY="9.0" mnemonicParsing="false" onAction="#handleLiveViewTableRefreshButton" prefWidth="125.0" styleClass="button-dev" stylesheets="@styles.css" text="Refresh">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Button>
+                     </children>
+                  </Pane>
+                  <Pane fx:id="paneCameras" prefHeight="200.0" prefWidth="200.0" styleClass="main-background" stylesheets="@styles.css">
+                     <children>
+                        <Label layoutX="210.0" layoutY="14.0" styleClass="pane-titles" text="Cameras">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                        </Label>
+                        <ChoiceBox fx:id="camerasCameraChoiceBox" layoutX="142.0" layoutY="316.0" prefHeight="25.0" prefWidth="60.0" />
+                        <Label layoutX="14.0" layoutY="316.0" prefHeight="25.0" prefWidth="120.0" styleClass="label-dark" text="Camera" />
+                        <Label layoutX="14.0" layoutY="273.0" prefHeight="25.0" prefWidth="120.0" styleClass="label-dark" text="Section" />
+                        <Label layoutX="14.0" layoutY="228.0" prefHeight="25.0" prefWidth="120.0" styleClass="label-dark" text="Level" />
+                        <ChoiceBox fx:id="camerasSectionChoiceBox" layoutX="142.0" layoutY="273.0" prefHeight="25.0" prefWidth="60.0" />
+                        <ChoiceBox fx:id="camerasLevelChoiceBox" layoutX="142.0" layoutY="228.0" prefHeight="25.0" prefWidth="60.0" />
+                     </children></Pane>
                </children></StackPane>
          </center>
          <left>

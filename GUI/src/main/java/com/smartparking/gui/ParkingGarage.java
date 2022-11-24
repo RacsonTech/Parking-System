@@ -468,10 +468,12 @@ public class ParkingGarage {
         int id;
         int totalSpaces;
         int availableSpaces;
+        int numOfSections;
+
         ArrayList<Level> levelArrayList = new ArrayList<>();
 
         // Prepare a new query
-        String query = ("SELECT id, total_spaces, available_spaces from levels");
+        String query = ("SELECT id, total_spaces, available_spaces, sections from levels");
 
         // Execute the query
         ResultSet resultSet = statement.executeQuery(query);
@@ -481,8 +483,9 @@ public class ParkingGarage {
             id = resultSet.getInt("id");
             totalSpaces = resultSet.getInt("total_spaces");
             availableSpaces = resultSet.getInt("available_spaces");
+            numOfSections = resultSet.getInt("sections");
 
-            Level level = new Level(id, totalSpaces, availableSpaces);
+            Level level = new Level(id, totalSpaces, availableSpaces, numOfSections);
 
             levelArrayList.add(level);
         }

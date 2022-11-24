@@ -21,6 +21,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class MainController implements Initializable {
@@ -64,6 +65,43 @@ public class MainController implements Initializable {
     public Label labelLaunchDisplaySim;
     public Sphere statusLed;
     public Label statusLedLabel;
+    public Label levelNumOfLevels;
+    public Label LevelsCapLvl1;
+    public Label LevelsCapLvl2;
+    public Label LevelsCapLvl3;
+    public Label LevelsCapLvl4;
+    public Label LevelsLevel1NumOfSections;
+    public Label LevelsLevel2NumOfSections;
+    public Label LevelsLevel3NumOfSections;
+    public Label LevelsLevel4NumOfSections;
+    public Label SectionNumOfSections;
+    public Label SectionSection1Cap;
+    public Label SectionSection2Cap;
+    public Label SectionSection3Cap;
+    public Label SectionSection4Cap;
+    public Label SectionSection5Cap;
+    public Label SectionSection6Cap;
+    public Label SectionSection7Cap;
+    public Label SectionSection8Cap;
+    public Label SectionSection9Cap;
+    public Label SectionSection10Cap;
+    public Label SectionSection11Cap;
+    public Label SectionSection12Cap;
+    public Label SectionSection13Cap;
+    public Label SectionSection14Cap;
+    public Label SectionSection15Cap;
+    public Label SectionSection16Cap;
+    public Label SectionSection17Cap;
+    public Label SectionSection18Cap;
+    public Label SectionSection19Cap;
+    public Label SectionSection20Cap;
+    public Label SectionSection21Cap;
+    public Label SectionSection22Cap;
+    public Label SectionSection23Cap;
+    public Label SectionSection24Cap;
+
+
+
 
     private ParkingGarage garage;
     private MySqlConnection mySqlConnection;
@@ -227,11 +265,63 @@ public class MainController implements Initializable {
     @FXML
     public void handleLevelsButtonClick() {
         paneLevels.toFront();
+        levelNumOfLevels.setText(String.valueOf(garage.getNumLevels()));
+
+        // For each level in the garage...
+        for (Level level : garage.getLevelList()) {
+            switch (level.getId()) {
+                case 1 -> {
+                    LevelsCapLvl1.setText(String.valueOf(level.getTotalSpaces()));
+                    LevelsLevel1NumOfSections.setText(String.valueOf(level.getNumOfSections()));
+                }
+                case 2 -> {
+                    LevelsCapLvl2.setText(String.valueOf(level.getTotalSpaces()));
+                    LevelsLevel2NumOfSections.setText(String.valueOf(level.getNumOfSections()));
+                }
+                case 3 -> {
+                    LevelsCapLvl3.setText(String.valueOf(level.getTotalSpaces()));
+                    LevelsLevel3NumOfSections.setText(String.valueOf(level.getNumOfSections()));
+                }
+                case 4 -> {
+                    LevelsCapLvl4.setText(String.valueOf(level.getTotalSpaces()));
+                    LevelsLevel4NumOfSections.setText(String.valueOf(level.getNumOfSections()));
+                }
+            }
+        }
     }
 
     @FXML
     public void handleSectionsButtonClick() {
         paneSections.toFront();
+
+        ArrayList<Section> sectionArrayList = garage.getSectionArrayList();
+        int numOfSections = sectionArrayList.size();
+        SectionNumOfSections.setText(String.valueOf(numOfSections));
+
+        SectionSection1Cap.setText(String.valueOf(sectionArrayList.get(0).getTotalSpaces()));
+        SectionSection2Cap.setText(String.valueOf(sectionArrayList.get(1).getTotalSpaces()));
+        SectionSection3Cap.setText(String.valueOf(sectionArrayList.get(2).getTotalSpaces()));
+        SectionSection4Cap.setText(String.valueOf(sectionArrayList.get(3).getTotalSpaces()));
+        SectionSection5Cap.setText(String.valueOf(sectionArrayList.get(4).getTotalSpaces()));
+        SectionSection6Cap.setText(String.valueOf(sectionArrayList.get(5).getTotalSpaces()));
+        SectionSection7Cap.setText(String.valueOf(sectionArrayList.get(6).getTotalSpaces()));
+        SectionSection8Cap.setText(String.valueOf(sectionArrayList.get(7).getTotalSpaces()));
+        SectionSection9Cap.setText(String.valueOf(sectionArrayList.get(8).getTotalSpaces()));
+        SectionSection10Cap.setText(String.valueOf(sectionArrayList.get(9).getTotalSpaces()));
+        SectionSection11Cap.setText(String.valueOf(sectionArrayList.get(10).getTotalSpaces()));
+        SectionSection12Cap.setText(String.valueOf(sectionArrayList.get(11).getTotalSpaces()));
+        SectionSection13Cap.setText(String.valueOf(sectionArrayList.get(12).getTotalSpaces()));
+        SectionSection14Cap.setText(String.valueOf(sectionArrayList.get(13).getTotalSpaces()));
+        SectionSection15Cap.setText(String.valueOf(sectionArrayList.get(14).getTotalSpaces()));
+        SectionSection16Cap.setText(String.valueOf(sectionArrayList.get(15).getTotalSpaces()));
+        SectionSection17Cap.setText(String.valueOf(sectionArrayList.get(16).getTotalSpaces()));
+        SectionSection18Cap.setText(String.valueOf(sectionArrayList.get(17).getTotalSpaces()));
+        SectionSection19Cap.setText(String.valueOf(sectionArrayList.get(18).getTotalSpaces()));
+        SectionSection20Cap.setText(String.valueOf(sectionArrayList.get(19).getTotalSpaces()));
+        SectionSection21Cap.setText(String.valueOf(sectionArrayList.get(20).getTotalSpaces()));
+        SectionSection22Cap.setText(String.valueOf(sectionArrayList.get(21).getTotalSpaces()));
+        SectionSection23Cap.setText(String.valueOf(sectionArrayList.get(22).getTotalSpaces()));
+        SectionSection24Cap.setText(String.valueOf(sectionArrayList.get(23).getTotalSpaces()));
     }
 
     @FXML
@@ -259,7 +349,7 @@ public class MainController implements Initializable {
         mySqlConnection.disconnect();
         Platform.exit();
     }
-
+    
     //  ==============   Handles for Development Pane  =================
 
     @FXML

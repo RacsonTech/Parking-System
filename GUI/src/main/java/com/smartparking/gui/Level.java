@@ -5,12 +5,14 @@ public class Level {
     private int totalSpaces;
     private int availableSpaces;
     private int percentFull;
+    private int numOfSections;
 
-    public Level(int id, int totalSpaces, int availableSpaces) {
+    public Level(int id, int totalSpaces, int availableSpaces, int numOfSections) {
         this.id = id;
         this.totalSpaces = totalSpaces;
         this.availableSpaces = availableSpaces;
         percentFull = calculatePercentFull();
+        this.numOfSections = numOfSections;
     }
 
     private int calculatePercentFull() {
@@ -33,6 +35,9 @@ public class Level {
         return availableSpaces;
     }
 
+    public int getNumOfSections() {
+        return numOfSections;
+    }
     public void updateTotalSpaces(int capacity) {
         totalSpaces = capacity;
         percentFull = calculatePercentFull();
