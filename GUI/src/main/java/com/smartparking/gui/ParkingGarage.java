@@ -586,9 +586,9 @@ public class ParkingGarage {
 
         Statement statement = dbConnection.createStatement();
 
-        // Prepare a new query (Gets the last 6 rows in ascending order)
+        // Prepare a new query (Gets the last 10 rows in ascending order)
         String query = ("SELECT * FROM " +
-                "(SELECT time_stamp, camera_id, changed_spaces FROM camera_log ORDER BY time_stamp DESC LIMIT 6)" +
+                "(SELECT time_stamp, camera_id, changed_spaces FROM camera_log ORDER BY time_stamp DESC LIMIT 10)" +
                 " AS sub" +
                 " ORDER BY time_stamp;");
 
