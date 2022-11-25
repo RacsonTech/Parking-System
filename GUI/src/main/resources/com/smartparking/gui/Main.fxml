@@ -420,17 +420,6 @@
                         <Label fx:id="camerasIPAddress" layoutX="258.0" layoutY="246.0" prefHeight="25.0" prefWidth="150.0" styleClass="label-dark-2" />
                      </children>
                   </Pane>
-                  <Pane fx:id="paneGarageSettings" prefHeight="200.0" prefWidth="200.0" styleClass="main-background" stylesheets="@styles.css">
-                     <children>
-                        <Label layoutX="172.0" layoutY="14.0" styleClass="pane-titles" text="Garage Settings">
-                           <font>
-                              <Font size="24.0" />
-                           </font>
-                        </Label>
-                        <Label layoutX="45.0" layoutY="89.0" prefHeight="25.0" prefWidth="150.0" styleClass="label-dark-3" text="Garage Name" />
-                        <TextField fx:id="settingsGarageName" layoutX="195.0" layoutY="89.0" />
-                        <Button layoutX="372.0" layoutY="89.0" mnemonicParsing="false" onAction="#handleGarageSettingsSaveButtonOnClick" prefHeight="25.0" prefWidth="100.0" text="Save" />
-                     </children></Pane>
                   <Pane fx:id="paneLiveView" prefHeight="200.0" prefWidth="200.0" styleClass="main-background" stylesheets="@styles.css">
                      <children>
                         <Label layoutX="206.0" layoutY="14.0" styleClass="pane-titles" text="Live View">
@@ -474,6 +463,17 @@
                         </Button>
                      </children>
                   </Pane>
+                  <Pane fx:id="paneGarageSettings" prefHeight="200.0" prefWidth="200.0" styleClass="main-background" stylesheets="@styles.css">
+                     <children>
+                        <Label layoutX="172.0" layoutY="14.0" styleClass="pane-titles" text="Garage Settings">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="45.0" layoutY="89.0" prefHeight="25.0" prefWidth="150.0" styleClass="label-dark-3" text="Garage Name" />
+                        <TextField fx:id="settingsGarageName" layoutX="195.0" layoutY="89.0" />
+                        <Button layoutX="372.0" layoutY="89.0" mnemonicParsing="false" onAction="#handleGarageSettingsSaveButtonOnClick" prefHeight="25.0" prefWidth="100.0" text="Save" />
+                     </children></Pane>
                </children></StackPane>
          </center>
          <left>

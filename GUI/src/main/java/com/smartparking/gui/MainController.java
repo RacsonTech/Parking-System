@@ -127,7 +127,9 @@ public class MainController implements Initializable {
             garage = new ParkingGarage(mySqlConnection);
 
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            System.err.println("\tError while trying to initialize Database system.");
+            System.err.println("MainController.java >> initialize() function.\t");
+            e.printStackTrace();
         }
 
         updateOverviewPane();   // Default section to show at program launch
