@@ -11,12 +11,12 @@ public class ParkingSystem  {
 
 //        new HeartBeat();
 
-        try {
-            System.out.println("Parking System Thread sleeping");
-            Thread.sleep(60000000);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
+//        try {
+//            System.out.println("Parking System Thread sleeping");
+//            Thread.sleep(60000000);
+//        } catch (InterruptedException e) {
+//            throw new RuntimeException(e);
+//        }
 
 
         // Create a connection to the local MySQL DB
@@ -28,13 +28,30 @@ public class ParkingSystem  {
         // Loads data from the database
         iniParkingSystem(parkingGarage, connectionToDB);
 
-        // Reads new records from the database created by the camera python script
-        getNewCameraLogRecords(parkingGarage, connectionToDB);
-        
-        processNewCameraRecords(parkingGarage, connectionToDB);
+        while(true) {
+            // Reads new records from the database created by the camera python script
+            getNewCameraLogRecords(parkingGarage, connectionToDB);
+
+            processNewCameraRecords(parkingGarage, connectionToDB);
+
+            try {
+                System.out.println("Parking System Waiting for new Updates");
+                Thread.sleep(5000);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+        }
 
         // Close the DB connection
-        (mySqlConnection.getConnection()).close();
+//        (mySqlConnection.getConnection()).close();
+//
+//        try {
+//            System.out.println("\nParking System Waiting for new Updates");
+//            Thread.sleep(60000000);
+//        } catch (InterruptedException e) {
+//            throw new RuntimeException(e);
+//        }
+
 
 //        EthernetClient.close();
 //      try {
@@ -472,34 +489,38 @@ public class ParkingSystem  {
         }
 
         parkingGarage.setSpaceChangeRecordArrayList(recordArrayList);
-        parkingGarage.printSpaceChangeRecords();
+
+        // Print on the terminal only if there are any updates
+        if(recordArrayList.size() > 0) {
+            parkingGarage.printSpaceChangeRecords();
+        }
 
 //        TODO: Update the field "isNew" in the cameraLog table to zero (Not New)
 //          Uncomment the code below (Analyze it first, I think I refactored
 //          spaceChangeRecordArrayList to recordArrayList.
 //        TODO: create an independent program that acts as if it were cameras
 //          so, it continuously store in the DB changes in spaces (Camera Log table)
-//        // ********* UPDATE column "isNew" to zero ********** //
-//
-//        // Prepare the query using id as a parameter
-//        query = ("UPDATE camera_log SET isNew = 0 WHERE id = ?");
-//
-//        // Prepare the statement
-//        PreparedStatement preparedStatement = connection.prepareStatement(query);
-//
-//        int rowChanged;
-//        for (SpaceChangeRecord spaceChangeRecord : spaceChangeRecordArrayList) {
-//
-//            // Set Parameters (1 means the 1st ? in the query)
-//            preparedStatement.setInt(1, spaceChangeRecord.getRecordId());
-//
-//            // Execute SQL query
-//            rowChanged = preparedStatement.executeUpdate();
-//            if (rowChanged == 0) {
-//                System.err.println("ERROR: Record ID: " + spaceChangeRecord.getRecordId() + " could not be updated.");
-//                System.err.println("The camera_log table will be inaccurate.");
-//            }
-//        }
+        // ********* UPDATE column "isNew" to zero ********** //
+
+        // Prepare the query using id as a parameter
+        query = ("UPDATE camera_log SET isNew = 0 WHERE id = ?");
+
+        // Prepare the statement
+        PreparedStatement preparedStatement = connection.prepareStatement(query);
+
+        int rowChanged;
+        for (CameraRecord spaceChangeRecord : recordArrayList) {
+
+            // Set Parameters (1 means the 1st ? in the query)
+            preparedStatement.setInt(1, spaceChangeRecord.getRecordId());
+
+            // Execute SQL query
+            rowChanged = preparedStatement.executeUpdate();
+            if (rowChanged == 0) {
+                System.err.println("ERROR: Record ID: " + spaceChangeRecord.getRecordId() + " could not be updated.");
+                System.err.println("The camera_log table will be inaccurate.");
+            }
+        }
 
         resultSet.close();
         statement.close();
