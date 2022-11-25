@@ -20,7 +20,7 @@ def tracklet_removed(car, lastLocation):
     # then, it means the car is going either left or right. Also, count only if
     # the car traveled at least a certain distance (more than the threshold value); this
     # avoids cars that have moved a little to be counted as leaving or entering.
-    if abs(deltaX) > abs(deltaY) and abs(deltaX) > THRESH_DIST_DELTA:
+    if abs(deltaX) > abs(deltaY) and abs(deltaX) > THRESH_DIST_DELTA and originalLocation[1] > 0.3:
 
         # if deltax is negative then
         #     car is moving left
@@ -58,6 +58,8 @@ def get_centroid(roi):
     y1 = roi.topLeft().y
     x2 = roi.bottomRight().x
     y2 = roi.bottomRight().y
+    #node.warn (f"x1: {x1} | y1: {y1} | x2: {x2} | y2: {y2}")
+
     return (  (x2 - x1) / 2 + x1  , (y2 - y1) / 2 + y1)    # (X, Y)
 
 # Send dictionary initially (all counters 0)
